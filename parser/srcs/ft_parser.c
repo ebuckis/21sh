@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 12:06:09 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/15 14:22:34 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static int		ft_str_parser(t_parse *p)
+static int	ft_str_parser(t_parse *p)
 {
 	while (p->s[p->i])
 	{
@@ -27,10 +27,8 @@ static int		ft_str_parser(t_parse *p)
 			p->err = ft_separator(p);
 		else if (ft_is_white(p->s[p->i]))
 		{
-			p->str[p->j] = -1;
-			p->ident[p->j] = -1;
+			ft_add_space(p);
 			p->i++;
-			p->j++;
 		}
 		else
 			ft_end_while(p, 1);

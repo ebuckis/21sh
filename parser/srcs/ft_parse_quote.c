@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:22:22 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 10:56:46 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/15 14:21:25 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,8 @@ int			ft_parse_quote(t_parse *p)
 		while (p->s[p->i] == '\0')
 		{
 			ft_putstr("quote> ");
-			ft_suite_line(p, 1);//verif
+			if (!ft_suite_line(p, 1))
+				return (0);
 		}
 	}
 	return (1);

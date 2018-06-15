@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 11:44:20 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/15 14:22:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,5 +41,6 @@ void			ft_end_while(t_parse *p, int n);
 int				ft_separator(t_parse *p);
 t_parse			*ft_save_struct(t_parse *parsing);
 int				ft_close_parse(void);
+void			ft_add_space(t_parse *p);
 
 #endif
