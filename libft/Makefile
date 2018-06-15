@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/11/24 08:13:59 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/06/13 10:52:51 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/06/15 08:32:05 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -92,8 +92,6 @@ FCT =	ft_memset.c			\
 		ft_strsub_del.c		\
 		ft_whitespace.c		\
 		ft_strjoin_del.c	\
-		ft_parser.c			\
-		ft_parse_suite.c	\
 		ft_realloc.c
 
 all : $(NAME)

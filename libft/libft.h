@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/24 08:28:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/14 16:47:10 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/15 11:03:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,6 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define BUFF_SIZE_GNL 4016
 # include <string.h>
 # include <stddef.h>
 # include <stdlib.h>
@@ -96,18 +95,6 @@ int				ft_isprime(int n);
 int				cpt_mot(const char *s, char c);
 int				get_next_line(const int fd, char **line);
 char			*ft_whitespace(char *s);
-typedef struct	s_parse
-{
-	char		*str;
-	char		*ident;
-	int			len;
-	int			i;
-	int			j;
-}				t_parse;
-char			**ft_parser(char *s);
-t_parse			*ft_init_parse(char *s);
 char			*ft_realloc(char *str, int n);
-char			*ft_suite_line(t_parse *p, char *s, int i);
-void			ft_end_while(t_parse *p, char *s, int n);
 
 #endif
