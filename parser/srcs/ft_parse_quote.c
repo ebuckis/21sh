@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:22:22 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 14:21:25 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 16:35:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,3 +36,10 @@ int			ft_parse_quote(t_parse *p)
 	}
 	return (1);
 }
+
+/*
+** Gestion des '...'
+** On boucle tant qu'on a pas un autre '
+** On sort des le 2eme ' rencontré
+** 39 '
+*/

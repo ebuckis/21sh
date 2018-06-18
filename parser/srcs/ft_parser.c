@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 14:22:34 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 15:04:39 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,16 @@ static int	ft_str_parser(t_parse *p)
 	return (1);
 }
 
+/*
+** dans ft_str_parser on verifie char by char
+** si on a :	- un backslash
+**				- un "
+**				- un '
+**				- un separateur
+**				- ou un whitespace
+**				- sinon on copie betement
+*/
+
 t_parse		*ft_parser(char *line)
 {
 	t_parse	*p;
@@ -59,3 +69,11 @@ t_parse		*ft_parser(char *line)
 	}
 	return (p);
 }
+
+/*
+** Debut de la fonction
+** - Initialisation
+** - si le parse renvoie une erreur on quitte proprement
+** - on split str pour avoir les arg
+** - on split ident pour identifier les arguments precedents
+*/

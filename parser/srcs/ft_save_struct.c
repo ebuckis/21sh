@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 11:30:42 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 11:36:46 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 15:06:17 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,3 +21,8 @@ t_parse		*ft_save_struct(t_parse *parsing)
 		p = parsing;
 	return (p);
 }
+
+/*
+** On enregistre la structure dans une statique
+** pour y avoir acces quant on veut
+*/

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 14:22:16 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/15 15:10:43 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,13 @@ typedef struct	s_parse
 	int			j;
 }				t_parse;
 
+/*
+** s : line d'entree
+** str : line parsee
+** ident : meme format que str et permet d'identifier les arg
+** arg : split de str
+** arg_id : split de ident
+*/
 t_parse			*ft_parser(char *line);
 int				ft_antislash(t_parse *p);
 t_parse			*ft_init_parse(char *line);
@@ -40,7 +47,13 @@ int				ft_suite_line(t_parse *p, int i);
 void			ft_end_while(t_parse *p, int n);
 int				ft_separator(t_parse *p);
 t_parse			*ft_save_struct(t_parse *parsing);
+/*
+** permet de garder une save de t_parse meme si on sort de la fonction
+*/
 int				ft_close_parse(void);
+/*
+** ft_close permet de free la structure t_parse
+*/
 void			ft_add_space(t_parse *p);
 
 #endif

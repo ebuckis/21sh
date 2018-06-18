@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:15:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 14:22:42 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 14:49:47 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,3 +46,10 @@ int			ft_is_separator(t_parse *p)
 			return (0);
 	}
 }
+
+/*
+** On verrifie de maniere booleenne si on est sur un separteur/redirection
+** 2 cas :
+** 			- le premier char est un chiffre
+**			- le premier char est un char de la 1ere fonction
+*/

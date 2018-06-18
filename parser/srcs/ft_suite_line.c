@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 14:20:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 15:15:51 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,11 @@ int			ft_suite_line(t_parse *p, int i)
 	return (1);
 }
 
+/*
+** Permet de lire de nouveau sur l'entrée stantdard
+** Reallocation de memoire nécessaire
+*/
+
 void		ft_end_while(t_parse *p, int n)
 {
 	p->str[p->j] = p->s[p->i];
@@ -49,9 +54,17 @@ void		ft_end_while(t_parse *p, int n)
 	p->j++;
 }
 
+/*
+** Incrementation standard
+*/
+
 void		ft_add_space(t_parse *p)
 {
 	p->str[p->j] = -1;
 	p->ident[p->j] = -1;
 	p->j++;
 }
+
+/*
+** Marque un 'espace' grace au char -1 qui permettra de spliter plus loin
+*/

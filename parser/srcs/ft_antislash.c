@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:20:08 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 14:04:10 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 14:45:09 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,3 +28,7 @@ int			ft_antislash(t_parse *p)
 	}
 	return (1);
 }
+
+/*
+** Cette fonction gere le \ en fin de chaine de char
+*/

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:12:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 10:56:32 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 14:50:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,3 +27,7 @@ int			ft_is_white(char c)
 		return (1);
 	return (0);
 }
+
+/*
+** Verifie si c est un WhiteSpace
+*/

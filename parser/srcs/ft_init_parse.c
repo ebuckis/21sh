@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:18:37 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 11:36:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 14:46:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,3 +36,7 @@ t_parse		*ft_init_parse(char *line)
 	ft_save_struct(p);
 	return (p);
 }
+
+/*
+** Initialisation de la structure
+*/
