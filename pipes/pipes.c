@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/20 14:44:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/20 16:05:41 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,7 +105,7 @@ int		main(int argc, char **argv, char **env)
 		ft_printf("nb_pipe = %d\n", nb_pipe);
 		tab_pipe = create_tab_pipe(tab, nb_pipe);
 		display(tab_pipe);
-		ret = ft_fork_pipe(tab_pipe, env);
+		ret = ft_fork_pipe(tab_pipe, env, nb_pipe);
 		ft_printf("return_value = %d\n", ret);
 	}
 	else

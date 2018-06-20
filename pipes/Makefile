@@ -6,7 +6,7 @@
 #    By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/05/29 11:17:43 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/06/19 11:14:37 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/06/20 15:33:09 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -16,7 +16,7 @@
 NAME = pipes
 CC = gcc
 CC_FLAGS = -Wall -Wextra -Werror
-LFT_FLAGS = -L ../libft/ -lft -L ./ft_printf/ -lftprintf
+LFT_FLAGS = -L ./libft/ -lft -L ./ft_printf/ -lftprintf
 PATH_SRCS = ./
 PATH_OBJS = ./
 PATH_INCS = ./
