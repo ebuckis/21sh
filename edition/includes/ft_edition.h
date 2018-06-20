@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/19 15:15:28 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/20 15:27:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@
 # define KEY_CODE_DEL 127
 
 
-# include "../../libft/libft.h"
+# include "../../libft/includes/libft.h"
 # include <curses.h>
 # include <unistd.h>
 # include <termios.h>
