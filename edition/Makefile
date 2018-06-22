@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/06/19 11:33:59 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/06/22 16:10:38 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -29,7 +29,12 @@ INC = -I $(INC_PATH) -I $(LIB_PATH)
 
 OBJ_NAME = $(N_SRCS:.c=.o)
 
-N_SRCS =	ft_edition.c				\
+N_SRCS =	ft_edition.c			\
+			ft_get_size.c			\
+			ft_init_nav.c			\
+			ft_key_move.c			\
+			ft_recup_pos.c			\
+			ft_x_change.c			\
 			ft_default_edit.c
 
 all : $(NAME)

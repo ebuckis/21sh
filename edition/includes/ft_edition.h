@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/21 17:22:19 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/22 17:12:35 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,17 +31,24 @@
 # include <termios.h>
 # include <term.h>
 
-int					ft_edition(void);
-struct termios		ft_default_edit(struct termios term);
-
 typedef struct		s_navig
 {
 	int				x;
 	int				y;
+	int				x_len;
+	int				y_len;
 	int				x_start;
 	int				y_start;
 	int				x_size;
 	int				y_size;
 }					t_navig;
+int					ft_edition(void);
+int					ft_get_size(int *x, int *y);
+void				ft_init_nav(t_navig *n);
+int					ft_key_move(t_navig *n, char *buf);
+void				ft_recup_pos(int *x, int *y);
+void				ft_x_change(t_navig *n, int i);
+struct termios		ft_default_edit(struct termios term);
+
 
 #endif
