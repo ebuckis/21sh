@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/28 15:14:27 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/29 16:14:51 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,8 +49,9 @@ typedef struct		s_navig
 	int				x_size;
 	int				y_size;
 }					t_navig;
-int					ft_edition(void);
+char				*ft_edition(void);
 int					ft_putcharint(int c);
+int					ft_move_to_xy(int x, int y);
 int					ft_get_size(int *x, int *y);
 int					ft_init_nav(t_navig *n);
 int					ft_key_move(t_navig *n, char *buf);

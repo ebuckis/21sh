@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/29 13:45:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/29 16:11:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,28 +15,22 @@
 
 static void		ft_move_right_x(t_navig *n)
 {
-	if (n->y == n->y_size - 1 && n->x >= n->x_size -1)
+	if (n->y == n->y_size - 1 && n->x >= n->x_size - 1)
 	{
 		n->x = 0;
 		n->y++;
 	}
-	else if (n->y < n->y_len && n->x < n->x_size - 1)//pas la derniere ligne d'edition
-	{
+	else if (n->y < n->y_len && n->x < n->x_size - 1)
 		n->x++;
-	}
-	else if (n->x < n->x_len)//sinon on avance 
-	{
+	else if (n->x < n->x_len)
 		n->x++;
-	}
-	else if (n->y < n->y_len)// si on est a la fin de la ligne
+	else if (n->y < n->y_len)
 	{
 		n->x = 0;
 		n->y++;
 	}
 	else
-	{
 		return ;
-	}
 	n->i++;
 }
 
@@ -52,9 +46,7 @@ static void		ft_move_left_x(t_navig *n)
 	else if (n->x > n->x_start)
 		n->x--;
 	else
-	{
 		return ;
-	}
 	n->i--;
 }
 
@@ -79,28 +71,23 @@ static void		ft_add_x(t_navig *n)
 	char *ret;
 
 	if (n->x_len < n->x_size - 1)
-	{
 		n->x_len++;
-	}
 	else if (n->y_len < n->y_size - 1)
 	{
 		n->x_len = 0;
 		n->y_len++;
 	}
-	else if (n->y_len >= n->y_size - 1)//pb il ne bouge pas
+	else if (n->y_len >= n->y_size - 1)
 	{
 		if (!(ret = tgetstr("sf", NULL)))
 			return ;
 		tputs(ret, 1, ft_putcharint);
-		//n->i++;
 		n->x_len = 0;
 		n->y_start--;
 		n->y--;
 	}
 	else
-	{
 		return ;
-	}
 	ft_move_right_x(n);
 }
 

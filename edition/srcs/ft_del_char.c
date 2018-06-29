@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/26 08:41:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/29 13:46:33 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/29 16:12:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,8 +41,6 @@ static char	*ft_supprchar(char *s, int i)
 
 int			ft_del_char(t_navig *n)
 {
-	char	*res;
-
 	if (n->i != 0)
 	{
 		if (!(n->s_aff = ft_supprchar(n->s_aff, n->i - 1)))
@@ -56,8 +54,7 @@ int			ft_del_char(t_navig *n)
 //printf("s_aff = %s                                   \n", n->s_aff);
 //printf("s_aff = %s                                   \n", n->s_aff + n->i);
 		ft_x_change(n, CHAR_SUPPR);
-		res = tgetstr("cm", NULL);
-		tputs(tgoto(res, n->x, n->y), 1, ft_putcharint);
+		ft_move_to_xy(n->x, n->y);
 		ft_maj_line(n, -1);
 	}
 	return (1);
