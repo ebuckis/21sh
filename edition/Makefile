@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/06/22 16:10:38 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/06/27 12:05:13 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -35,7 +35,10 @@ N_SRCS =	ft_edition.c			\
 			ft_key_move.c			\
 			ft_recup_pos.c			\
 			ft_x_change.c			\
-			ft_default_edit.c
+			ft_default_edit.c		\
+			ft_del_char.c			\
+			ft_new_char.c			\
+			ft_maj_line.c			
 
 all : $(NAME)
 

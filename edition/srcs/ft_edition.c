@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/22 18:18:52 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/28 16:47:08 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,16 +19,6 @@ int				ft_putcharint(int c)
 	return (1);
 }
 
-void				ft_cmp_len(t_navig *n)
-{
-	if (n->x > n->x_len)
-		n->x_len = n->x;
-	if (n->y > n->y_len)
-	{
-		n->y_len = n->y;
-		n->x_len = 1;
-	}
-}
 
 int		ft_voir_touche()
 {
@@ -49,19 +39,18 @@ int		ft_voir_touche()
 			if (ft_key_move(&nav, buf))
 				tputs(tgoto(res, nav.x, nav.y), 1, ft_putcharint);
 		}
-		else if (buf[0] == KEY_CODE_DEL)
+		else if (KEY_CODE_DEL)
 		{
-			ft_x_change(&nav, 0);
+			if (ft_del_char(&nav))
+			tputs(tgoto(res, nav.x, nav.y), 1, ft_putcharint);
 		}
 		else if (buf[0] == 10)//entree
 			return (1);
-		else
+		else//definir une regle des caractere imprimables
 		{
-			ft_x_change(&nav, 2);
-			ft_putchar(buf[0]);
-			tputs(tgoto(res, nav.x, nav.y), 1, ft_putcharint);
+			if (ft_new_char(&nav, buf))
+				tputs(tgoto(res, nav.x, nav.y), 1, ft_putcharint);
 		}
-		ft_cmp_len(&nav);
 	}
 	return (0);
 }

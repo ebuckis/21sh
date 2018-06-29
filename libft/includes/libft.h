@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/24 08:28:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 11:03:28 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/20 15:30:59 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -96,5 +96,6 @@ int				cpt_mot(const char *s, char c);
 int				get_next_line(const int fd, char **line);
 char			*ft_whitespace(char *s);
 char			*ft_realloc(char *str, int n);
+int				ft_printf(const char *format, ...);
 
 #endif
