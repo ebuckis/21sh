@@ -17,12 +17,12 @@ int		ft_maj_line(t_navig *n, int i)
 {
 	char	*ret;
 
-	i++;
+	//i++;
 	ret = NULL;
 	if (!(ret = tgetstr("sc", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
-	if (!(ret = tgetstr("vi", NULL)))
+	if (!(ret = tgetstr("vi", NULL)))// peutetre a inverser
 		return (0);
 	tputs(ret, 1, ft_putcharint);
 	if (!(ret = tgetstr("cd", NULL)))

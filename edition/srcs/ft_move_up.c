@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_recup_pos.c                                   .::    .:/ .      .::   */
+/*   ft_move_up.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/06/22 15:50:50 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/03 14:51:41 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/03 15:55:23 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/03 16:23:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-void	ft_recup_pos(int *x, int *y)
+int		ft_move_up(t_navig *n)
 {
-	char	pos[20];
-	char	*str;
-	int		i;
+	printf("\n\n\n\n\n");
+	if (!(ret = tgetstr("sc", NULL)))
+		return (0);
+	tputs(ret, 1, ft_putcharint);
+	if (!(ret = tgetstr("vi", NULL)))
+		return (0);
+	tputs(ret, 1, ft_putcharint);
+	ft_move_to_xy(nav.x, nav.y);
+	if (!(ret = tgetstr("sf", NULL)))
+		return ;
+	ft_move_to_xy(nav.x, nav.y);
+	tputs(ret, 1, ft_putcharint);
+	if (!(ret = tgetstr("ve", NULL)))
+		return (0);
+	tputs(ret, 1, ft_putcharint);
+	if (!(ret = tgetstr("rc", NULL)))
+		return (0);
+	tputs(ret, 1, ft_putcharint);
 
-	i = 0;
-	str = "\033[6n";
-	ft_bzero(pos, 20);
-	ft_printf("%s", str);
-	read(0, pos, 20);
-	*y = ft_atoi(pos + 2) - 1;
-	while (pos[i] && pos[i] != 59)
-		i++;
-	*x = ft_atoi(pos + i + 1) - 1;
 }

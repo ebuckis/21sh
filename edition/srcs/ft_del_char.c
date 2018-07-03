@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/26 08:41:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/29 16:12:33 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/03 15:2:52 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,15 +47,9 @@ int			ft_del_char(t_navig *n)
 			return (0);
 		if (!(n->s_save = ft_supprchar(n->s_save, n->i - 1)))
 			return (0);
-//printf("\n ______________________ \n");
-//printf("i = %d                                       \n", n->i);
-//printf("x = %d                                       \n", n->x);
-//printf("y = %d                                       \n", n->y);
-//printf("s_aff = %s                                   \n", n->s_aff);
-//printf("s_aff = %s                                   \n", n->s_aff + n->i);
 		ft_x_change(n, CHAR_SUPPR);
 		ft_move_to_xy(n->x, n->y);
-		ft_maj_line(n, -1);
+		ft_maj_line(n, n->i);
 	}
 	return (1);
 }

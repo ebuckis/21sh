@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/29 16:15:49 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/03 14:44:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,25 +19,25 @@ int				ft_putcharint(int c)
 	return (1);
 }
 
-char			*ft_voir_touche()
+char			*ft_voir_touche(char *prompt)
 {
 	char		buf[5];
-	char		*res;
 	t_navig		nav;
 
-	ft_init_nav(&nav);
+	ft_recup_pos(&(nav.x_start), &(nav.y_first));//recupere la position actuelle
+	ft_putstr(prompt);
+	ft_init_nav(&nav, prompt);
 	ft_move_to_xy(nav.x_start, nav.y_start);
-	while (1)//peut etre passer a un variiable pour stop le while
+	while (1)//peut etre passer a une variable pour stop le while
 	{
-		res = tgetstr("cm", NULL);
-		ft_get_size(&(nav.x_size), &(nav.y_size));
+		ft_maj_win(&nav);
 		ft_bzero(buf, 5);
 		read(0, buf, 4);
-		printf("<|%d| - |%d| - |%d| - |%d| - |%d|>", buf[0], buf[1], buf[2], buf[3], buf[4]);
+		//printf("<|%d| - |%d| - |%d| - |%d| - |%d|>", buf[0], buf[1], buf[2], buf[3], buf[4]);
 		if (KEY_CODE_DIR)
 		{
 			if (ft_key_move(&nav, buf))
-				tputs(tgoto(res, nav.x, nav.y), 1, ft_putcharint);
+				ft_move_to_xy(nav.x, nav.y);
 		}
 		else if (KEY_CODE_DEL)
 		{
@@ -59,7 +59,7 @@ char			*ft_voir_touche()
 }
 //		printf("<|%d| - |%d| - |%d| - |%d| - |%d|>", buf[0], buf[1], buf[2], buf[3], buf[4]);
 
-char				*ft_edition(void)
+char				*ft_edition(char *prompt)
 {
 	struct termios	t;
 	char			*name;
@@ -78,7 +78,7 @@ char				*ft_edition(void)
 	t.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, &t) == -1)
 		return (0);
-	if (!(str = ft_voir_touche()))
+	if (!(str = ft_voir_touche(prompt)))
 		return (NULL);
 	ft_default_edit(t);
 	return (str);

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/29 16:14:51 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/03 14:45:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,6 +39,7 @@ typedef struct		s_navig
 {
 	char			*s_aff;
 	char			*s_save;
+	char			*prompt;
 	int				i;
 	int				x;
 	int				y;
@@ -48,12 +49,13 @@ typedef struct		s_navig
 	int				y_start;
 	int				x_size;
 	int				y_size;
+	int				y_first;
 }					t_navig;
-char				*ft_edition(void);
+char				*ft_edition(char *prompt);
 int					ft_putcharint(int c);
 int					ft_move_to_xy(int x, int y);
 int					ft_get_size(int *x, int *y);
-int					ft_init_nav(t_navig *n);
+int					ft_init_nav(t_navig *n, char *p);
 int					ft_key_move(t_navig *n, char *buf);
 void				ft_recup_pos(int *x, int *y);
 void				ft_x_change(t_navig *n, int i);
@@ -61,6 +63,7 @@ struct termios		ft_default_edit(struct termios term);
 int					ft_del_char(t_navig *n);
 int					ft_maj_line(t_navig *n, int i);
 int					ft_new_char(t_navig *n, char *buf);
+int					ft_maj_win(t_navig *n);
 
 
 #endif
