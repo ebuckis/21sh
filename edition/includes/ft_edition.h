@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/03 14:45:55 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/04 16:11:47 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@
 # define KEY_CODE_END buf[2] == 70
 # define KEY_CODE_HOME buf[2] == 72
 # define KEY_CODE_DEL buf[0] == 127
+# define IS_PRINTABLE buf[0] > 31 && buf[0] < 127 && !buf[1]
 
 # define CHAR_AJOUT 1
 # define CHAR_SUPPR 2
@@ -33,6 +34,7 @@
 # include <sys/ioctl.h>
 # include <unistd.h>
 # include <termios.h>
+# include <signal.h>
 # include <term.h>
 
 typedef struct		s_navig

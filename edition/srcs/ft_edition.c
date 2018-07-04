@@ -6,23 +6,28 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/03 14:44:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/04 19:15:04 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
+t_navig		nav;
+
 int				ft_putcharint(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
+void			traite_signal(int s)
+{
+	ft_maj_win(&nav);
+}
 
 char			*ft_voir_touche(char *prompt)
 {
 	char		buf[5];
-	t_navig		nav;
 
 	ft_recup_pos(&(nav.x_start), &(nav.y_first));//recupere la position actuelle
 	ft_putstr(prompt);
@@ -30,7 +35,8 @@ char			*ft_voir_touche(char *prompt)
 	ft_move_to_xy(nav.x_start, nav.y_start);
 	while (1)//peut etre passer a une variable pour stop le while
 	{
-		ft_maj_win(&nav);
+		if (signal(SIGWINCH, traite_signal) == SIG_ERR)
+			perror("signal");
 		ft_bzero(buf, 5);
 		read(0, buf, 4);
 		//printf("<|%d| - |%d| - |%d| - |%d| - |%d|>", buf[0], buf[1], buf[2], buf[3], buf[4]);
@@ -49,7 +55,7 @@ char			*ft_voir_touche(char *prompt)
 			printf("\n\n%s\n\n", nav.s_aff);
 			return (nav.s_aff);
 		}
-		else//definir une regle des caractere imprimables
+		else if (IS_PRINTABLE)
 		{
 			if (ft_new_char(&nav, buf))
 				ft_move_to_xy(nav.x, nav.y);
