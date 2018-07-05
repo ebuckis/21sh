@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 09:31:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/19 09:52:01 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/05 17:10:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,8 +14,8 @@
 #ifndef RETURN_VALUE_H
 # define RETURN_VALUE_H
 
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/stat.h>
