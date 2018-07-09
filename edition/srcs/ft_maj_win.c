@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/02 18:50:00 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/04 18:10:44 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/05 17:07:13 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,11 +20,13 @@ static void		ft_goto_i_by_end(t_navig *n)
 
 	i_bis = n->i;
 	j = ft_strlen(n->s_aff);
-	while (j < i_bis)
+	while (j > i_bis)
 	{
 		ft_x_change(n, MOVE_LEFT);
+		n->i++;
 		j--;
 	}
+	ft_move_to_xy(n->x, n->y);
 	n->i = i_bis;
 }
 
@@ -32,32 +34,36 @@ static int		ft_del_all(t_navig *n)
 {
 	char	*ret;
 
-	ft_move_to_xy(0, n->y_first);
-	if (!(ret = tgetstr("cd", NULL)))
-		return (0);
-	tputs(ret, 1, ft_putcharint);
 	ft_putstr(n->prompt);
 	ft_recup_pos(&(n->x_start), &(n->y_start));
 	ft_putstr(n->s_aff);
 	ft_recup_pos(&(n->x_len), &(n->y_len));
+	ft_recup_pos(&(n->x), &(n->y));
 	ft_goto_i_by_end(n);
 	return (1);
 }
 
 int				ft_maj_win(t_navig *n)
 {
-	int		new_x;
-	int		new_y;
+	char	*ret;
+	int		y_tmp;
 
-	ft_get_size(&(new_x), &(new_y));
-//	if (new_x != n->x_size || new_y != n->y_size)
-//	{
-		n->x_size = new_x;
-		n->y_size = new_y;
-		ft_del_all(n);
-		return (1);
-//	}
-//	return (0);
+	ft_get_size(&(n->x_size), &(n->y_size));
+	y_tmp = n->y_first;
+	if (!(ret = tgetstr("cd", NULL)))
+		return (0);
+	while (y_tmp < n->y_size)
+	{
+		ft_move_to_xy(0, y_tmp);
+		tputs(ret, 1, ft_putcharint);
+		y_tmp++;
+	}
+	if (!(ret = tgetstr("cl", NULL)))
+		return (0);
+	tputs(ret, 1, ft_putcharint);
+	n->y_first = 0;
+	ft_del_all(n);
+	return (1);
 }
 
 /*
