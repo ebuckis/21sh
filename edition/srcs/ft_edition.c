@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/04 19:15:04 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/09 12:11:18 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ char			*ft_voir_touche(char *prompt)
 			perror("signal");
 		ft_bzero(buf, 5);
 		read(0, buf, 4);
-		//printf("<|%d| - |%d| - |%d| - |%d| - |%d|>", buf[0], buf[1], buf[2], buf[3], buf[4]);
+	//	printf("\n\n<|%d| - |%d| - |%d| - |%d| - |%d|>\n\n", buf[0], buf[1], buf[2], buf[3], buf[4]);
 		if (KEY_CODE_DIR)
 		{
 			if (ft_key_move(&nav, buf))
@@ -54,6 +54,22 @@ char			*ft_voir_touche(char *prompt)
 		{
 			printf("\n\n%s\n\n", nav.s_aff);
 			return (nav.s_aff);
+		}
+		else if (KEY_CODE_ALT_UP)
+		{
+			if (nav.y > nav.y_start && nav.x >= nav.x_start)
+			{
+				nav.y--;
+				ft_move_to_xy(nav.x, nav.y);
+			}
+		}
+		else if (KEY_CODE_ALT_DOWN)
+		{
+			if (nav.y < nav.y_len - 1 || (nav.y == nav.y_len - 1 && nav.x <= nav.x_len))//x_len a gerer
+			{
+				nav.y++;
+				ft_move_to_xy(nav.x, nav.y);
+			}
 		}
 		else if (IS_PRINTABLE)
 		{

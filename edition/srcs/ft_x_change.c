@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/03 17:39:19 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/05 11:33:15 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,13 +66,10 @@ static void		ft_del_x(t_navig *n)
 	ft_move_left_x(n);
 }
 
-
-
-int		ft_move_up(t_navig *n)
+int		ft_move_up(t_navig *n)//fonction dans un autre fichier
 {
 	char	*ret;
 
-//	ft_putstr_fd("on passe dans ft move\n", 2);
 	ft_move_to_xy(n->x_len, n->y_len);
 	if (!(ret = tgetstr("sf", NULL)))
 		return (0);
@@ -81,7 +78,6 @@ int		ft_move_up(t_navig *n)
 	ft_move_to_xy(n->x, n->y);
 	return (1);
 }
-
 
 static void		ft_add_x(t_navig *n)
 {
@@ -129,7 +125,6 @@ void		ft_x_change(t_navig *n, int i)
 		ft_move_right_x(n);
 	else if (i == MOVE_LEFT)
 		ft_move_left_x(n);
-
 //	printf("\n\n  ______________________\n");
 //	printf("i = %d\n", n->i);
 //	printf("x = %d\n", n->x);
