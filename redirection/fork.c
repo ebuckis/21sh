@@ -6,13 +6,12 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/09 14:38:14 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/09 14:41:25 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "pipes.h"
-#include <fcntl.h>
+#include "redirec.h"
 
 static void		ft_fork_pipe2(char ***tab, char **env, int i)
 {
@@ -37,11 +36,11 @@ static void		ft_fork_pipe2(char ***tab, char **env, int i)
 	{
 		dup2(pipeline[0], STDIN_FILENO);
 		close(pipeline[1]);
-	//	wait(NULL);
+		//wait(NULL);
 	}
 }
 
-void			ft_fork_pipe(char ***tab, char **env, int nb_pipe)
+void			ft_fork_redirec(char ***tab, char **env, int nb_pipe)
 {
 	pid_t	pid;
 	int		status;
