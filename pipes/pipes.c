@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/20 16:05:41 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/05 17:26:47 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,7 +51,7 @@ static char		***create_tab_pipe(char **tab, int nb_pipe)
 			while (tab[i] && ft_strcmp(tab[i], "|"))
 				i++;
 			tab_pipe[j] = (char**)malloc(sizeof(char*) * (i - buf + 1));
-			i  = buf;
+			i = buf;
 			while (tab[i] && ft_strcmp(tab[i], "|"))
 				tab_pipe[j][++k] = ft_strdup(tab[i++]);
 			tab_pipe[j][++k] = NULL;
@@ -65,7 +65,7 @@ static char		***create_tab_pipe(char **tab, int nb_pipe)
 	return (tab_pipe);
 }
 
-int		main(int argc, char **argv, char **env)
+int				main(int argc, char **argv, char **env)
 {
 	int		ret;
 	char	***tab_pipe;
@@ -105,10 +105,9 @@ int		main(int argc, char **argv, char **env)
 		ft_printf("nb_pipe = %d\n", nb_pipe);
 		tab_pipe = create_tab_pipe(tab, nb_pipe);
 		display(tab_pipe);
-		ret = ft_fork_pipe(tab_pipe, env, nb_pipe);
-		ft_printf("return_value = %d\n", ret);
+		ft_fork_pipe(tab_pipe, env, nb_pipe);
 	}
 	else
 		ft_putendl("argument missing");
-	return (ret);
+	return (0);
 }
