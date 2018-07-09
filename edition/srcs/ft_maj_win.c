@@ -6,17 +6,47 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/02 18:50:00 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/05 17:07:13 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/09 15:27:3 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
+#include <time.h>
+
+struct timespec tim;
+
+int				ft_move_arr(int tmp, t_navig *n)
+{
+	char	*ret;
+	int		x;
+	int		y;
+
+	if (!(ret = tgetstr("le", NULL)))
+		return (0);
+	while (tmp > 0)
+	{
+//		nanosleep(&tim, NULL);
+		ft_recup_pos(&x, &y);
+		if (tmp < 10)
+		{
+			ft_move_to_xy(0, y);
+			break ;
+		}
+		else if (x == 0)
+			ft_move_to_xy(n->x_size - 1, y - 1);
+		else
+			tputs(ret, 1, ft_putcharint);
+		tmp--;
+	}
+	return (1);
+}
 
 static void		ft_goto_i_by_end(t_navig *n)
 {
 	int		j;
 	int		i_bis;
+
 
 	i_bis = n->i;
 	j = ft_strlen(n->s_aff);
@@ -46,22 +76,36 @@ static int		ft_del_all(t_navig *n)
 int				ft_maj_win(t_navig *n)
 {
 	char	*ret;
-	int		y_tmp;
+	int		tmp;
+	int		x_stmp;
+	int		y_stmp;
+	int		y_calc;
 
-	ft_get_size(&(n->x_size), &(n->y_size));
-	y_tmp = n->y_first;
+tim.tv_sec = 0;
+tim.tv_nsec = 90000000;
+
+	ft_get_size(&x_stmp, &y_stmp);
+	if (x_stmp < n->x_size)
+	{
+		y_calc = (n->y - n->y_first) * (((n->x_size) / x_stmp) + 1) + (n->x / x_stmp);
+		dprintf(2, "____|%d|____\n", y_calc);
+	//	sleep(8);
+		ft_get_size(&(n->x_size), &(n->y_size));
+		ft_move_to_xy(0, n->y - y_calc);
+	}
+	else
+	{
+		ft_get_size(&(n->x_size), &(n->y_size));
+		tmp = n->i + ft_strlen(n->prompt) + 1;
+		ft_putchar(' ');
+		ft_move_arr(tmp, n);
+	}
+//	sleep(1);
 	if (!(ret = tgetstr("cd", NULL)))
 		return (0);
-	while (y_tmp < n->y_size)
-	{
-		ft_move_to_xy(0, y_tmp);
-		tputs(ret, 1, ft_putcharint);
-		y_tmp++;
-	}
-	if (!(ret = tgetstr("cl", NULL)))
-		return (0);
 	tputs(ret, 1, ft_putcharint);
-	n->y_first = 0;
+//	sleep(1);
+	ft_recup_pos(&tmp, &(n->y_first));
 	ft_del_all(n);
 	return (1);
 }
