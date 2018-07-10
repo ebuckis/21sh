@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/05 11:33:15 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/10 11:40:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -115,8 +115,8 @@ void		ft_x_change(t_navig *n, int i)
 //	printf("y_start = %d\n", n->y_start);
 //	printf("x_size = %d\n", n->x_size);
 //	printf("y_size = %d\n", n->y_size);
-//	printf("s_aff = %s\n", n->s_aff);
-//	printf("s_aff = %s\n", n->s_aff + n->i);
+//	printf("s = %s\n", n->s);
+//	printf("s = %s\n", n->s + n->i);
 	if (i == CHAR_AJOUT)
 		ft_add_x(n);
 	else if (i == CHAR_SUPPR)
@@ -135,8 +135,8 @@ void		ft_x_change(t_navig *n, int i)
 //	printf("y_start = %d\n", n->y_start);
 //	printf("x_size = %d\n", n->x_size);
 //	printf("y_size = %d\n", n->y_size);
-//	printf("s_aff = %s\n", n->s_aff);
-//	printf("s_aff = %s\n", n->s_aff + n->i);
+//	printf("s = %s\n", n->s);
+//	printf("s = %s\n", n->s + n->i);
 
 }
 

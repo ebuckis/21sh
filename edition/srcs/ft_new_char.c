@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/25 16:34:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/03 13:37:03 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/10 11:40:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,9 +42,7 @@ static char	*ft_addchar(char *s, char c, int i)
 
 int			ft_new_char(t_navig *n, char *buf)
 {
-	if (!(n->s_aff = ft_addchar(n->s_aff, buf[0], n->i)))
-		return (0);
-	if (!(n->s_save = ft_addchar(n->s_save, buf[0], n->i)))
+	if (!(n->s = ft_addchar(n->s, buf[0], n->i)))
 		return (0);
 	if (!ft_maj_line(n, n->i))
 		return (0);

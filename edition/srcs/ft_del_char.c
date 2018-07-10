@@ -43,9 +43,7 @@ int			ft_del_char(t_navig *n)
 {
 	if (n->i != 0)
 	{
-		if (!(n->s_aff = ft_supprchar(n->s_aff, n->i - 1)))
-			return (0);
-		if (!(n->s_save = ft_supprchar(n->s_save, n->i - 1)))
+		if (!(n->s = ft_supprchar(n->s, n->i - 1)))
 			return (0);
 		ft_x_change(n, CHAR_SUPPR);
 		ft_move_to_xy(n->x, n->y);

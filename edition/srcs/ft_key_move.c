@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/04 12:32:53 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/10 11:40:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,7 @@ int					ft_key_move(t_navig *n, char *buf)
 	{
 		n->x = n->x_len;
 		n->y = n->y_len;
-		n->i = ft_strlen(n->s_aff);
+		n->i = ft_strlen(n->s);
 	}
 	else if (KEY_CODE_HOME)
 	{

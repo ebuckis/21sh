@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/09 14:09:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/10 12:26:34 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,26 +52,12 @@ char			*ft_voir_touche(char *prompt)
 		}
 		else if (buf[0] == 10)//entree
 		{
-			printf("\n\n%s\n\n", nav.s_aff);
-			return (nav.s_aff);
+			printf("\n\n%s\n\n", nav.s);
+			return (nav.s);
 		}
-		else if (KEY_CODE_ALT_UP)
+		else if (KEY_CODE_ALT)
 		{
-			if (nav.y > nav.y_start && nav.x >= nav.x_start)
-			{
-				nav.i -= nav.x_size;
-				nav.y--;
-				ft_move_to_xy(nav.x, nav.y);
-			}
-		}
-		else if (KEY_CODE_ALT_DOWN)
-		{
-			if (nav.y < nav.y_len - 1 || (nav.y == nav.y_len - 1 && nav.x <= nav.x_len))//x_len a gerer
-			{
-				nav.i += nav.x_size;
-				nav.y++;
-				ft_move_to_xy(nav.x, nav.y);
-			}
+			ft_key_alt(&nav, buf);
 		}
 		else if (IS_PRINTABLE)
 		{

@@ -28,7 +28,7 @@ int		ft_maj_line(t_navig *n, int i)
 	if (!(ret = tgetstr("cd", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
-	ft_putstr(n->s_aff + n->i);
+	ft_putstr(n->s + n->i);
 	if (!(ret = tgetstr("ve", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);

@@ -49,7 +49,7 @@ static void		ft_goto_i_by_end(t_navig *n)
 
 
 	i_bis = n->i;
-	j = ft_strlen(n->s_aff);
+	j = ft_strlen(n->s);
 	while (j > i_bis)
 	{
 		ft_x_change(n, MOVE_LEFT);
@@ -66,7 +66,7 @@ static int		ft_del_all(t_navig *n)
 
 	ft_putstr(n->prompt);
 	ft_recup_pos(&(n->x_start), &(n->y_start));
-	ft_putstr(n->s_aff);
+	ft_putstr(n->s);
 	ft_recup_pos(&(n->x_len), &(n->y_len));
 	ft_recup_pos(&(n->x), &(n->y));
 	ft_goto_i_by_end(n);
@@ -80,9 +80,10 @@ int				ft_maj_win(t_navig *n)
 	int		x_stmp;
 	int		y_stmp;
 	int		y_calc;
+	int		i;
 
 tim.tv_sec = 0;
-tim.tv_nsec = 90000000;
+tim.tv_nsec = 50000000;
 
 	ft_get_size(&x_stmp, &y_stmp);
 	if (x_stmp < n->x_size)
@@ -90,17 +91,29 @@ tim.tv_nsec = 90000000;
 		y_calc = (n->y - n->y_first) * (((n->x_size) / x_stmp) + 1) + (n->x / x_stmp);
 		dprintf(2, "____|%d|____\n", y_calc);
 	//	sleep(8);
+
 		ft_get_size(&(n->x_size), &(n->y_size));
 		ft_move_to_xy(0, n->y - y_calc);
 	}
-	else
+	else if (x_stmp > n->x_size)
 	{
 		ft_get_size(&(n->x_size), &(n->y_size));
 		tmp = n->i + ft_strlen(n->prompt) + 1;
 		ft_putchar(' ');
 		ft_move_arr(tmp, n);
 	}
-//	sleep(1);
+	else
+	{
+		ft_get_size(&(n->x_size), &(n->y_size));
+		ft_recup_pos(&x_stmp, &y_stmp);
+		tmp = (n->y - y_stmp);
+		n->y_first -= tmp;
+		n->y_start -= tmp;
+		n->y_len -= tmp;
+		n->y -= tmp;
+		return (1);
+	}
+//sleep(1);
 	if (!(ret = tgetstr("cd", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
