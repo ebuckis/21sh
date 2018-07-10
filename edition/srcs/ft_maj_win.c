@@ -64,9 +64,13 @@ static int		ft_del_all(t_navig *n)
 {
 	char	*ret;
 
+		nanosleep(&tim, NULL);
 	ft_putstr(n->prompt);
+		nanosleep(&tim, NULL);
 	ft_recup_pos(&(n->x_start), &(n->y_start));
+		nanosleep(&tim, NULL);
 	ft_putstr(n->s);
+		nanosleep(&tim, NULL);
 	ft_recup_pos(&(n->x_len), &(n->y_len));
 	ft_recup_pos(&(n->x), &(n->y));
 	ft_goto_i_by_end(n);
@@ -83,13 +87,13 @@ int				ft_maj_win(t_navig *n)
 	int		i;
 
 tim.tv_sec = 0;
-tim.tv_nsec = 50000000;
+tim.tv_nsec = 90000000;
 
 	ft_get_size(&x_stmp, &y_stmp);
 	if (x_stmp < n->x_size)
 	{
 		y_calc = (n->y - n->y_first) * (((n->x_size) / x_stmp) + 1) + (n->x / x_stmp);
-		dprintf(2, "____|%d|____\n", y_calc);
+	//	dprintf(2, "____|%d|____\n", y_calc);
 	//	sleep(8);
 
 		ft_get_size(&(n->x_size), &(n->y_size));
@@ -123,6 +127,18 @@ tim.tv_nsec = 50000000;
 	return (1);
 }
 
+//									dprintf(2, "\n______________________\n");
+//									dprintf(2, "i = %d\n", n->i);
+//									dprintf(2, "x = %d\n", n->x);
+//									dprintf(2, "y = %d\n", n->y);
+//									dprintf(2, "x_len = %d\n", n->x_len);
+//									dprintf(2, "y_len = %d\n", n->y_len);
+//									dprintf(2, "x_start = %d\n", n->x_start);
+//									dprintf(2, "y_start = %d\n", n->y_start);
+//									dprintf(2, "x_size = %d\n", n->x_size);
+//									dprintf(2, "y_size = %d\n", n->y_size);
+//									dprintf(2, "s = %s\n", n->s);
+//									dprintf(2, "s = %s\n", n->s + n->i);
 /*
 ** fonction qui recup la taille de la fenetre
 ** on se remet au debut a voir avec le y_first
