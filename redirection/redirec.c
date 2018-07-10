@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/09 12:13:02 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/09 12:13:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/10 11:20:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,15 +31,15 @@ static void		display(char ***tab)
 	}
 }
 
-static char		***create_tab_pipe(char **tab, int nb_pipe)
+static char		***create_tab_redirec(char **tab, int nb_redir)
 {
-	char	***tab_pipe;
+	char	***tab_redir;
 	int		i;
 	int		j;
 	int		k;
 	int		buf;
 
-	tab_pipe = (char***)malloc(sizeof(char**) * (nb_pipe + 2));
+	tab_redir = (char***)malloc(sizeof(char**) * (nb_redir + 2));
 	i = 0;
 	j = 0;
 	k = -1;
@@ -50,35 +50,35 @@ static char		***create_tab_pipe(char **tab, int nb_pipe)
 			buf = i;
 			while (tab[i] && ft_strcmp(tab[i], "|"))
 				i++;
-			tab_pipe[j] = (char**)malloc(sizeof(char*) * (i - buf + 1));
+			tab_redir[j] = (char**)malloc(sizeof(char*) * (i - buf + 1));
 			i = buf;
 			while (tab[i] && ft_strcmp(tab[i], "|"))
-				tab_pipe[j][++k] = ft_strdup(tab[i++]);
-			tab_pipe[j][++k] = NULL;
+				tab_redir[j][++k] = ft_strdup(tab[i++]);
+			tab_redir[j][++k] = NULL;
 			j++;
 			k = -1;
 		}
 		else
 			i++;
 	}
-	tab_pipe[j] = NULL;
-	return (tab_pipe);
+	tab_redir[j] = NULL;
+	return (tab_redir);
 }
 
 int				main(int argc, char **argv, char **env)
 {
 	int		ret;
-	char	***tab_pipe;
+	char	***tab_redirec;
 	char	**tab;
 	int		i;
-	int		nb_pipe;
+	int		nb_redirec;
 	char	*line;
 
 	argc++;
 	argv++;
 	ret = 0;
 	i = -1;
-	nb_pipe = 0;
+	nb_redirec = 0;
 	ft_putstr("$> ");
 	get_next_line(0, &line);
 	tab = ft_strsplit(line, ' ');
@@ -86,26 +86,21 @@ int				main(int argc, char **argv, char **env)
 	{
 		while (tab[++i])
 		{
-			if (ft_strcmp(tab[i], "|") == 0)
+			if (ft_strchr(tab[i], '>') || ft_strchr(tab[i], '<'))
 			{
-				if (i == 0 || ft_strcmp(tab[i - 1], "|") == 0)
+				if (i == 0 || !tab[i + 1])
 				{
 					ft_putendl("parse error");
 					return (1);
 				}
-				else if (!tab[i + 1])
-				{
-					ft_putendl("pipe>");
-					return (0);
-				}
 				else
-					nb_pipe++;
+					nb_redirec++;
 			}
 		}
-		ft_printf("nb_pipe = %d\n", nb_pipe);
-		tab_pipe = create_tab_pipe(tab, nb_pipe);
-		display(tab_pipe);
-		ft_fork_redirec(tab_pipe, env, nb_pipe);
+		ft_printf("nb_redirec = %d\n", nb_redirec);
+		tab_redirec = create_tab_redirec(tab, nb_redirec);
+		display(tab_redirec);
+		ft_fork_redirec(tab_redirec, env, nb_redirec);
 	}
 	else
 		ft_putendl("argument missing");
