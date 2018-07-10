@@ -47,7 +47,7 @@ int			ft_del_char(t_navig *n)
 			return (0);
 		ft_x_change(n, CHAR_SUPPR);
 		ft_move_to_xy(n->x, n->y);
-		ft_maj_line(n, n->i);
+		ft_maj_line(n);
 	}
 	return (1);
 }

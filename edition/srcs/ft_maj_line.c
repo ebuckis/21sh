@@ -13,16 +13,15 @@
 
 #include "ft_edition.h"
 
-int		ft_maj_line(t_navig *n, int i)
+int		ft_maj_line(t_navig *n)
 {
 	char	*ret;
 
-	//i++;
 	ret = NULL;
 	if (!(ret = tgetstr("sc", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
-	if (!(ret = tgetstr("vi", NULL)))// peutetre a inverser
+	if (!(ret = tgetstr("vi", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
 	if (!(ret = tgetstr("cd", NULL)))

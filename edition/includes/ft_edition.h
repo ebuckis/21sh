@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 12:02:33 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/10 18:00:20 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,7 @@
 typedef struct		s_navig
 {
 	char			*s;
+	char			*s_cmd;
 	char			*prompt;
 	int				i;
 	int				x;
@@ -53,6 +54,12 @@ typedef struct		s_navig
 	int				y_size;
 	int				y_first;
 }					t_navig;
+typedef struct		s_hist
+{
+	char			*str;
+	struct s_hist	*next;
+	struct s_hist	*prev;
+}					t_hist;
 char				*ft_edition(char *prompt);
 int					ft_putcharint(int c);
 int					ft_move_to_xy(int x, int y);
@@ -63,10 +70,11 @@ void				ft_recup_pos(int *x, int *y);
 void				ft_x_change(t_navig *n, int i);
 struct termios		ft_default_edit(struct termios term);
 int					ft_del_char(t_navig *n);
-int					ft_maj_line(t_navig *n, int i);
+int					ft_maj_line(t_navig *n);
 int					ft_new_char(t_navig *n, char *buf);
 int					ft_maj_win(t_navig *n);
 int					ft_key_alt(t_navig *n, char *buf);
+int					ft_move_up(t_navig *n);
 
 
 #endif

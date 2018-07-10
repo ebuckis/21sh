@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/10 11:30:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 12:27:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/10 15:01:39 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 int		ft_alt_down(t_navig *n)
 {
-	if (n->y < n->y_len - 1 || (n->y == n->y_len - 1 && n->x <= n->x_len))//x_len a gerer
+	if (n->y < n->y_len - 1 || (n->y == n->y_len - 1 && n->x <= n->x_len))
 	{
 		n->i += n->x_size;
 		n->y++;
@@ -26,7 +26,7 @@ int		ft_alt_down(t_navig *n)
 
 int		ft_alt_up(t_navig *n)
 {
-	if (n->y > n->y_start && n->x >= n->x_start)
+	if (n->y > n->y_start + 1 || (n->y > n->y_start && n->x >= n->x_start))
 	{
 		n->i -= n->x_size;
 		n->y--;
@@ -61,13 +61,13 @@ int		ft_alt_right(t_navig *n)
 
 int		ft_key_alt(t_navig *n, char *buf)
 {
-	if (buf[3] == 66)//down
+	if (buf[3] == 66)
 		ft_alt_down(n);
-	else if (buf[3] == 65)//up
+	else if (buf[3] == 65)
 		ft_alt_up(n);
-	else if (buf[3] == 68)//left
+	else if (buf[3] == 68)
 		ft_alt_left(n);
-	else if (buf[3] == 67)//right
+	else if (buf[3] == 67)
 		ft_alt_right(n);
 	else
 		return (0);

@@ -3,6 +3,6 @@
 
 int		main()
 {
-	ft_edition();
+	ft_edition("prompt $> ");
 	return (0);
 }

@@ -14,9 +14,7 @@
 #include "ft_edition.h"
 #include <time.h>
 
-struct timespec tim;
-
-int				ft_move_arr(int tmp, t_navig *n)
+static int		ft_move_arr(int tmp, t_navig *n)
 {
 	char	*ret;
 	int		x;
@@ -26,7 +24,6 @@ int				ft_move_arr(int tmp, t_navig *n)
 		return (0);
 	while (tmp > 0)
 	{
-//		nanosleep(&tim, NULL);
 		ft_recup_pos(&x, &y);
 		if (tmp < 10)
 		{
@@ -47,7 +44,6 @@ static void		ft_goto_i_by_end(t_navig *n)
 	int		j;
 	int		i_bis;
 
-
 	i_bis = n->i;
 	j = ft_strlen(n->s);
 	while (j > i_bis)
@@ -64,13 +60,9 @@ static int		ft_del_all(t_navig *n)
 {
 	char	*ret;
 
-		nanosleep(&tim, NULL);
 	ft_putstr(n->prompt);
-		nanosleep(&tim, NULL);
 	ft_recup_pos(&(n->x_start), &(n->y_start));
-		nanosleep(&tim, NULL);
 	ft_putstr(n->s);
-		nanosleep(&tim, NULL);
 	ft_recup_pos(&(n->x_len), &(n->y_len));
 	ft_recup_pos(&(n->x), &(n->y));
 	ft_goto_i_by_end(n);
@@ -84,18 +76,12 @@ int				ft_maj_win(t_navig *n)
 	int		x_stmp;
 	int		y_stmp;
 	int		y_calc;
-	int		i;
-
-tim.tv_sec = 0;
-tim.tv_nsec = 90000000;
 
 	ft_get_size(&x_stmp, &y_stmp);
 	if (x_stmp < n->x_size)
 	{
-		y_calc = (n->y - n->y_first) * (((n->x_size) / x_stmp) + 1) + (n->x / x_stmp);
-	//	dprintf(2, "____|%d|____\n", y_calc);
-	//	sleep(8);
-
+		y_calc = (n->y - n->y_first) *
+			(((n->x_size) / x_stmp) + 1) + (n->x / x_stmp);
 		ft_get_size(&(n->x_size), &(n->y_size));
 		ft_move_to_xy(0, n->y - y_calc);
 	}
@@ -117,28 +103,35 @@ tim.tv_nsec = 90000000;
 		n->y -= tmp;
 		return (1);
 	}
-//sleep(1);
 	if (!(ret = tgetstr("cd", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
-//	sleep(1);
 	ft_recup_pos(&tmp, &(n->y_first));
 	ft_del_all(n);
 	return (1);
 }
 
-//									dprintf(2, "\n______________________\n");
-//									dprintf(2, "i = %d\n", n->i);
-//									dprintf(2, "x = %d\n", n->x);
-//									dprintf(2, "y = %d\n", n->y);
-//									dprintf(2, "x_len = %d\n", n->x_len);
-//									dprintf(2, "y_len = %d\n", n->y_len);
-//									dprintf(2, "x_start = %d\n", n->x_start);
-//									dprintf(2, "y_start = %d\n", n->y_start);
-//									dprintf(2, "x_size = %d\n", n->x_size);
-//									dprintf(2, "y_size = %d\n", n->y_size);
-//									dprintf(2, "s = %s\n", n->s);
-//									dprintf(2, "s = %s\n", n->s + n->i);
+/*
+**	struct timespec tim;
+**	tim.tv_sec = 0;
+**	tim.tv_nsec = 90000000;
+**	nanosleep(&tim, NULL);
+**	dprintf(2, "\n______________________\n");
+**	dprintf(2, "i = %d\n", n->i);
+**	dprintf(2, "x = %d\n", n->x);
+**	dprintf(2, "y = %d\n", n->y);
+**	dprintf(2, "x_len = %d\n", n->x_len);
+**	dprintf(2, "y_len = %d\n", n->y_len);
+**	dprintf(2, "x_start = %d\n", n->x_start);
+**	dprintf(2, "y_start = %d\n", n->y_start);
+**	dprintf(2, "x_size = %d\n", n->x_size);
+**	dprintf(2, "y_size = %d\n", n->y_size);
+**	dprintf(2, "s = %s\n", n->s);
+**	dprintf(2, "s = %s\n", n->s + n->i);
+*/
+
+
+
 /*
 ** fonction qui recup la taille de la fenetre
 ** on se remet au debut a voir avec le y_first

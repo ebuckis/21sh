@@ -1,28 +1,45 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_move_to_xy.c                                  .::    .:/ .      .::   */
+/*   ft_historique.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/06/29 16:13:30 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 15:17:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/10 16:32:27 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/10 18:16:47 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-int		ft_move_to_xy(int x, int y)
+t_hist		*ft_init_hist(void)
 {
-	char		*res;
+	t_hist	*h;
 
-	if (!(res = tgetstr("cm", NULL)))
-		return (0);
-	tputs(tgoto(res, x, y), 1, ft_putcharint);
-	return (1);
+	h = (t_hist *)malloc(sizeof(t_hist));
+	h->str = NULL;
+	h->next = NULL;
+	h->prev = NULL;
+	return (h);
 }
 
-/*
-** faudrait check les valeurs de retour
-*/
+char	*ft_give_historique(int i)
+{
+
+
+}
+
+t_hist	*ft_new_hist
+
+char	*ft_historique(char *cmd)
+{
+	static t_hist	*h = NULL;
+
+	if (!h)
+		h = ft_init_hist();
+	else
+	{
+		h = ft_new_hist(h);
+	}
+}
