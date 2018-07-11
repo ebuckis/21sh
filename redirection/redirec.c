@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:22:24 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/11 16:42:20 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/11 18:22:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,10 +19,7 @@ static void		display(char **tab)
 
 	i = -1;
 	while (tab[++i])
-	{
-		ft_printf("%s ", tab[i]);
-		ft_putendl("");
-	}
+		ft_printf("%s\n", tab[i]);
 }
 
 static char		**create_commande(char **tab, int size)
@@ -30,7 +27,7 @@ static char		**create_commande(char **tab, int size)
 	int		i;
 	char	**commande;
 
-	commande = (char**)malloc(sizeof(char*) * size);
+	commande = (char**)malloc(sizeof(char*) * (size + 1));
 	i = -1;
 	while (++i < size)
 		commande[i] = ft_strdup(tab[i]);
@@ -89,6 +86,7 @@ int				main(int argc, char **argv, char **env)
 		}
 		sep = (sep) ? sep : i;
 		ft_printf("nb_redir = %d\n", nb_redir);
+		ft_printf("sep = %d, size = %d\n", sep, i);
 		commande = create_commande(tab, sep);
 		redir = create_redir(tab, sep, i);
 		ft_printf("commande + arg :\n");

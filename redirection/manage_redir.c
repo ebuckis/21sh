@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:43:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/11 16:48:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/11 18:14:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,17 +28,12 @@ void		ft_manage_redir(char **commande, char **redirec, char **env,
 {
 	pid_t	pid;
 	int		status;
-	int		i;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		i = 0;
-		while (nb_redirec-- > 0)
-		{
+		if (nb_redirec)
 			ft_manage_redir2(redirec, nb_redirec);
-			i++;
-		}
 		ft_execve(commande[0], commande, env);
 	}
 	else if (pid > 0)
