@@ -6,40 +6,81 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/10 16:32:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 18:16:47 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/11 18:12: by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-t_hist		*ft_init_hist(void)
+static t_hist		*ft_init_hist(void)
 {
 	t_hist	*h;
 
-	h = (t_hist *)malloc(sizeof(t_hist));
+	if (!(h = (t_hist *)malloc(sizeof(t_hist))))
+		return (NULL);
 	h->str = NULL;
 	h->next = NULL;
 	h->prev = NULL;
 	return (h);
 }
 
-char	*ft_give_historique(int i)
+static t_hist		*ft_new_hist(char *s, t_hist *m_prev, t_hist *m_next)
 {
+	t_hist	*h;
 
-
+	if (!(h = (t_hist *)malloc(sizeof(t_hist))))
+		return (NULL);
+	if (!(h->str = ft_strdu(s)))
+		return (NULL);
+	h->next = m_next;
+	h->prev = m_prev;
+	if (m_prev)
+		m_prev->prev = h;
+	return (h);
 }
 
-t_hist	*ft_new_hist
-
-char	*ft_historique(char *cmd)
+int			ft_add_hist(t_hist *h, char *s)
 {
 	static t_hist	*h = NULL;
 
-	if (!h)
-		h = ft_init_hist();
-	else
+	h = ft_init_hist();
+	ft_close_hist(0, h);
+	ft_give_historique(0, h);
+	if (!s)
+		return (0);
+	h->next = ft_new_hist(s, h, h->next);
+	return (1);
+}
+
+char	*ft_give_historique(int i, t_hist *list)
+{
+	static t_hist	*h = NULL;
+	static t_hist	*h_actual = NULL;
+
+	if (i == 0)
 	{
-		h = ft_new_hist(h);
+		h = list;
+		h_actual = h;
 	}
+	else if (i == 1 && h->next)
+		h = h->next;
+	else if (i == -1 && h->prev)
+		h = h->prev;
+	else
+		return (NULL);
+	return (h->str);
+}
+
+void		ft_close_hist(int i, t_hist *list)
+{
+	static t_hist	*h = NULL;
+
+	if (i == 0)
+	{
+		h = list;
+		return (NULL);
+	}
+	else
+		return (h);
 }

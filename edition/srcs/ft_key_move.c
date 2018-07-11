@@ -6,19 +6,36 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 11:40:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/11 19:11:05 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-int					ft_key_move(t_navig *n, char *buf)
+static int		ft_maj_stuct_nav(t_navig *n, char *n)
 {
+
+}
+
+int				ft_key_move(t_navig *n, char *buf)
+{
+	char	*str;
+
 	if (KEY_CODE_UP)
-		n->y = n->y;//modif naviguer historique
+	{
+		str = ft_give_historique(1, NULL);
+		if (str)
+			ft_maj_stuct_nav(n, str);
+	}
 	else if (KEY_CODE_DOWN)
-		n->y = n->y;//modif naviguer historique
+	{
+		str = ft_give_historique(1, NULL);
+		if (str)
+			ft_maj_stuct_nav(n, str);
+		else
+			ft_maj_stuct_nav(n, s_save);
+	}
 	else if (KEY_CODE_LEFT)
 		ft_x_change(n, MOVE_LEFT);
 	else if (KEY_CODE_RIGHT)
@@ -39,9 +56,9 @@ int					ft_key_move(t_navig *n, char *buf)
 		return (0);
 	return (1);
 }
+
 /*
 ** a mettre en place :
 ** - Historique de navigation
-** - ctrl fleches (haut ou bas) on change de ligne
 ** a voir comment gerer le copier coller
 */
