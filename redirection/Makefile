@@ -6,7 +6,7 @@
 #    By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/05/29 11:17:43 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/09 12:13:55 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/11 16:48:43 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,7 +20,7 @@ LFT_FLAGS = -L ../libft/ -lft
 PATH_SRCS = ./
 PATH_OBJS = ./
 PATH_INCS = ./
-FILES = redirec.c fork.c execve.c
+FILES = redirec.c manage_redir.c execve.c
 SRCS = $(addprefix $(PATH_SRCS), $(FILES))
 OBJS = $(addprefix $(PATH_OBJS), $(FILES:.c=.o))
 INCS = redirec.h

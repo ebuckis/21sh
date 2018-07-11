@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/05 17:26:47 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/11 15:24:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,7 +67,6 @@ static char		***create_tab_pipe(char **tab, int nb_pipe)
 
 int				main(int argc, char **argv, char **env)
 {
-	int		ret;
 	char	***tab_pipe;
 	char	**tab;
 	int		i;
@@ -76,7 +75,6 @@ int				main(int argc, char **argv, char **env)
 
 	argc++;
 	argv++;
-	ret = 0;
 	i = -1;
 	nb_pipe = 0;
 	ft_putstr("$> ");
@@ -89,11 +87,13 @@ int				main(int argc, char **argv, char **env)
 			if (ft_strcmp(tab[i], "|") == 0)
 			{
 				if (i == 0 || ft_strcmp(tab[i - 1], "|") == 0)
+// si pipe en 1er argument ou si 2 pipes colles
 				{
 					ft_putendl("parse error");
 					return (1);
 				}
 				else if (!tab[i + 1])
+// si pipe en dernier argument
 				{
 					ft_putendl("pipe>");
 					return (0);
