@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/09 12:13:02 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/11 15:03:06 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/11 16:22:24 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/11 16:42:20 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,24 +20,52 @@ static void		display(char **tab)
 	i = -1;
 	while (tab[++i])
 	{
-			ft_printf("%s", tab[i]);
+		ft_printf("%s ", tab[i]);
 		ft_putendl("");
 	}
 }
 
-int				main(int argc, char **argv)//, char **env)
+static char		**create_commande(char **tab, int size)
 {
-	int		ret;
-	char	**tab;
 	int		i;
-	int		nb_redirec;
+	char	**commande;
+
+	commande = (char**)malloc(sizeof(char*) * size);
+	i = -1;
+	while (++i < size)
+		commande[i] = ft_strdup(tab[i]);
+	commande[i] = NULL;
+	return (commande);
+}
+
+static char		**create_redir(char **tab, int sep, int size)
+{
+	int		i;
+	char	**redir;
+
+	redir = (char**)malloc(sizeof(char*) * (size - sep + 1));
+	i = sep - 1;
+	while (++i < size)
+		redir[i - sep] = ft_strdup(tab[i]);
+	redir[i - sep] = NULL;
+	return (redir);
+}
+
+int				main(int argc, char **argv, char **env)
+{
+	char	**tab;
+	char	**commande;
+	char	**redir;
+	int		i;
+	int		sep;
+	int		nb_redir;
 	char	*line;
 
 	argc++;
 	argv++;
-	ret = 0;
 	i = -1;
-	nb_redirec = 0;
+	sep = 0;
+	nb_redir = 0;
 	ft_putstr("$> ");
 	get_next_line(0, &line);
 	tab = ft_strsplit(line, ' ');
@@ -47,20 +75,27 @@ int				main(int argc, char **argv)//, char **env)
 		{
 			if (ft_strchr(tab[i], '>') || ft_strchr(tab[i], '<'))
 			{
-				if (!tab[i + 1] || ft_strchr(tab[i + 1], '>') ||
+				sep = (sep) ? sep : i;
+				if (i == 0 || !tab[i + 1] || ft_strchr(tab[i + 1], '>') ||
 					ft_strchr(tab[i + 1], '<'))
-// si redirection en dernier parametre ou 2 redirections a la suite
+// si redire en 1er ou dernier  argument ou si 2 redir colles
 				{
 					ft_putendl("parse error");
 					return (1);
 				}
 				else
-					nb_redirec++;
+					nb_redir++;
 			}
 		}
-		ft_printf("nb_redirec = %d\n", nb_redirec);
-		display(tab);
-		//ft_fork_redirec(tab, env, nb_redirec);
+		sep = (sep) ? sep : i;
+		ft_printf("nb_redir = %d\n", nb_redir);
+		commande = create_commande(tab, sep);
+		redir = create_redir(tab, sep, i);
+		ft_printf("commande + arg :\n");
+		display(commande);
+		ft_printf("redir :\n");
+		display(redir);
+		ft_manage_redir(commande, redir, env, nb_redir);
 	}
 	else
 		ft_putendl("argument missing");
