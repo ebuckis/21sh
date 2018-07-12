@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:43:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/11 18:53:15 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/12 15:45:13 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,14 +42,21 @@ static void		ft_manage_redir2(char **redirec, int nb_redirec, char **env)
 	fd = 0;
 	while (++i < nb_redirec)
 	{
+		pwd = ft_getpwd(env);
+		pwd = ft_strjoin(pwd, "/");
+		path = ft_strjoin(pwd, redirec[i * 2 + 1]);
+		ft_printf("path : %s\n", path);
 		if (!ft_strcmp(redirec[i * 2], ">"))
 		{
-			pwd = ft_getpwd(env);
-			pwd = ft_strjoin(pwd, "/");
-			path = ft_strjoin(pwd, redirec[i * 2 + 1]);
-			ft_printf("path : %s\n", path);
+		// ajouter verifier droit lecture user et autres
 			fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			ft_printf("fd : %d\n", fd);
+			ft_printf("> fd : %d\n", fd);
+			dup2(fd, STDOUT_FILENO);
+		}
+		if (!ft_strcmp(redirec[i * 2], ">>"))
+		{
+			fd = open(path, O_APPEND | O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			ft_printf(">> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
 		}
 	}
