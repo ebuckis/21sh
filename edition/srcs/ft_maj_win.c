@@ -128,6 +128,12 @@ int				ft_maj_win(t_navig *n)
 **	dprintf(2, "y_size = %d\n", n->y_size);
 **	dprintf(2, "s = %s\n", n->s);
 **	dprintf(2, "s = %s\n", n->s + n->i);
+**	dprintf(2, "\n______________________\n
+**				i = %d\n
+**				x = %d\n
+**				y = %d\n
+**				x_len = %d\n
+**				y_len = %d\n", n->i, n->x, n->y, n->x_len, n->y_len);
 */
 
 

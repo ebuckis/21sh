@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 15:29:28 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/12 18:45:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,7 @@ static void		traite_signal(int s)
 char			*ft_lance_edit(char *prompt, t_navig *n)
 {
 	char		buf[5];
+	char		*tmp;
 
 	ft_recup_pos(&(n->x_start), &(n->y_first));
 	ft_putstr(prompt);
@@ -52,7 +53,14 @@ char			*ft_lance_edit(char *prompt, t_navig *n)
 		}
 		else if (buf[0] == 10)
 		{
-			printf("\n\n%s\n\n", n->s);
+		//	printf("\n\n%s\n\n", n->s);
+			ft_move_to_xy(n->x_len, n->y_len);
+			ft_putstr("\n");
+			if (n->s && (tmp = ft_whitespace(n->s)))
+			{
+				free(tmp);
+				ft_add_hist(n->s);
+			}
 			return (n->s);
 		}
 		else if (KEY_CODE_ALT)
@@ -101,4 +109,5 @@ char				*ft_edition(char *prompt)
 ** int tcgetattr(int fd, struct termios *termios_p);
 ** int tcsetattr(int fd, int optional_actions,
 **					const struct termios *termios_p);
+** penser a close a la fin du programme
 */

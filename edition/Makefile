@@ -42,7 +42,10 @@ N_SRCS =	ft_edition.c			\
 			ft_move_up.c			\
 			ft_key_alt.c			\
 			ft_maj_line.c			\
-			ft_maj_win.c			
+			ft_maj_win.c			\
+			ft_give_hist.c			\
+			ft_historique.c			\
+			ft_close_hist.c
 
 all : $(NAME)
 

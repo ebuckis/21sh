@@ -3,6 +3,15 @@
 
 int		main()
 {
-	ft_edition("prompt $> ");
+	char	*string;
+	int		a;
+
+	a = 1;
+	while (a)
+	{
+		string = ft_edition("prompt $> ");
+		if (ft_strcmp("exit", string) == 0)
+			break ;
+	}
 	return (0);
 }
