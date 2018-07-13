@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 16:32:16 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/12 16:43:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/13 14:43:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ static void			ft_free_hist(t_hist *h)
 	free(h);
 }
 
-t_hist		*ft_close_hist(int i, t_hist *list)
+t_hist				*ft_close_hist(int i, t_hist *list)
 {
 	static t_hist	*h = NULL;
 

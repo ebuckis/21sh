@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/15 15:10:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/13 09:20:48 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,8 @@
 #ifndef FT_PARSER_H
 # define FT_PARSER_H
 
-# include "../../libft/libft.h"
+# include "../../libft/includes/libft.h"
+# include "../../edition/includes/ft_edition.h"
 
 typedef struct	s_parse
 {
@@ -43,7 +44,7 @@ int				ft_is_separator(t_parse *p);
 int				ft_is_white(char c);
 int				ft_parse_dquote(t_parse *p);
 int				ft_parse_quote(t_parse *p);
-int				ft_suite_line(t_parse *p, int i);
+int				ft_suite_line(t_parse *p, int i, char *prompt);
 void			ft_end_while(t_parse *p, int n);
 int				ft_separator(t_parse *p);
 t_parse			*ft_save_struct(t_parse *parsing);

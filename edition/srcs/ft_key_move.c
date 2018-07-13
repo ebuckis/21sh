@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/12 19:02:48 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/13 16:57:22 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,6 +16,7 @@
 static int		ft_maj_stuct_nav(t_navig *n, char *str)
 {
 	char	*ret;
+	int		calc;
 
 	free(n->s);
 	n->s = ft_strdup(str);
@@ -24,6 +25,12 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 	if (!(ret = tgetstr("cd", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
+	calc = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;
+	if (calc > n->x_size && n->y >= n->y_size - (calc % n->x_size))
+	{
+		n->y_first -= (calc % n->x_size) - (n->y_size - n->y_start);
+		n->y_start -=  (calc % n->x_size) - (n->y_size - n->y_start);
+	}
 	ft_putstr(n->s);
 	n->i = ft_strlen(n->s);
 	ft_recup_pos(&(n->x), &(n->y));
@@ -45,7 +52,6 @@ int				ft_key_move(t_navig *n, char *buf)
 			ft_maj_stuct_nav(n, str);
 			n->id_hist++;
 		}
-				dprintf(2, "\n______________________\ns : %s\ns_save : %s\nid_hist : %d", n->s, n->s_save, n->id_hist);
 	}
 	else if (KEY_CODE_DOWN)
 	{
@@ -61,7 +67,6 @@ int				ft_key_move(t_navig *n, char *buf)
 			n->s_save = NULL;
 			n->id_hist--;
 		}
-				dprintf(2, "\n______________________\ns : %s\ns_save : %s\nid_hist : %d", n->s, n->s_save, n->id_hist);
 	}
 	else if (KEY_CODE_LEFT)
 		ft_x_change(n, MOVE_LEFT);
@@ -75,7 +80,7 @@ int				ft_key_move(t_navig *n, char *buf)
 	}
 	else if (KEY_CODE_HOME)
 	{
-		n->x = n->x_start;
+		n->x = n->x_start;//boucler pour arriver au debut
 		n->y = n->y_start;
 		n->i = 0;
 	}

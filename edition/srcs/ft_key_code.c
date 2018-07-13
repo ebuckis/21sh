@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_antislash.c                                   .::    .:/ .      .::   */
+/*   ft_key_code.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/06/15 10:20:08 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 09:16:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/13 13:31:30 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/13 17:02:08 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
+#include "ft_edition.h"
 
-int			ft_antislash(t_parse *p)
+int		ft_key_code(t_navig *n, char *buf)
 {
-	if (p->s[p->i + 1] == '\0')
+	if (KEY_CODE_DIR)
 	{
-		if (!(ft_suite_line(p, 0, "> ")))
+		if (!(ft_key_move(n, buf)))
 			return (0);
 	}
-	else
+	else if (KEY_CODE_DEL)
 	{
-		p->i++;
-		ft_end_while(p, 0);
+		if (!(ft_del_char(n)))
+			return (0);
 	}
+	else if (KEY_CODE_ALT)
+	{
+		if (!(ft_key_alt(n, buf)))
+			return (0);
+	}
+	else if (IS_PRINTABLE)
+	{
+		if (!(ft_new_char(n, buf) && ft_move_to_xy(n->x, n->y)))
+			return (0);
+	}
+	if (!(ft_move_to_xy(n->x, n->y)))
+		return (0);
 	return (1);
 }
-
-/*
-** Cette fonction gere le \ en fin de chaine de char
-*/
