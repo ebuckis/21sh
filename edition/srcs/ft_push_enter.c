@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_antislash.c                                   .::    .:/ .      .::   */
+/*   ft_push_enter.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/06/15 10:20:08 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 09:16:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/13 13:55:34 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/13 16:57:43 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
 
-int			ft_antislash(t_parse *p)
+#include "ft_edition.h"
+
+int		ft_push_enter(t_navig *n)
 {
-	if (p->s[p->i + 1] == '\0')
+	char		*tmp;
+
+	if (!(ft_move_to_xy(n->x_len, n->y_len)))
+		return (0);
+	ft_putstr("\n");
+	if (n->s && (tmp = ft_whitespace(n->s)))
 	{
-		if (!(ft_suite_line(p, 0, "> ")))
+		free(tmp);
+		if (!(ft_add_hist(n->s)))
 			return (0);
 	}
-	else
+	else if (n->s)
 	{
-		p->i++;
-		ft_end_while(p, 0);
+		ft_strdel(&(n->s));
 	}
 	return (1);
 }
-
-/*
-** Cette fonction gere le \ en fin de chaine de char
-*/

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_antislash.c                                   .::    .:/ .      .::   */
+/*   ft_give_hist.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/06/15 10:20:08 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 09:16:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/12 16:27:53 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/13 14:45:02 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
+#include "ft_edition.h"
 
-int			ft_antislash(t_parse *p)
+char	*ft_give_hist(int i, t_hist *list)
 {
-	if (p->s[p->i + 1] == '\0')
-	{
-		if (!(ft_suite_line(p, 0, "> ")))
-			return (0);
-	}
-	else
-	{
-		p->i++;
-		ft_end_while(p, 0);
-	}
-	return (1);
-}
+	static t_hist	*h = NULL;
 
-/*
-** Cette fonction gere le \ en fin de chaine de char
-*/
+	if (i == 0)
+		h = list;
+	else if (i == 1 && h->next)
+		h = h->next;
+	else if (i == -1 && h->prev)
+		h = h->prev;
+	else
+		return (NULL);
+	return (h->str);
+}

@@ -39,10 +39,15 @@ N_SRCS =	ft_edition.c			\
 			ft_del_char.c			\
 			ft_new_char.c			\
 			ft_move_to_xy.c			\
+			ft_key_code.c			\
+			ft_push_enter.c			\
 			ft_move_up.c			\
 			ft_key_alt.c			\
 			ft_maj_line.c			\
-			ft_maj_win.c			
+			ft_maj_win.c			\
+			ft_give_hist.c			\
+			ft_historique.c			\
+			ft_close_hist.c
 
 all : $(NAME)
 

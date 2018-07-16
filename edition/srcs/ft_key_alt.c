@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/10 11:30:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 15:01:39 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/13 13:36:25 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,6 +71,5 @@ int		ft_key_alt(t_navig *n, char *buf)
 		ft_alt_right(n);
 	else
 		return (0);
-	ft_move_to_xy(n->x, n->y);
 	return (1);
 }

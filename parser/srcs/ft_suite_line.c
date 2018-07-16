@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/18 15:15:51 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/13 09:19:32 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int			ft_suite_line(t_parse *p, int i)
+int			ft_suite_line(t_parse *p, int i, char *prompt)
 {
 	char	*tmp;
 
@@ -26,7 +26,7 @@ int			ft_suite_line(t_parse *p, int i)
 		if (!(p->s = ft_strjoin_del(p->s, "\n")))
 			return (0);
 	}
-	get_next_line(0, &tmp);
+	tmp = ft_edition(prompt);
 	if (!(p->s = ft_strjoin_del(p->s, tmp)))
 		return (0);
 	if (ft_strlen(tmp) != 0 || i != 0)
