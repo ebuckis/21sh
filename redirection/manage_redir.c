@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:43:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/16 15:02:21 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/16 16:16:07 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,12 +31,14 @@ static char		*ft_getpwd(char **env)
 	return (NULL);
 }
 
-static void		ft_manage_redir2(char **redirec, int nb_redirec, char **env)
+static void		ft_manage_redir2(char** commande, char **redirec,
+		int nb_redirec, char **env)
 {
 	int		i;
 	int		fd;
 	char	*pwd;
 	char	*path;
+	pid_t	pid;
 
 	i = -1;
 	fd = 0;
@@ -49,18 +51,37 @@ static void		ft_manage_redir2(char **redirec, int nb_redirec, char **env)
 		if (!ft_strcmp(redirec[i * 2], ">"))
 		{
 		// ajouter verifier droit lecture user et autres
+		// O_TRUNC efface le fichier
 			fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			ft_printf("> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
 		}
-		if (!ft_strcmp(redirec[i * 2], ">>"))
+		else if (!ft_strcmp(redirec[i * 2], ">>"))
 		{
+		// O_APPEND ouvert en mode ajout
 			fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			ft_printf(">> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
 		}
+		else if (!ft_strcmp(redirec[i * 2], ">&") ||
+			!ft_strcmp(redirec[i * 2], "&>"))
+		{
+			fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			ft_printf("&> fd : %d\n", fd);
+			dup2(fd, STDOUT_FILENO);
+			dup2(fd, STDERR_FILENO);
+		}
+		else
+		{
+			ft_putendl("redirection parse error");
+			return ;
+		}
+		pid = fork();
+		if (pid == 0)
+			ft_execve(commande[0], commande, env);
+		else if (pid > 0)
+			close(fd);
 	}
-	redirec = NULL;
 }
 
 void		ft_manage_redir(char **commande, char **redirec, char **env,
@@ -73,8 +94,9 @@ void		ft_manage_redir(char **commande, char **redirec, char **env,
 	if (pid == 0)
 	{
 		if (nb_redirec)
-			ft_manage_redir2(redirec, nb_redirec, env);
-		ft_execve(commande[0], commande, env);
+			ft_manage_redir2(commande, redirec, nb_redirec, env);
+		else
+			ft_execve(commande[0], commande, env);
 	}
 	else if (pid > 0)
 	{
