@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:43:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/16 16:16:07 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/16 17:47:33 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,6 +31,71 @@ static char		*ft_getpwd(char **env)
 	return (NULL);
 }
 
+static int		ft_manage_redir_in(char *path, char **redirec, int i)
+{
+	int		fd;
+
+	if (!ft_strcmp(redirec[i * 2], "<"))
+	{
+		// ajouter verifier droit lecture user et autres
+		fd = open(path, O_RDONLY);
+		ft_printf("< fd : %d\n", fd);
+		dup2(fd, STDIN_FILENO);
+	}
+	else
+	{
+		ft_putendl("redirection parse error");
+		return (-1);
+	}
+	return (fd);
+}
+
+static int		ft_manage_redir_out(char *path, char **redirec, int i)
+{
+	int		n;
+	int		fd;
+	char	*p;
+
+	if (!ft_strcmp(redirec[i * 2], ">"))
+	{
+		// ajouter verifier droit lecture user et autres
+		// O_TRUNC efface le fichier
+		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		ft_printf("> fd : %d\n", fd);
+		dup2(fd, STDOUT_FILENO);
+	}
+	else if (!ft_strcmp(redirec[i * 2], ">>"))
+	{
+		// O_APPEND ouvert en mode ajout
+		fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		ft_printf(">> fd : %d\n", fd);
+		dup2(fd, STDOUT_FILENO);
+	}
+	else if (!ft_strcmp(redirec[i * 2], ">&") ||
+			!ft_strcmp(redirec[i * 2], "&>"))
+	{
+		//redirection de stdout et stderr
+		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		ft_printf("&> fd : %d\n", fd);
+		dup2(fd, STDOUT_FILENO);
+		dup2(fd, STDERR_FILENO);
+	}
+	else if ((n = ft_atoi(redirec[i * 2])) >= 0 && (p =
+				ft_strchr(redirec[i * 2], '>')) && !p[1])
+	{
+		// redirection de fd n
+		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		ft_printf("n> fd : %d\n", fd);
+		dup2(fd, n);
+	}
+	else
+	{
+		ft_putendl("redirection parse error");
+		return (-1);
+	}
+	return (fd);
+}
+
 static void		ft_manage_redir2(char** commande, char **redirec,
 		int nb_redirec, char **env)
 {
@@ -48,39 +113,18 @@ static void		ft_manage_redir2(char** commande, char **redirec,
 		pwd = ft_strjoin(pwd, "/");
 		path = ft_strjoin(pwd, redirec[i * 2 + 1]);
 		ft_printf("path : %s\n", path);
-		if (!ft_strcmp(redirec[i * 2], ">"))
+		if (ft_strchr(redirec[i * 2], '>'))
+			fd = ft_manage_redir_out(path, redirec, i);
+		else if (ft_strchr(redirec[i * 2], '<'))
+			fd = ft_manage_redir_in(path, redirec, i);
+		if (fd >= 0)
 		{
-		// ajouter verifier droit lecture user et autres
-		// O_TRUNC efface le fichier
-			fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			ft_printf("> fd : %d\n", fd);
-			dup2(fd, STDOUT_FILENO);
+			pid = fork();
+			if (pid == 0)
+				ft_execve(commande[0], commande, env);
+			else if (pid > 0)
+				close(fd);
 		}
-		else if (!ft_strcmp(redirec[i * 2], ">>"))
-		{
-		// O_APPEND ouvert en mode ajout
-			fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644);
-			ft_printf(">> fd : %d\n", fd);
-			dup2(fd, STDOUT_FILENO);
-		}
-		else if (!ft_strcmp(redirec[i * 2], ">&") ||
-			!ft_strcmp(redirec[i * 2], "&>"))
-		{
-			fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			ft_printf("&> fd : %d\n", fd);
-			dup2(fd, STDOUT_FILENO);
-			dup2(fd, STDERR_FILENO);
-		}
-		else
-		{
-			ft_putendl("redirection parse error");
-			return ;
-		}
-		pid = fork();
-		if (pid == 0)
-			ft_execve(commande[0], commande, env);
-		else if (pid > 0)
-			close(fd);
 	}
 }
 
