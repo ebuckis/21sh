@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:43:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/12 15:45:13 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/16 15:02:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,7 +55,7 @@ static void		ft_manage_redir2(char **redirec, int nb_redirec, char **env)
 		}
 		if (!ft_strcmp(redirec[i * 2], ">>"))
 		{
-			fd = open(path, O_APPEND | O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			ft_printf(">> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
 		}
