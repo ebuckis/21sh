@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 09:20:48 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 18:46:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,6 +16,14 @@
 
 # include "../../libft/includes/libft.h"
 # include "../../edition/includes/ft_edition.h"
+
+# define SPACE -1
+# define SPECIAL '0'
+# define WORD '1'
+# define REDIR_FILE '2'
+# define REDIR '3'
+# define PIPE '4'
+# define SEMICOLON '5'
 
 typedef struct	s_parse
 {
@@ -45,7 +53,7 @@ int				ft_is_white(char c);
 int				ft_parse_dquote(t_parse *p);
 int				ft_parse_quote(t_parse *p);
 int				ft_suite_line(t_parse *p, int i, char *prompt);
-void			ft_end_while(t_parse *p, int n);
+void			ft_end_while(t_parse *p, char c);
 int				ft_separator(t_parse *p);
 t_parse			*ft_save_struct(t_parse *parsing);
 /*

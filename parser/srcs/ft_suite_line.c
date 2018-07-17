@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 14:37:28 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 18:49:14 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,10 +47,10 @@ int			ft_suite_line(t_parse *p, int i, char *prompt)
 ** Reallocation de memoire nécessaire
 */
 
-void		ft_end_while(t_parse *p, int n)
+void		ft_end_while(t_parse *p, char c)
 {
 	p->str[p->j] = p->s[p->i];
-	p->ident[p->j] = n + '0';
+	p->ident[p->j] = c;
 	p->i++;
 	p->j++;
 }

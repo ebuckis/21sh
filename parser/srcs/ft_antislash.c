@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:20:08 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 09:16:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 18:46:59 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ int			ft_antislash(t_parse *p)
 	else
 	{
 		p->i++;
-		ft_end_while(p, 0);
+		ft_end_while(p, SPECIAL);
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 18:18:08 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 18:51:25 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,16 +66,16 @@ int				main()
 			{
 				p = ft_parser(string);
 				dprintf(2, "----------\n");
-				dprintf(2, "p->s :\t\t\"%s\"\n", p->s);
+				dprintf(2, "p->s :\t\t%s\n", p->s);
 				str = ft_strdup_wchar(p->str);
 				ident = ft_strdup_wchar(p->ident);
-				dprintf(2, "p->str:\t\t\"%S\"\n", str);
-				dprintf(2, "p->ident:\t\"%S\"\n", ident);
+				dprintf(2, "p->str:\t\t%S\n", str);
+				dprintf(2, "p->ident:\t%S\n", ident);
 				i = -1;
 				while (p->arg[++i])
 				{
-					dprintf(2, "arg[%d]:\t\t\"%s\"\n", i, p->arg[i]);
-					dprintf(2, "arg_id[%d]:\t\"%s\"\n", i, p->arg_id[i]);
+					dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
+					dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
 				}
 				dprintf(2, "----------\n");
 			}
