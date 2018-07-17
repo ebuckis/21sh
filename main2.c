@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 18:00:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 18:18:08 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,11 @@ static wchar_t *ft_strdup_wchar(char *str)
 	wstr[i] = '\0';
 	return (wstr);
 }
+
+/*
+// gcc main2.c libft/libft.a edition/libedition.a parser/libparser.a -ltermcap
+// ./a.out 2> /dev/ttys001
+*/
 
 int				main()
 {
