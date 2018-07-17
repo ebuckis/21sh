@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 14:59:50 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 17:46:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,8 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 {
 	char	*ret;
 	int		calc;
+	int		y_add;
+	int		y_old;
 
 	free(n->s);
 	n->s = ft_strdup(str);
@@ -26,17 +28,41 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 		return (0);
 	tputs(ret, 1, ft_putcharint);
 	calc = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;
-	if (calc > n->x_size && n->y >= n->y_size - (calc % n->x_size))
-	{
-		n->y_first -= (calc % n->x_size) - (n->y_size - n->y_start);
-		n->y_start -=  (calc % n->x_size) - (n->y_size - n->y_start);// les calculs sont fauxxxxxxxxxxxx
-	}
+	y_add = 1 + (calc / (n->x_size + 1));
+	y_old = n->y_first;
 	ft_putstr(n->s);
 	n->i = ft_strlen(n->s);
 	ft_recup_pos(&(n->x), &(n->y));
 	ft_recup_pos(&(n->x_len), &(n->y_len));
+	if ((calc - 1) % n->x_size == 0)
+	{
+		if (n->y == n->y_size - 1)
+		{
+			dprintf(2, "__________der line________\n");
+			if (!(ret = tgetstr("sf", NULL)))
+				return (0);
+			tputs(ret, 1, ft_putcharint);
+		}
+		else
+		{
+			n->y++;
+			n->y_len++;
+		}
+		n->x = 0;
+		n->x_len = 0;
+		y_add++;
+	}
+	if (y_old + y_add > n->y_size)
+	{
+		n->y_first -= (y_old + y_add - n->y_size);
+		n->y_start -= (y_old + y_add - n->y_size);
+	}
 	return (1);
 }
+
+//	dprintf(2, "\n----------------------------\ncalc = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;\n%d = %zu + %zu + 1\n-----------------------\n" , calc, ft_strlen(n->prompt), ft_strlen(n->s));
+//	dprintf(2, "\n----------------------------\ny_add = 1 + (calc / (n->x_size + 1));\n%d = 1 + (%d / %d + 1)\n-----------------------\n", y_add, calc, n->x_size);
+//	dprintf(2, "\n++++++++++++++++++++++++++++\nx = %d\nx_size = %d\nx_len = %d\n+++++++++++++++++++++++++\n", n->x, n->x_size, n->x_len);
 
 int				ft_key_move(t_navig *n, char *buf)
 {
