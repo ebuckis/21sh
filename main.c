@@ -12,10 +12,17 @@ int		main()
 	while (a)
 	{
 		string = ft_edition("prompt $> ");
-		if (ft_strcmp("exit", string) == 0)
-			a = 0;
-		p = ft_parser(string);
-		dprintf(2, "________________________\nstring:\n%s\ns :\n%s\nident :\n%s\n________________________\n",string, p->s, p->ident);
+		dprintf(2, "________________________\nstring: %s\n", string);
+		if (string)
+		{
+			if (ft_strcmp("exit", string) == 0)
+				a = 0;
+			else
+			{
+				p = ft_parser(string);
+				dprintf(2, "________________________\nstring:\n%s\ns :\n%s\nident :\n%s\n________________________\n",string, p->s, p->ident);
+			}
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 14:50:15 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 14:48:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ char			*ft_lance_edit(char *prompt, t_navig *n)
 			if (!(ft_key_code(n, buf)))
 				return (NULL);
 		}
-		else if (buf[0] == 10)
+		else if (buf[0] == 10 && !buf[1])
 		{
 			if (!(ft_push_enter(n)))
 				return (NULL);
@@ -74,9 +74,10 @@ char			*ft_edition(char *prompt)
 	t.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, &t) == -1)
 		return (0);
-	if (!(str = ft_lance_edit(prompt, &g_nav)))
-		return (NULL);
+	str = ft_lance_edit(prompt, &g_nav);
+	dprintf(2, "str = ft_lance edit\n");
 	ft_default_edit(t);
+	dprintf(2, "return de str\n");
 	return (str);
 }
 
