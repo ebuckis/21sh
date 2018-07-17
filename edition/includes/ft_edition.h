@@ -72,6 +72,7 @@ int					ft_key_move(t_navig *n, char *buf);
 void				ft_recup_pos(int *x, int *y);
 void				ft_x_change(t_navig *n, int i);
 struct termios		ft_default_edit(struct termios term);
+int					ft_verif_term_size(t_navig *n);
 int					ft_del_char(t_navig *n);
 int					ft_maj_line(t_navig *n);
 int					ft_new_char(t_navig *n, char *buf);
@@ -83,6 +84,5 @@ int					ft_open_hist(void);
 char				*ft_give_hist(int i, t_hist *list);
 int					ft_add_hist(char *s);
 t_hist				*ft_close_hist(int i, t_hist *list);
-
 
 #endif
