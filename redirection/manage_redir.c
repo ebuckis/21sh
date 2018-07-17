@@ -6,30 +6,12 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:43:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/16 17:47:33 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 14:34:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "redirec.h"
-
-static char		*ft_getpwd(char **env)
-{
-	int		i;
-	char	*pwd;
-
-	i = -1;
-	if (env)
-	{
-		while (env[++i])
-		{
-			if ((pwd = ft_strstr(env[i], "PWD=")) &&
-					!ft_strstr(env[i], "OLDPWD="))
-				return (ft_strdup(pwd + 4));
-		}
-	}
-	return (NULL);
-}
 
 static int		ft_manage_redir_in(char *path, char **redirec, int i)
 {
@@ -41,6 +23,29 @@ static int		ft_manage_redir_in(char *path, char **redirec, int i)
 		fd = open(path, O_RDONLY);
 		ft_printf("< fd : %d\n", fd);
 		dup2(fd, STDIN_FILENO);
+	}
+	else
+	{
+		ft_putendl("redirection parse error");
+		return (-1);
+	}
+	return (fd);
+}
+
+static int		ft_manage_redir_close(char **redirec, int i)
+{
+	int		fd;
+
+	if (!ft_strcmp(redirec[i * 2], ">&-") || !ft_strcmp(redirec[i * 2], "1>&-"))
+	{
+		fd = 1;
+		ft_printf(">&- fd : %d\n", fd);
+		close(fd);
+	}
+	else if ((fd = ft_atoi(redirec[i * 2])) >= 0 && ft_strstr(redirec[i * 2], ">&-"))
+	{
+		ft_printf("n>&- fd : %d\n", fd);
+		close(fd);
 	}
 	else
 	{
@@ -106,14 +111,16 @@ static void		ft_manage_redir2(char** commande, char **redirec,
 	pid_t	pid;
 
 	i = -1;
-	fd = 0;
+	fd = -1;
 	while (++i < nb_redirec)
 	{
-		pwd = ft_getpwd(env);
+		pwd = ft_getpwd(env, 0);
 		pwd = ft_strjoin(pwd, "/");
 		path = ft_strjoin(pwd, redirec[i * 2 + 1]);
 		ft_printf("path : %s\n", path);
-		if (ft_strchr(redirec[i * 2], '>'))
+		if (ft_strchr(redirec[i * 2], '-'))
+			fd = ft_manage_redir_close(redirec, i);
+		else if (ft_strchr(redirec[i * 2], '>'))
 			fd = ft_manage_redir_out(path, redirec, i);
 		else if (ft_strchr(redirec[i * 2], '<'))
 			fd = ft_manage_redir_in(path, redirec, i);
@@ -121,7 +128,7 @@ static void		ft_manage_redir2(char** commande, char **redirec,
 		{
 			pid = fork();
 			if (pid == 0)
-				ft_execve(commande[0], commande, env);
+				ft_execve(commande, env);
 			else if (pid > 0)
 				close(fd);
 		}
@@ -140,7 +147,7 @@ void		ft_manage_redir(char **commande, char **redirec, char **env,
 		if (nb_redirec)
 			ft_manage_redir2(commande, redirec, nb_redirec, env);
 		else
-			ft_execve(commande[0], commande, env);
+			ft_execve(commande, env);
 	}
 	else if (pid > 0)
 	{

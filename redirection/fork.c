@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   execve.c                                         .::    .:/ .      .::   */
+/*   fork.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 13:41:55 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/17 13:49:45 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "redirec.h"
 
-void		ft_execve(char **tab, char *env[])
+void		ft_fork(char *path, char **tab, char **env)
 {
-	char *path;
+	pid_t	pid;
 
-	if (check_builtin(tab, &env))
-		return;
-	else
-		path = check_bin(tab, env);
-	if (path)
-		execve(path, tab, env);
+	pid = fork();
+	if (pid == 0)
+	{
+		tab[0] = ft_strdup(path);
+		ft_execve(tab, env);
+	}
+	else if (pid > 0)
+		wait(NULL);
+	ft_memdel((void**)&path);
 }

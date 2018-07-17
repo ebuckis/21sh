@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/11 16:22:24 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/11 18:22:00 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 14:23:51 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,12 +57,14 @@ int				main(int argc, char **argv, char **env)
 	int		sep;
 	int		nb_redir;
 	char	*line;
+	char	**my_env;
 
 	argc++;
 	argv++;
 	i = -1;
 	sep = 0;
 	nb_redir = 0;
+	my_env = ft_getenv(argc, argv, env);
 	ft_putstr("$> ");
 	get_next_line(0, &line);
 	tab = ft_strsplit(line, ' ');
@@ -70,11 +72,12 @@ int				main(int argc, char **argv, char **env)
 	{
 		while (tab[++i])
 		{
+			ft_printf("tab[%d] = \"%s\"\n", i, tab[i]);
 			if (ft_strchr(tab[i], '>') || ft_strchr(tab[i], '<'))
 			{
 				sep = (sep) ? sep : i;
-				if (i == 0 || !tab[i + 1] || ft_strchr(tab[i + 1], '>') ||
-					ft_strchr(tab[i + 1], '<'))
+				if (i == 0) //|| (!tab[i + 1] &&  !ft_strchr(tab[i], '-')) ||
+//					ft_strchr(tab[i + 1], '>') || ft_strchr(tab[i + 1], '<'))
 // si redire en 1er ou dernier  argument ou si 2 redir colles
 				{
 					ft_putendl("parse error");
@@ -93,7 +96,7 @@ int				main(int argc, char **argv, char **env)
 		display(commande);
 		ft_printf("redir :\n");
 		display(redir);
-		ft_manage_redir(commande, redir, env, nb_redir);
+		ft_manage_redir(commande, redir, my_env, nb_redir);
 	}
 	else
 		ft_putendl("argument missing");
