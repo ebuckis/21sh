@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/18 15:04:39 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/17 16:12:50 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,11 +17,11 @@ static int	ft_str_parser(t_parse *p)
 {
 	while (p->s[p->i])
 	{
-		if (p->s[p->i] == 92)
+		if (p->s[p->i] == '\\')
 			p->err = ft_antislash(p);
-		else if (p->s[p->i] == 34)
+		else if (p->s[p->i] == '\"')
 			p->err = ft_parse_dquote(p);
-		else if (p->s[p->i] == 39)
+		else if (p->s[p->i] == '\'')
 			p->err = ft_parse_quote(p);
 		else if (ft_is_separator(p))
 			p->err = ft_separator(p);
