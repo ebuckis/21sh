@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 11:46:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/18 11:59:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -80,28 +80,31 @@ int				main()
 		string = ft_edition("prompt $> ");
 		if (string)
 		{
-			if (ft_strcmp("exit", string) == 0)
-				a = 0;
-			else
+			p = ft_parser(string);
+			debug_display(p);
+			n = 0;
+			i = 0;
+			while (p->arg_id[i] && ft_strcmp(p->arg[i], "exit"))
 			{
-				p = ft_parser(string);
-				debug_display(p);
-				n = 0;
-				i = 0;
-				while (p->arg_id[i])
+				dprintf(2, "----------\n");
+				dprintf(2, "command nb %d\n", n);
+				while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 				{
-					dprintf(2, "----------\n");
-					dprintf(2, "command nb %d\n", n);
-					while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
-					{
-						dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
-						dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
-						i++;
-					}
-					i += (p->arg_id[i]) ? 1 : 0;
-					n++;
-					dprintf(2, "----------\n");
+					dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
+					dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
+					i++;
 				}
+				i += (p->arg_id[i]) ? 1 : 0;
+				n++;
+				dprintf(2, "----------\n");
+			}
+			if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
+			{
+				dprintf(2, "----------\n");
+				dprintf(2, "command nb %d\n", n);
+				dprintf(2, "exit\n");
+				dprintf(2, "----------\n");
+				a = 0;
 			}
 		}
 	}
