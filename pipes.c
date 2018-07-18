@@ -6,32 +6,30 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 16:35:56 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/18 17:41:33 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "pipes.h"
 
-static void		display(char ***tab)
+static void		display(char ***tab_pipe)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	while (tab[++i])
+	while (tab_pipe[++i])
 	{
 		j = -1;
-		ft_printf("commande %d : ", i);
-		while (tab[i][++j])
-		{
-			ft_printf("%s ", tab[i][j]);
-		}
+		ft_printf("commande pipe %d : ", i);
+		while (tab_pipe[i][++j])
+			ft_printf("%s ", tab_pipe[i][j]);
 		ft_putendl("");
 	}
 }
 
-static char		***create_tab_pipe(char **tab, int nb_pipe)
+static char		***create_tab_pipe(t_parse *p, int begin, int nb_pipe)
 {
 	char	***tab_pipe;
 	int		i;
@@ -40,20 +38,20 @@ static char		***create_tab_pipe(char **tab, int nb_pipe)
 	int		buf;
 
 	tab_pipe = (char***)malloc(sizeof(char**) * (nb_pipe + 2));
-	i = 0;
+	i = begin;
 	j = 0;
 	k = -1;
-	while (tab[i])
+	while (p->arg[i])
 	{
-		if (ft_strcmp(tab[i], "|"))
+		if (!ft_strchr(p->arg_id[i], PIPE))
 		{
 			buf = i;
-			while (tab[i] && ft_strcmp(tab[i], "|"))
+			while (p->arg[i] && !ft_strchr(p->arg_id[i], PIPE))
 				i++;
 			tab_pipe[j] = (char**)malloc(sizeof(char*) * (i - buf + 1));
 			i = buf;
-			while (tab[i] && ft_strcmp(tab[i], "|"))
-				tab_pipe[j][++k] = ft_strdup(tab[i++]);
+			while (p->arg[i] && !ft_strchr(p->arg_id[i], PIPE))
+				tab_pipe[j][++k] = ft_strdup(p->arg[i++]);
 			tab_pipe[j][++k] = NULL;
 			j++;
 			k = -1;
@@ -65,34 +63,28 @@ static char		***create_tab_pipe(char **tab, int nb_pipe)
 	return (tab_pipe);
 }
 
-int				main(int argc, char **argv, char **env)
+int				ft_manage_pipe(t_parse *p, int begin)
 {
-	char	***tab_pipe;
-	char	**tab;
 	int		i;
 	int		nb_pipe;
-	char	*line;
+	char	***tab_pipe;
 
-	argc++;
-	argv++;
-	i = -1;
+	i = begin;
 	nb_pipe = 0;
-	ft_putstr("$> ");
-	get_next_line(0, &line);
-	tab = ft_strsplit(line, ' ');
-	if (tab && tab[0] && tab[0][0])
+	if (p->arg[i] && p->arg[i][0])
 	{
-		while (tab[++i])
+		while (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 		{
-			if (ft_strcmp(tab[i], "|") == 0)
+			if (ft_strchr(p->arg_id[i], PIPE))
 			{
-				if (i == 0 || ft_strcmp(tab[i - 1], "|") == 0)
+				if (i == begin || ft_strchr(p->arg_id[i - 1], PIPE))
 // si pipe en 1er argument ou si 2 pipes colles
 				{
 					ft_putendl("parse error");
 					return (1);
 				}
-				else if (!tab[i + 1])
+				else if (!p->arg[i + 1] || ft_strchr(p->arg_id[i + 1],
+					SEMICOLON))
 // si pipe en dernier argument
 				{
 					ft_putendl("pipe>");
@@ -101,13 +93,13 @@ int				main(int argc, char **argv, char **env)
 				else
 					nb_pipe++;
 			}
+			i++;
 		}
 		ft_printf("nb_pipe = %d\n", nb_pipe);
-		tab_pipe = create_tab_pipe(tab, nb_pipe);
+		tab_pipe = create_tab_pipe(p, begin, nb_pipe);
 		display(tab_pipe);
-		ft_fork_pipe(tab_pipe, env, nb_pipe);
+//		ft_fork_pipe(tab_pipe, env, nb_pipe);
 	}
-	else
-		ft_putendl("argument missing");
-	return (0);
+	return(0);
 }
+

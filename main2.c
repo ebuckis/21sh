@@ -6,11 +6,12 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 11:59:48 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/18 16:53:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
+#include "pipes.h"
 #include "libft/includes/libft.h"
 #include "edition/includes/ft_edition.h"
 #include "parser/includes/ft_parser.h"
@@ -39,7 +40,7 @@ static wchar_t *ft_strdup_wchar(char *str)
 	return (wstr);
 }
 
-static void		debug_display(t_parse *p)
+static void		debug_display_struct(t_parse *p)
 {
 	int		i;
 	wchar_t *str;
@@ -60,6 +61,44 @@ static void		debug_display(t_parse *p)
 	dprintf(2, "----------\n");
 }
 
+static int		ft_exit(int *a, int n)
+{
+	dprintf(2, "----------\n");
+	dprintf(2, "command nb %d\n", n);
+	dprintf(2, "exit\n");
+	dprintf(2, "----------\n");
+	*a = 0;
+	return(0);
+}
+
+static void		debug_display_command(t_parse *p, int *a)
+{
+	int		i;
+	int		n;
+	int		begin;
+
+	n = 0;
+	i = 0;
+	while (p->arg_id[i] && ft_strcmp(p->arg[i], "exit"))
+	{
+		begin = i;
+		dprintf(2, "----------\n");
+		dprintf(2, "command nb %d\n", n);
+		while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
+		{
+			dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
+			dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
+			i++;
+		}
+		i += (p->arg_id[i]) ? 1 : 0;
+		n++;
+		p->ret = ft_manage_pipe(p, begin);
+		dprintf(2, "----------\n");
+	}
+	if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
+		ft_exit(a, n);
+}
+
 /*
 // gcc main2.c libft/libft.a edition/libedition.a parser/libparser.a -ltermcap
 // ./a.out 2> /dev/ttys001
@@ -70,8 +109,6 @@ int				main()
 	char	*string;
 	t_parse *p;
 	int		a;
-	int		i;
-	int		n;
 
 	setlocale(LC_ALL, "");
 	a = 1;
@@ -81,31 +118,8 @@ int				main()
 		if (string)
 		{
 			p = ft_parser(string);
-			debug_display(p);
-			n = 0;
-			i = 0;
-			while (p->arg_id[i] && ft_strcmp(p->arg[i], "exit"))
-			{
-				dprintf(2, "----------\n");
-				dprintf(2, "command nb %d\n", n);
-				while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
-				{
-					dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
-					dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
-					i++;
-				}
-				i += (p->arg_id[i]) ? 1 : 0;
-				n++;
-				dprintf(2, "----------\n");
-			}
-			if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
-			{
-				dprintf(2, "----------\n");
-				dprintf(2, "command nb %d\n", n);
-				dprintf(2, "exit\n");
-				dprintf(2, "----------\n");
-				a = 0;
-			}
+			debug_display_struct(p);
+			debug_display_command(p, &a);
 		}
 	}
 	return (0);

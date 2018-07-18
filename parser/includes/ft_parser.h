@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 18:46:46 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/18 15:54:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,7 @@ typedef struct	s_parse
 	int			err;
 	int			i;
 	int			j;
+	int			ret;
 }				t_parse;
 
 /*
