@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 15:17:15 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/18 13:18:24 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,19 +35,22 @@ static void		ft_move_right_x(t_navig *n)
 }
 
 static void		ft_move_left_x(t_navig *n)
-{
-	if (n->y > n->y_start && n->x > 0)
-		n->x--;
-	else if (n->y > n->y_start)
+{ 
+	if (n->i > 0)
 	{
-		n->x = n->x_size - 1;
-		n->y--;
+		if (n->y > n->y_start && n->x > 0)
+			n->x--;
+		else if (n->y > n->y_start)
+		{
+			n->x = n->x_size - 1;
+			n->y--;
+		}
+		else if (n->x > n->x_start)
+			n->x--;
+		else
+			return ;
+		n->i--;
 	}
-	else if (n->x > n->x_start)
-		n->x--;
-	else
-		return ;
-	n->i--;
 }
 
 static void		ft_del_x(t_navig *n)
@@ -100,4 +103,5 @@ void		ft_x_change(t_navig *n, int i)
 		ft_move_right_x(n);
 	else if (i == MOVE_LEFT)
 		ft_move_left_x(n);
+	dprintf(2, "\n*******************\ni : %d\nx : %d\ny : %d\nx_len : %d\ny_len : %d\nx_start : %d\ny_start : %d\nx_size : %d\ny_size : %d\n******************************\n", n->i, n->x, n->y, n->x_len, n->y_len, n->x_start, n->y_start, n->x_size, n->y_size);
 }

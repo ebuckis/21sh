@@ -5,12 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-<<<<<<< HEAD
-/*   Updated: 2018/07/17 18:41:10 by kcabus      ###    #+. /#+    ###.fr     */
-=======
-/*   Updated: 2018/07/17 17:22:33 by bpajot      ###    #+. /#+    ###.fr     */
->>>>>>> 8f454d47a7317c48373fb1b463c071be26147e6c
+/*   Created: 2018/07/18 11:51:04 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/18 11:51:05 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -80,9 +76,7 @@ char			*ft_edition(char *prompt)
 	if (tcsetattr(0, TCSADRAIN, &t) == -1)
 		return (0);
 	str = ft_lance_edit(prompt, &g_nav);
-	dprintf(2, "str = ft_lance edit\n");
 	ft_default_edit(t);
-	dprintf(2, "return de str\n");
 	return (str);
 }
 

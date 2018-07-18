@@ -22,7 +22,7 @@
 # define KEY_CODE_ALT (buf[0] == 27 && buf[1] == 27 && buf[2] == 91)
 # define KEY_CODE_END (buf[2] == 70)
 # define KEY_CODE_HOME (buf[2] == 72)
-# define KEY_CODE_DEL (buf[0] == 127)
+# define KEY_CODE_DEL (buf[0] == 127 && !buf[1])
 # define IS_PRINTABLE (buf[0] > 31 && buf[0] < 127 && !buf[1])
 
 # define CHAR_AJOUT 1
@@ -84,5 +84,6 @@ int					ft_open_hist(void);
 char				*ft_give_hist(int i, t_hist *list);
 int					ft_add_hist(char *s);
 t_hist				*ft_close_hist(int i, t_hist *list);
+int					ft_ring_the_bell(void);
 
 #endif
