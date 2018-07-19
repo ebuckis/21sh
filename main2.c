@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 16:53:35 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/19 11:39:14 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -82,6 +82,7 @@ static void		debug_display_command(t_parse *p, int *a)
 	while (p->arg_id[i] && ft_strcmp(p->arg[i], "exit"))
 	{
 		begin = i;
+		ft_printf("begin = %d\n", begin);
 		dprintf(2, "----------\n");
 		dprintf(2, "command nb %d\n", n);
 		while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))

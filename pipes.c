@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 17:41:33 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/19 15:10:55 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,10 @@ static void		display(char ***tab_pipe)
 	while (tab_pipe[++i])
 	{
 		j = -1;
-		ft_printf("commande pipe %d : ", i);
+		dprintf(2, "pipe %d : ", i);
 		while (tab_pipe[i][++j])
-			ft_printf("%s ", tab_pipe[i][j]);
-		ft_putendl("");
+			dprintf(2, "%s ", tab_pipe[i][j]);
+		dprintf(2, "\n");
 	}
 }
 
@@ -41,16 +41,18 @@ static char		***create_tab_pipe(t_parse *p, int begin, int nb_pipe)
 	i = begin;
 	j = 0;
 	k = -1;
-	while (p->arg[i])
+	while (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 	{
 		if (!ft_strchr(p->arg_id[i], PIPE))
 		{
 			buf = i;
-			while (p->arg[i] && !ft_strchr(p->arg_id[i], PIPE))
+			while (p->arg[i] && !ft_strchr(p->arg_id[i], PIPE) &&
+				!ft_strchr(p->arg_id[i], SEMICOLON))
 				i++;
 			tab_pipe[j] = (char**)malloc(sizeof(char*) * (i - buf + 1));
 			i = buf;
-			while (p->arg[i] && !ft_strchr(p->arg_id[i], PIPE))
+			while (p->arg[i] && !ft_strchr(p->arg_id[i], PIPE) &&
+				!ft_strchr(p->arg_id[i], SEMICOLON))
 				tab_pipe[j][++k] = ft_strdup(p->arg[i++]);
 			tab_pipe[j][++k] = NULL;
 			j++;
@@ -95,7 +97,7 @@ int				ft_manage_pipe(t_parse *p, int begin)
 			}
 			i++;
 		}
-		ft_printf("nb_pipe = %d\n", nb_pipe);
+		dprintf(2, "nb_pipe = %d\n", nb_pipe);
 		tab_pipe = create_tab_pipe(p, begin, nb_pipe);
 		display(tab_pipe);
 //		ft_fork_pipe(tab_pipe, env, nb_pipe);
