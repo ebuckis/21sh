@@ -6,13 +6,13 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 15:28:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 16:16:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/19 16:53:02 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 //gcc main2.c pipes.c cd.c check_bin.c check_builtin.c echo.c env.c execve.c fork.c getenv.c setenv.c unsetenv.c libft/libft.a edition/libedition.a parser/libparser.a -ltermcap
-//./a.out 2> /dev/ttys00?
+
 
 #ifndef SH21_H
 # define SH21_H
