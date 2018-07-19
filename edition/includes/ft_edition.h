@@ -55,6 +55,7 @@ typedef struct		s_navig
 	int				x_size;
 	int				y_size;
 	int				y_first;
+	int				to_small;
 }					t_navig;
 typedef struct		s_hist
 {

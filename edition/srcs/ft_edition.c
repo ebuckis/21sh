@@ -5,14 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-<<<<<<< HEAD
-/*   Created: 2018/07/18 11:51:04 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 11:51:05 by kcabus      ###    #+. /#+    ###.fr     */
-=======
-/*   Created: 2018/06/19 08:41:27 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 14:28:09 by bpajot      ###    #+. /#+    ###.fr     */
-/*   Updated: 2018/07/17 17:22:33 by bpajot      ###    #+. /#+    ###.fr     */
->>>>>>> c3d13acc9327cc71dd19654f3b98f07769643f35
+/*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/19 16:17:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,6 +39,10 @@ char			*ft_lance_edit(char *prompt, t_navig *n)
 	{
 		if (signal(SIGWINCH, traite_signal) == SIG_ERR)
 			return (NULL);
+		while (ft_verif_term_size(n) < 0)
+		{
+			ft_maj_win(n);
+		}
 		ft_bzero(buf, 5);
 		read(0, buf, 4);
 		if (KEY_CODE_DIR || KEY_CODE_DEL || KEY_CODE_ALT || IS_PRINTABLE)
