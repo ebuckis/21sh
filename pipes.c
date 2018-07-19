@@ -6,12 +6,12 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 15:10:55 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/19 15:56:25 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "pipes.h"
+#include "21sh.h"
 
 static void		display(char ***tab_pipe)
 {
@@ -65,7 +65,7 @@ static char		***create_tab_pipe(t_parse *p, int begin, int nb_pipe)
 	return (tab_pipe);
 }
 
-int				ft_manage_pipe(t_parse *p, int begin)
+int				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 {
 	int		i;
 	int		nb_pipe;
@@ -100,7 +100,7 @@ int				ft_manage_pipe(t_parse *p, int begin)
 		dprintf(2, "nb_pipe = %d\n", nb_pipe);
 		tab_pipe = create_tab_pipe(p, begin, nb_pipe);
 		display(tab_pipe);
-//		ft_fork_pipe(tab_pipe, env, nb_pipe);
+		ft_fork_pipe(tab_pipe, p_env, nb_pipe);
 	}
 	return(0);
 }

@@ -6,16 +6,12 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 11:39:14 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/19 16:11:05 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "pipes.h"
-#include "libft/includes/libft.h"
-#include "edition/includes/ft_edition.h"
-#include "parser/includes/ft_parser.h"
-#include <locale.h>
+#include "21sh.h"
 
 /*
 // transforme les *char en *wchar_t et remplace les -1 non imprimables par le 
@@ -71,7 +67,7 @@ static int		ft_exit(int *a, int n)
 	return(0);
 }
 
-static void		debug_display_command(t_parse *p, int *a)
+static void		debug_display_command(t_parse *p, int *a, char ***p_env)
 {
 	int		i;
 	int		n;
@@ -82,7 +78,7 @@ static void		debug_display_command(t_parse *p, int *a)
 	while (p->arg_id[i] && ft_strcmp(p->arg[i], "exit"))
 	{
 		begin = i;
-		ft_printf("begin = %d\n", begin);
+		//ft_printf("begin = %d\n", begin);
 		dprintf(2, "----------\n");
 		dprintf(2, "command nb %d\n", n);
 		while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
@@ -93,7 +89,7 @@ static void		debug_display_command(t_parse *p, int *a)
 		}
 		i += (p->arg_id[i]) ? 1 : 0;
 		n++;
-		p->ret = ft_manage_pipe(p, begin);
+		p->ret = ft_manage_pipe(p, begin, p_env);
 		dprintf(2, "----------\n");
 	}
 	if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
@@ -105,13 +101,15 @@ static void		debug_display_command(t_parse *p, int *a)
 // ./a.out 2> /dev/ttys001
 */
 
-int				main()
+int				main(int argc, char *argv[], char *env[])
 {
 	char	*string;
 	t_parse *p;
 	int		a;
+	char	**my_env;
 
 	setlocale(LC_ALL, "");
+	my_env = ft_getenv(argc, argv, env);
 	a = 1;
 	while (a)
 	{
@@ -120,7 +118,7 @@ int				main()
 		{
 			p = ft_parser(string);
 			debug_display_struct(p);
-			debug_display_command(p, &a);
+			debug_display_command(p, &a, &my_env);
 		}
 	}
 	return (0);
