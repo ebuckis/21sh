@@ -55,7 +55,7 @@ all : $(NAME)
 
 $(NAME):	$(OBJ)
 			@ar rc $(NAME) $(OBJ) 
-			@printf "\033[33m OK ! \n\033[0m"
+			@printf "\033[33m edition OK ! \n\033[0m"
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)

@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/20 14:26:49 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/20 14:46:00 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -45,10 +45,12 @@ all : $(NAME)
 
 $(NAME):	$(OBJ)
 			@ar rc $(NAME) $(OBJ) 
+			@printf "\033[35m exec OK ! \n\033[0m"
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
 				@gcc -c $(FLAGS) $(INC) -o $@ $<
+				@printf "\033[45m \033[0m"
 	
 clean :
 		@rm -rf $(OBJ_PATH)

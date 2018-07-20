@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/11/24 08:13:59 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/06/20 14:53:17 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/20 14:48:34 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -148,7 +148,7 @@ all : $(NAME)
 
 $(NAME) :	$(OBJ)
 			@ar rc $(NAME) $(OBJ)
-			@printf "\033[32m OK ! \n\033[0m"
+			@printf "\033[32m libft OK ! \n\033[0m"
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
@@ -156,9 +156,9 @@ $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@printf "\033[42m \033[0m"
 	
 clean :
-		rm -rf $(OBJ_PATH)
+			@rm -rf $(OBJ_PATH)
 
 fclean : 	clean
-			rm -rf $(NAME)
+			@rm -rf $(NAME)
 
 re : fclean clean all
