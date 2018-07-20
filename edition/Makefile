@@ -54,7 +54,6 @@ N_SRCS =	ft_edition.c			\
 all : $(NAME)
 
 $(NAME):	$(OBJ)
-			@make -C $(LIB_PATH)
 			@ar rc $(NAME) $(OBJ) 
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
@@ -62,11 +61,9 @@ $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@gcc -c $(FLAGS) $(INC) -o $@ $<
 	
 clean :
-		@make -C $(LIB_PATH) clean
 		@rm -rf $(OBJ_PATH)
 
 fclean : 	clean
-			@make -C $(LIB_PATH) fclean
 			@rm -rf $(NAME)
 
 re : fclean clean all

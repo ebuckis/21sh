@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/06/20 14:02:13 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/20 14:07:28 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -44,7 +44,6 @@ N_SRCS =	ft_parser.c				\
 all : $(NAME)
 
 $(NAME):	$(OBJ)
-			@make -C $(LIB_PATH)
 			@ar rc $(NAME) $(OBJ) 
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
@@ -52,11 +51,9 @@ $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@gcc -c $(FLAGS) $(INC) -o $@ $<
 	
 clean :
-		@make -C $(LIB_PATH) clean
 		@rm -rf $(OBJ_PATH)
 
 fclean : 	clean
-			@make -C $(LIB_PATH) fclean
 			@rm -rf $(NAME)
 
 re : fclean clean all
