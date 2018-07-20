@@ -6,14 +6,14 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 15:56:37 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/20 15:25:39 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "21sh.h"
 
-static void		ft_fork_pipe2(char ***tab_pipe, char ***p_env, int i)
+static void		ft_fork_pipe(char ***tab_pipe, char ***p_env, int i)
 {
 	pid_t	pid;
 	int		pipeline[2];
@@ -47,7 +47,7 @@ static void		ft_fork_pipe2(char ***tab_pipe, char ***p_env, int i)
 	}
 }
 
-void			ft_fork_pipe(char ***tab_pipe, char ***p_env, int nb_pipe)
+void			ft_fork_shell(char ***tab_pipe, char ***p_env, int nb_pipe)
 {
 	pid_t	pid;
 	int		status;
@@ -61,7 +61,7 @@ void			ft_fork_pipe(char ***tab_pipe, char ***p_env, int nb_pipe)
 		while (nb_pipe-- > 0)
 		{
 // forks mutliples pour chaque commande pipe
-			ft_fork_pipe2(tab_pipe, p_env, i);
+			ft_fork_pipe(tab_pipe, p_env, i);
 			i++;
 		}
 // execve de la derniere commande

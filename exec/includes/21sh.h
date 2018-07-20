@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 15:28:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 14:27:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/20 15:25:18 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@
 # include <locale.h>
 
 int			ft_manage_pipe(t_parse *p, int begin, char ***p_env);
-void		ft_fork_pipe(char ***tab_pipe, char ***p_env, int nb_pipe);
+void		ft_fork_shell(char ***tab_pipe, char ***p_env, int nb_pipe);
 int			check_builtin(char **tab_pipe_i, char ***p_env);
 char		*check_bin(char **tab_pipe_i, char **env);
 void		ft_execve(char **tab_pipe_i, char ***p_env);
