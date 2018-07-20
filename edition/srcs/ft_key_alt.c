@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/10 11:30:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 13:36:25 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/20 07:32:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,6 +61,8 @@ int		ft_alt_right(t_navig *n)
 
 int		ft_key_alt(t_navig *n, char *buf)
 {
+	if (buf[4])
+		return (1);
 	if (buf[3] == 66)
 		ft_alt_down(n);
 	else if (buf[3] == 65)
@@ -69,7 +71,5 @@ int		ft_key_alt(t_navig *n, char *buf)
 		ft_alt_left(n);
 	else if (buf[3] == 67)
 		ft_alt_right(n);
-	else
-		return (0);
 	return (1);
 }

@@ -15,12 +15,13 @@
 # define FT_EDITION_H
 
 # define KEY_CODE_DIR (buf[0] == 27 && buf[1] == 91)
-# define KEY_CODE_UP (buf[2] == 65)
-# define KEY_CODE_DOWN (buf[2] == 66)
-# define KEY_CODE_RIGHT (buf[2] == 67)
-# define KEY_CODE_LEFT (buf[2] == 68)
+# define KEY_CODE_DELETE (buf[2] == 51 && buf[3] == 126 && !buf[4])
+# define KEY_CODE_UP (buf[2] == 65 && !buf[3])
+# define KEY_CODE_DOWN (buf[2] == 66 && !buf[3])
+# define KEY_CODE_RIGHT (buf[2] == 67 && !buf[3])
+# define KEY_CODE_LEFT (buf[2] == 68 && !buf[3])
 # define KEY_CODE_ALT (buf[0] == 27 && buf[1] == 27 && buf[2] == 91)
-# define KEY_CODE_END (buf[2] == 70)
+# define KEY_CODE_END (buf[2] == 70 && !buf[3])
 # define KEY_CODE_HOME (buf[2] == 72)
 # define KEY_CODE_DEL (buf[0] == 127 && !buf[1])
 # define IS_PRINTABLE (buf[0] > 31 && buf[0] < 127 && !buf[1])

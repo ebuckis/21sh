@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 16:17:55 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/20 07:22:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,6 +45,7 @@ char			*ft_lance_edit(char *prompt, t_navig *n)
 		}
 		ft_bzero(buf, 5);
 		read(0, buf, 4);
+		dprintf(2, "___[%d][%d][%d][%d][%d]___\n", buf[0], buf[1], buf[2], buf[3], buf[4]);
 		if (KEY_CODE_DIR || KEY_CODE_DEL || KEY_CODE_ALT || IS_PRINTABLE)
 		{
 			if (!(ft_key_code(n, buf)))
