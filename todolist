@@ -1,0 +1,22 @@
+# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    todolist                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
+#    Updated: 2018/07/20 15:08:31 by bpajot      ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #
+
+kcabus :
+
+
+bpajot :
+- gestion parametre exit valeur numerique ou non (retour 255)
+- gestion des droits de fichier sur les redirections
+- leaks
+- norminete
+
