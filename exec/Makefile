@@ -6,68 +6,54 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/20 14:35:26 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/20 14:26:49 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re
 
-NAME = 21sh
+NAME = libexec.a
 
-WFLAGS = -Wall -Wextra -Werror -g
+WFLAGS = -Wall -Wextra -Werror
 
-SRC_PATH = ./
+SRC_PATH = ./srcs/
 INC_PATH = ./includes/
 OBJ_PATH = ./obj/
-LIB_PATH = ./libft/
-EDIT_PATH = ./edition/
-PARSE_PATH = ./parser/
-EXEC_PATH = ./exec/
+LIB_PATH = ../libft/
+
 
 SRC = $(addprefix $(SRC_PATH),$(N_SRCS))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
-
-INC =	-I $(LIB_PATH)		\
-		-I $(EDIT_PATH)		\
-		-I $(PARSE_PATH)	\
-		-I $(EXEC_PATH)
+INC = -I $(INC_PATH) -I $(LIB_PATH)
 
 OBJ_NAME = $(N_SRCS:.c=.o)
 
-N_SRCS =	main.c
-
-LIB_A =	-L $(LIB_PATH) -lft			\
-		-L $(PARSE_PATH) -lparser	\
-		-L $(EDIT_PATH) -ledition	\
-		-L $(EXEC_PATH) -lexec		\
-		-ltermcap
+N_SRCS =	cd.c					\
+			check_bin.c				\
+			check_builtin.c			\
+			echo.c					\
+			env.c					\
+			execve.c				\
+			fork.c					\
+			getenv.c				\
+			pipes.c					\
+			setenv.c				\
+			unsetenv.c
 
 all : $(NAME)
 
 $(NAME):	$(OBJ)
-			@make -C $(LIB_PATH)
-			@make -C $(PARSE_PATH)
-			@make -C $(EDIT_PATH)
-			@make -C $(EXEC_PATH)
-			@gcc $(WFLAGS) $(OBJ) $(INC) $(LIB_A) -o $(NAME)
+			@ar rc $(NAME) $(OBJ) 
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
 				@gcc -c $(FLAGS) $(INC) -o $@ $<
 	
 clean :
-		@make -C $(LIB_PATH) clean
-		@make -C $(PARSE_PATH) clean
-		@make -C $(EDIT_PATH) clean
-		@make -C $(EXEC_PATH) clean
 		@rm -rf $(OBJ_PATH)
 
 fclean : 	clean
-			@make -C $(LIB_PATH) fclean
-			@make -C $(PARSE_PATH) fclean
-			@make -C $(EDIT_PATH) fclean
-			@make -C $(EXEC_PATH) fclean
 			@rm -rf $(NAME)
 
 re : fclean clean all

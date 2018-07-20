@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 12:01:39 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/20 12:08:27 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,7 @@ int		check_builtin(char **tab_pipe_i, char ***p_env)
 		return (1);
 	}
 	else if (ft_strequ(tab_pipe_i[0], "exit"))
+	// fait rien si entre pipe, si entre ';' gerer dans le main
 		return (1);
 	//	ft_exit(tab, *env, 1);
 	return (0);

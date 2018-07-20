@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 15:28:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 16:53:02 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/20 14:27:29 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,9 +17,9 @@
 #ifndef SH21_H
 # define SH21_H
 
-# include "./parser/includes/ft_parser.h"
-# include "./libft/includes/libft.h"
-# include "./edition/includes/ft_edition.h"
+# include "../../parser/includes/ft_parser.h"
+# include "../../libft/includes/libft.h"
+# include "../../edition/includes/ft_edition.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/stat.h>
