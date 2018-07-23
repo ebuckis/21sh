@@ -6,12 +6,12 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 15:25:39 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 13:45:05 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "../includes/exec.h"
 
 static void		ft_fork_pipe(char ***tab_pipe, char ***p_env, int i)
 {

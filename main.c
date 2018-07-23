@@ -6,16 +6,17 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 14:33:27 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 13:18:22 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "./exec/includes/21sh.h"
+#include "./exec/includes/exec.h"
 
 /*
 // transforme les *char en *wchar_t et remplace les -1 non imprimables par le 
-// caractere speciale '·'
+// caractere speciale '·' pour l'afficghae du debug
+// a supprimer a la fin
 */
 
 static wchar_t *ft_strdup_wchar(char *str)
@@ -57,17 +58,28 @@ static void		debug_display_struct(t_parse *p)
 	dprintf(2, "----------\n");
 }
 
-static int		ft_exit(int *a, int n)
+static void		ft_exit(int *a, int n, char* arg)
 {
-	dprintf(2, "----------\n");
-	dprintf(2, "command nb %d\n", n);
-	dprintf(2, "exit\n");
-	dprintf(2, "----------\n");
-	*a = 0;
-	return(0);
+	int		i;
+	ft_printf("----------\n");
+	ft_printf("command nb %d\n", n);
+	i = 0;
+	while (arg && ((i == 0 && arg[i] == '-') || ft_isdigit(arg[i])))
+		i++;
+	if (arg && !arg[i])
+		*a = (unsigned char)ft_atoi(arg);
+	else if (!arg)
+		*a = 0;
+	else
+	{
+		ft_printf("21sh: exit: %s: numeric argument required\n", arg);
+		*a = 255;
+	}
+	ft_printf("exit value = %d\n", *a);
+	ft_printf("----------\n");
 }
 
-static void		debug_display_command(t_parse *p, int *a, char ***p_env)
+static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 {
 	int		i;
 	int		n;
@@ -93,7 +105,7 @@ static void		debug_display_command(t_parse *p, int *a, char ***p_env)
 		dprintf(2, "----------\n");
 	}
 	if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
-		ft_exit(a, n);
+		ft_exit(a, n, p->arg[i + 1]);
 }
 
 /*
@@ -108,18 +120,18 @@ int				main(int argc, char *argv[], char *env[])
 	int		a;
 	char	**my_env;
 
-	setlocale(LC_ALL, "");
+	setlocale(LC_ALL, ""); // pourr debug display , a supprimer
 	my_env = ft_getenv(argc, argv, env);
-	a = 1;
-	while (a)
+	a = -1;
+	while (a == -1)
 	{
 		string = ft_edition("prompt $> ");
 		if (string)
 		{
 			p = ft_parser(string);
 			debug_display_struct(p);
-			debug_display_command(p, &a, &my_env);
+			ft_manage_semicolon_exit(p, &a, &my_env);
 		}
 	}
-	return (0);
+	return (a);
 }

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   21sh.h                                           .::    .:/ .      .::   */
+/*   exec.h                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/19 15:28:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 15:25:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/23 14:13:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-//gcc main2.c pipes.c cd.c check_bin.c check_builtin.c echo.c env.c execve.c fork.c getenv.c setenv.c unsetenv.c libft/libft.a edition/libedition.a parser/libparser.a -ltermcap
-
-
-#ifndef SH21_H
-# define SH21_H
+#ifndef EXEC_H
+# define EXEC_H
 
 # include "../../parser/includes/ft_parser.h"
 # include "../../libft/includes/libft.h"
@@ -30,6 +27,9 @@
 
 int			ft_manage_pipe(t_parse *p, int begin, char ***p_env);
 void		ft_fork_shell(char ***tab_pipe, char ***p_env, int nb_pipe);
+char		**manage_redir(char** tab_redir, char ***p_env);
+void		ft_redir(char **commande, char **redirec, char **env,
+		int nb_redirec);
 int			check_builtin(char **tab_pipe_i, char ***p_env);
 char		*check_bin(char **tab_pipe_i, char **env);
 void		ft_execve(char **tab_pipe_i, char ***p_env);

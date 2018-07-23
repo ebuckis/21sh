@@ -6,12 +6,12 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/31 09:21:41 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 15:56:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 12:34:32 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "../includes/exec.h"
 
 char		**ft_getenv(int argc, char *argv[], char *env[])
 {

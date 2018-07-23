@@ -6,12 +6,12 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 14:24:58 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 18:06:16 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 12:35:08 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "../includes/exec.h"
 
 static char	**ft_path(char **env)
 {

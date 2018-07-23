@@ -6,12 +6,12 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 10:50:52 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 16:10:49 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 12:35:12 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "../includes/exec.h"
 
 static void		ft_cd3(char **env, char *pwd, char *oldpwd)
 {

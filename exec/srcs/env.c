@@ -6,12 +6,12 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 15:52:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 12:34:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "../includes/exec.h"
 
 static int	ft_doublon(char *line, char **arg, int j)
 {

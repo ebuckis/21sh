@@ -6,12 +6,12 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:32:44 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 15:42:25 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 12:34:57 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "../includes/exec.h"
 
 int		ft_echo(char **arg)
 {
