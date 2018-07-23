@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 13:45:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 18:48:27 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,6 +71,12 @@ void			ft_fork_shell(char ***tab_pipe, char ***p_env, int nb_pipe)
 	{
 // wait de la derniere commande puis recuperation de la valeur de retour
 		wait(&status);
-		ft_printf("return_value_final = %d\n", WEXITSTATUS(status));
+		if (WIFEXITED(status))
+			ft_printf("return_value_final = %d\n", WEXITSTATUS(status));
+		if (WIFSIGNALED(status))
+			ft_printf("value_termsig_signal = %d\n", WTERMSIG(status));
+		if (WIFSTOPPED(status))
+			ft_printf("value_stop_signal = %d\n", WSTOPSIG(status));
+
 	}
 }
