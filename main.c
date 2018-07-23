@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:24:11 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 13:18:22 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/23 14:55:08 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -118,14 +118,18 @@ int				main(int argc, char *argv[], char *env[])
 	char	*string;
 	t_parse *p;
 	int		a;
+	int		begin;
 	char	**my_env;
 
 	setlocale(LC_ALL, ""); // pourr debug display , a supprimer
 	my_env = ft_getenv(argc, argv, env);
 	a = -1;
+	begin = 1;
 	while (a == -1)
 	{
-		string = ft_edition("prompt $> ");
+		string = (begin) ? ft_strdup("toilet -f bigascii12  21 sh | lolcat") :
+			ft_edition("prompt $> ");
+		begin = 0;
 		if (string)
 		{
 			p = ft_parser(string);

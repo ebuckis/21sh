@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/23 13:18:45 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/23 14:56:01 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,15 +24,3 @@ bpajot :
 
 other :
 - gestion des signaux
-
-
-
-easter egg :
-	cowsay
-	lolcat
-	lancement :
-	osascript -e "set Volume 20"
-	osascript -e 'say "21 sh"'
-
-	exit:
-	osascript -e 'say "good bye"'
