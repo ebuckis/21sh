@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 12:34:17 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 14:05:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,7 +73,7 @@ int				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 
 	i = begin;
 	nb_pipe = 0;
-	if (p->arg[i] && p->arg[i][0])
+	if (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON)) //p->arg[i][0])
 	{
 		while (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 		{
@@ -102,6 +102,6 @@ int				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 		display(tab_pipe);
 		ft_fork_shell(tab_pipe, p_env, nb_pipe);
 	}
-	return(0);
+	return (0);
 }
 
