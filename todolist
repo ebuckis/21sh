@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/24 09:08:06 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/24 14:13:51 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,7 +17,7 @@ kcabus :
 - modification du parser pour les != pattern de redirection
 
 bpajot :
-- gestion redirections
+- gestion des builtin sans fork
 - gestion des droits de fichier sur les redirections
 - gestion des erreurs dans parsing
 - test avec binaire qui segfault, que fait-on si pipe derriere
