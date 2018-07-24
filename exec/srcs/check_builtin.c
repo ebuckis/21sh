@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:47:27 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 17:30:07 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,4 +41,6 @@ void	run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env, int in_pipe)
 		;
 	if (in_pipe)
 		exit(p->ret);
+	else
+		ft_printf("return_value_final = %d\n", p->ret);
 }
