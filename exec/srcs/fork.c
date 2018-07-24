@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:09:45 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:49:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ static void		ft_fork_pipe(t_parse *p, char ***tab_pipe, char ***p_env, int i)
 	{
 		dup2(pipeline[1], STDOUT_FILENO);
 		close(pipeline[0]);
-		ft_execve(p, tab_pipe[i], p_env);
+		ft_execve(p, tab_pipe[i], p_env, 1);
 	}
 	else if (pid > 0)
 	{
@@ -55,7 +55,7 @@ void			ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
 	int		i;
 
 	if (!nb_pipe && check_builtin(tab_pipe[0]))
-		run_builtin(p, tab_pipe[0], p_env);
+		run_builtin(p, tab_pipe[0], p_env, 0);
 	else
 	{
 		// fork principal du shell
@@ -70,7 +70,7 @@ void			ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
 				i++;
 			}
 			// execve de la derniere commande
-			ft_execve(p, tab_pipe[i], p_env);
+			ft_execve(p, tab_pipe[i], p_env, 1);
 		}
 		else if (pid > 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:15:49 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:48:30 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,7 +91,7 @@ static void	ft_env2(t_parse *p,char **arg, char **env, int i)
 	if (tab[i])
 	{
 		if (check_builtin(arg))
-			run_builtin(p, arg, &env);
+			run_builtin(p, arg, &env, 0);
 		else
 		{
 			if ((bin = check_bin(&arg[i], env)))

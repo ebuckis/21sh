@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:16:03 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:47:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,9 +32,11 @@ char		**manage_redir(char** tab_redir, char ***p_env);
 void		ft_redir(char **commande, char **redirec, char **env,
 		int nb_redirec);
 int			check_builtin(char **tab_pipe_i);
-void		run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env);
+void		run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env,
+		int in_pipe);
 char		*check_bin(char **tab_pipe_i, char **env);
-void		ft_execve(t_parse *p, char **tab_pipe_i, char ***p_env);
+void		ft_execve(t_parse *p, char **tab_pipe_i, char ***p_env,
+		int in_pipe);
 char		**ft_getenv(int argc, char **argv, char **env);
 char		*ft_home(char **env);
 char		*ft_getpwd(char **env, int old);

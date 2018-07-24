@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:13:41 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:47:27 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ int		check_builtin(char **tab_pipe_i)
 		return (0);
 }
 
-void	run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env)
+void	run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env, int in_pipe)
 {
 	if (ft_strequ(tab_pipe_i[0], "echo"))
 		ft_echo(tab_pipe_i);
@@ -39,4 +39,6 @@ void	run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env)
 	else if (ft_strequ(tab_pipe_i[0], "exit"))
 	// fait rien si entre pipe, si entre ';' gerer dans le main
 		;
+	if (in_pipe)
+		exit(p->ret);
 }
