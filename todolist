@@ -3,16 +3,18 @@
 #                                                               /              #
 #    todolist                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
+#    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/23 14:56:01 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/24 09:08:06 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 kcabus :
-
+- couper, copier et coller
+- prendre en compte le ctrl+z pour suspension du programme et reprendre correctement
+- modification du parser pour les != pattern de redirection
 
 bpajot :
 - gestion redirections
@@ -24,3 +26,9 @@ bpajot :
 
 other :
 - gestion des signaux
+- se faire une vraie gestion d'erreurs avec des retours coherents ?
+
+_______________________________________________________________________________
+nota-bene :
+- le prompt du bash est masqué par le 2> /dev/null
+_______________________________________________________________________________
