@@ -6,14 +6,14 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 17:49:57 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:09:01 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-void		ft_execve(char **tab_pipe_i, char ***p_env)
+void		ft_execve(t_parse *p, char **tab_pipe_i, char ***p_env)
 {
 	char			*path;
 	char			**tab_com;
@@ -21,8 +21,8 @@ void		ft_execve(char **tab_pipe_i, char ***p_env)
 	int				ret;
 
 	tab_com = manage_redir(tab_pipe_i, p_env);
-	if (check_builtin(tab_com, p_env))
-		exit(0);
+	if (check_builtin(tab_com))
+		run_builtin(p, tab_com, p_env);
 	else
 	{
 		path = check_bin(tab_com, *p_env);

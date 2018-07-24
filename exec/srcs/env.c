@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 12:34:48 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:15:49 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,13 +84,15 @@ char		**ft_mix_env(char **env, char **env2)
 	return (arg);
 }
 
-static void	ft_env2(char **arg, char **env, int i)
+static void	ft_env2(t_parse *p,char **arg, char **env, int i)
 {
 	char	*bin;
 
 	if (tab[i])
 	{
-		if (!check_builtin(&arg[i], &env))
+		if (check_builtin(arg))
+			run_builtin(p, arg, &env);
+		else
 		{
 			if ((bin = check_bin(&arg[i], env)))
 				execve(bin, &arg[i], env);
@@ -100,7 +102,7 @@ static void	ft_env2(char **arg, char **env, int i)
 		display_env(env);
 }
 
-void		ft_env(char **arg, char **env)
+void		ft_env(t_parse *p, char **arg, char **env)
 {
 	int		i;
 	int		option_i;
@@ -122,7 +124,7 @@ void		ft_env(char **arg, char **env)
 			env2[i - option_i - 1] = ft_strdup(arg[i]);
 		env2[i - option_i - 1] = NULL;
 		env3 = (option_i) ? env2 : ft_mix_env(env, env2);
-		ft_env2(arg, env3, i);
+		ft_env2(p, arg, env3, i);
 		if (!option_i)
 			ft_memdel((void**)&env3);
 		//ft_free_tab(env2);

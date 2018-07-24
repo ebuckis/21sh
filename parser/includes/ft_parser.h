@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 15:54:52 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 14:20:43 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,8 @@
 # define REDIR '3'
 # define PIPE '4'
 # define SEMICOLON '5'
+
+// reste $var $? ~ a gerer
 
 typedef struct	s_parse
 {

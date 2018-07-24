@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 15:03:36 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:16:03 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,20 +26,22 @@
 # include <locale.h>
 
 int			ft_manage_pipe(t_parse *p, int begin, char ***p_env);
-void		ft_fork_shell(char ***tab_pipe, char ***p_env, int nb_pipe);
+void		ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
+		int nb_pipe);
 char		**manage_redir(char** tab_redir, char ***p_env);
 void		ft_redir(char **commande, char **redirec, char **env,
 		int nb_redirec);
-int			check_builtin(char **tab_pipe_i, char ***p_env);
+int			check_builtin(char **tab_pipe_i);
+void		run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env);
 char		*check_bin(char **tab_pipe_i, char **env);
-void		ft_execve(char **tab_pipe_i, char ***p_env);
+void		ft_execve(t_parse *p, char **tab_pipe_i, char ***p_env);
 char		**ft_getenv(int argc, char **argv, char **env);
 char		*ft_home(char **env);
 char		*ft_getpwd(char **env, int old);
 void		ft_setpwd(char **env, int old, char *pwd);
 int			ft_cd(char **arg, char ***p_env);
 int			ft_echo(char **arg);
-void		ft_env(char **arg, char **env);
+void		ft_env(t_parse *p, char **arg, char **env);
 void		display_env(char **env);
 char		**ft_mix_env(char **env, char **env2);
 void		ft_setenv(char **arg, char ***env);

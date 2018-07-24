@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 14:05:21 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 14:24:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,7 +100,7 @@ int				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 		dprintf(2, "nb_pipe = %d\n", nb_pipe);
 		tab_pipe = create_tab_pipe(p, begin, nb_pipe);
 		display(tab_pipe);
-		ft_fork_shell(tab_pipe, p_env, nb_pipe);
+		ft_fork_shell(p, tab_pipe, p_env, nb_pipe);
 	}
 	return (0);
 }

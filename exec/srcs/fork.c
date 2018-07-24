@@ -6,14 +6,14 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 18:48:27 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:09:45 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-static void		ft_fork_pipe(char ***tab_pipe, char ***p_env, int i)
+static void		ft_fork_pipe(t_parse *p, char ***tab_pipe, char ***p_env, int i)
 {
 	pid_t	pid;
 	int		pipeline[2];
@@ -27,56 +27,68 @@ static void		ft_fork_pipe(char ***tab_pipe, char ***p_env, int i)
 		ft_putendl("error");
 	}
 	else if (pid == 0)
-// dup de la sortie standard du fils sur le cote ecriture du pipe
-// fermetrure du cote lecture du pipe
+		// dup de la sortie standard du fils sur le cote ecriture du pipe
+		// fermetrure du cote lecture du pipe
 	{
 		dup2(pipeline[1], STDOUT_FILENO);
 		close(pipeline[0]);
-		ft_execve(tab_pipe[i], p_env);
+		ft_execve(p, tab_pipe[i], p_env);
 	}
 	else if (pid > 0)
 	{
-// dup de l'entree standard du pere sur le cote lecture du pipe
-// fermetrure du cote ecriture du pipe
+		// dup de l'entree standard du pere sur le cote lecture du pipe
+		// fermetrure du cote ecriture du pipe
 		dup2(pipeline[0], STDIN_FILENO);
 		close(pipeline[1]);
-// pas d'attente du fils, les commandes fonctionnne en parallele pour ne pas
-// avoir de probleme avec la buffer size du pipe, le processus pere vide le
-// pipe des qu'il y a du texte a lire
-	//	wait(NULL);
+		// pas d'attente du fils, les commandes fonctionnne en parallele pour ne pas
+		// avoir de probleme avec la buffer size du pipe, le processus pere vide le
+		// pipe des qu'il y a du texte a lire
+		//	wait(NULL);
 	}
 }
 
-void			ft_fork_shell(char ***tab_pipe, char ***p_env, int nb_pipe)
+void			ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
+		int nb_pipe)
 {
 	pid_t	pid;
 	int		status;
 	int		i;
 
-// fork principal du shell
-	pid = fork();
-	if (pid == 0)
+	if (!nb_pipe && check_builtin(tab_pipe[0]))
+		run_builtin(p, tab_pipe[0], p_env);
+	else
 	{
-		i = 0;
-		while (nb_pipe-- > 0)
+		// fork principal du shell
+		pid = fork();
+		if (pid == 0)
 		{
-// forks mutliples pour chaque commande pipe
-			ft_fork_pipe(tab_pipe, p_env, i);
-			i++;
+			i = 0;
+			while (nb_pipe-- > 0)
+			{
+				// forks mutliples pour chaque commande pipe
+				ft_fork_pipe(p, tab_pipe, p_env, i);
+				i++;
+			}
+			// execve de la derniere commande
+			ft_execve(p, tab_pipe[i], p_env);
 		}
-// execve de la derniere commande
-		ft_execve(tab_pipe[i], p_env);
-	}
-	else if (pid > 0)
-	{
-// wait de la derniere commande puis recuperation de la valeur de retour
-		wait(&status);
-		if (WIFEXITED(status))
-			ft_printf("return_value_final = %d\n", WEXITSTATUS(status));
-		if (WIFSIGNALED(status))
-			ft_printf("value_termsig_signal = %d\n", WTERMSIG(status));
-		if (WIFSTOPPED(status))
-			ft_printf("value_stop_signal = %d\n", WSTOPSIG(status));
-
+		else if (pid > 0)
+		{
+			// wait de la derniere commande puis recuperation de la valeur de retour
+			wait(&status);
+			if (WIFEXITED(status))
+			{
+				p->ret = WEXITSTATUS(status);
+				ft_printf("return_value_final = %d\n", p->ret);
+			}
+			if (WIFSIGNALED(status))
+			{
+				p->ret = WTERMSIG(status) + 128;
+				ft_printf("value_termsig_signal = %d\n", WTERMSIG(status));
+			}
+			if (WIFSTOPPED(status))
+				ft_printf("value_stop_signal = %d\n", WSTOPSIG(status));
+			dprintf(2, "p->ret = %d\n", p->ret);
+		}
 	}
 }
