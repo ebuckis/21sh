@@ -87,7 +87,7 @@ int					ft_maj_win(t_navig *n);
 int					ft_key_alt(t_navig *n, char *buf);
 int					ft_move_up(t_navig *n);
 int					ft_push_enter(t_navig *n);
-int					ft_copy_paste(t_navig *n, char *buf);
+int					ft_copy_paste(t_navig *n, char *buf, int fr);
 int					ft_open_hist(void);
 char				*ft_give_hist(int i, t_hist *list);
 int					ft_add_hist(char *s);

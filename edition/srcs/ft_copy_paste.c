@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 08:27:26 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:04:09 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 15:55:26 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -88,8 +88,6 @@ static int		ft_small_verif(t_navig *n, char *copy)
 	np = (n->prompt) ? ft_strlen(n->prompt) : 0;
 	ns = (n->s) ? ft_strlen(n->s) : 0;
 	nc = (copy) ? ft_strlen(copy) : 0;
-	dprintf(2, "np = %d,ns = %d, nc = %d,n->y_size = %d, n->x_size = %d\n", np, ns, np, n->y_size, n->x_size);
-	dprintf(2, "total %d || %d size\n", np + ns + nc, n->y_size * n->x_size);
 	if (np + ns + nc >= n->y_size * n->x_size)
 		return (0);
 	else
@@ -120,10 +118,15 @@ int		ft_paste(t_navig *n, char *copy)
 	return (1);
 }
 
-int		ft_copy_paste(t_navig *n, char *buf)
+int		ft_copy_paste(t_navig *n, char *buf, int fr)
 {
 	static char	*copy = NULL;
 
+	if (fr == 1)
+	{
+		ft_strdel(&copy);
+		return (1);
+	}
 	if (KEY_CTRL_U)
 		ft_cutstr_home(n, &copy, 1);
 	else if (KEY_CTRL_K)
@@ -136,3 +139,7 @@ int		ft_copy_paste(t_navig *n, char *buf)
 		ft_paste(n, copy);
 	return (1);
 }
+
+/*
+** le free s'efectue dans ft_close_hist
+*/
