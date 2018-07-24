@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 07:22:57 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 09:01:31 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ int				ft_putcharint(int c)
 }
 
 static void		traite_signal(int s)
-{//s a traiter
+{
 	(void)s;
 	ft_maj_win(&g_nav);
 }
@@ -56,6 +56,11 @@ char			*ft_lance_edit(char *prompt, t_navig *n)
 			if (!(ft_push_enter(n)))
 				return (NULL);
 			break ;
+		}
+		else
+		{
+			if (!ft_copy_paste(n, buf))
+				return (0);
 		}
 	}
 	return (n->s);

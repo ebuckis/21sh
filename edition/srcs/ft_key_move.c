@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 07:28:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 09:27:13 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,6 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 	{
 		if (n->y == n->y_size - 1)
 		{
-			dprintf(2, "__________der line________\n");
 			if (!(ret = tgetstr("sf", NULL)))
 				return (0);
 			tputs(ret, 1, ft_putcharint);

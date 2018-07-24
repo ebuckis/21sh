@@ -25,6 +25,11 @@
 # define KEY_CODE_HOME (buf[2] == 72)
 # define KEY_CODE_DEL (buf[0] == 127 && !buf[1])
 # define IS_PRINTABLE (buf[0] > 31 && buf[0] < 127 && !buf[1])
+# define KEY_CTRL_U (buf[0] == 21 && !buf[1])//couper jusqu'au debut de la ligne
+# define KEY_CTRL_K (buf[0] == 11 && !buf[1])//couper jusqu'a la fin de la ligne
+# define KEY_CTRL_E (buf[0] == 5 && !buf[1])//copier jusqu'au debut de la ligne
+# define KEY_CTRL_W (buf[0] == 23 && !buf[1])//copier jusqu'a la fin de la ligne
+# define KEY_CTRL_T (buf[0] == 20 && !buf[1])//coller
 
 # define CHAR_AJOUT 1
 # define CHAR_SUPPR 2
@@ -82,6 +87,7 @@ int					ft_maj_win(t_navig *n);
 int					ft_key_alt(t_navig *n, char *buf);
 int					ft_move_up(t_navig *n);
 int					ft_push_enter(t_navig *n);
+int					ft_copy_paste(t_navig *n, char *buf);
 int					ft_open_hist(void);
 char				*ft_give_hist(int i, t_hist *list);
 int					ft_add_hist(char *s);

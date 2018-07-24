@@ -106,7 +106,7 @@ int				ft_maj_win(t_navig *n)
 
 	ft_get_size(&x_stmp, &y_stmp);
 	nb = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;
-	dprintf(2, "===========================\ni = %d\nnb = %d\nx_size = %d\ny_size = %d\n=============================\n", n->i, nb, n->x_size, n->y_size);
+	//dprintf(2, "===========================\ni = %d\nnb = %d\nx_size = %d\ny_size = %d\n=============================\n", n->i, nb, n->x_size, n->y_size);
 	if (nb > x_stmp * y_stmp)
 	{
 		if (n->to_small == 0)
@@ -151,8 +151,6 @@ int				ft_maj_win(t_navig *n)
 	}
 	else if (x_stmp > n->x_size)
 	{
-		//tmp = n->i + ft_strlen(n->prompt) + 1;
-		//ft_move_arr(tmp, n);
 		ft_move_to_xy(0, n->y_first);
 	}
 	else
@@ -163,7 +161,7 @@ int				ft_maj_win(t_navig *n)
 		ft_move_to_xy(0, n->y_first);
 	}
 	ft_del_all(n, nb);
-	dprintf(2, "\n*****win fin*****\ni : %d\nx : %d\ny : %d\nx_len : %d\ny_len : %d\nx_start : %d\ny_start : %d\nx_size : %d\ny_size : %d\n******************************\n", n->i, n->x, n->y, n->x_len, n->y_len, n->x_start, n->y_start, n->x_size, n->y_size);
+//	dprintf(2, "\n*****win fin*****\ni : %d\nx : %d\ny : %d\nx_len : %d\ny_len : %d\nx_start : %d\ny_start : %d\nx_size : %d\ny_size : %d\n******************************\n", n->i, n->x, n->y, n->x_len, n->y_len, n->x_start, n->y_start, n->x_size, n->y_size);
 	return (1);
 }
 
