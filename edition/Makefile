@@ -49,6 +49,7 @@ N_SRCS =	ft_edition.c			\
 			ft_give_hist.c			\
 			ft_historique.c			\
 			ft_close_hist.c			\
+			ft_copy_paste.c			\
 			ft_ring_the_bell.c
 
 all : $(NAME)

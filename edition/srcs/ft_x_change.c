@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 18:21:03 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/24 13:25:53 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,5 +100,5 @@ void		ft_x_change(t_navig *n, int i)
 		ft_move_right_x(n);
 	else if (i == MOVE_LEFT)
 		ft_move_left_x(n);
-	dprintf(2, "\n*******************\ni : %d\nx : %d\ny : %d\nx_len : %d\ny_len : %d\nx_start : %d\ny_start : %d\nx_size : %d\ny_size : %d\n******************************\n", n->i, n->x, n->y, n->x_len, n->y_len, n->x_start, n->y_start, n->x_size, n->y_size);
+//	dprintf(2, "\n*******************\ni : %d\nx : %d\ny : %d\nx_len : %d\ny_len : %d\nx_start : %d\ny_start : %d\nx_size : %d\ny_size : %d\n******************************\n", n->i, n->x, n->y, n->x_len, n->y_len, n->x_start, n->y_start, n->x_size, n->y_size);
 }
