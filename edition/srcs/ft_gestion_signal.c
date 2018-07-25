@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 12:57:00 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 18:10:41 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 18:39:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,17 +22,18 @@ void		ft_signal_size(int s)
 
 void		ft_signal_stop(int s)
 {
-	t_navig		*n;
-	char		str[2];
+//	t_navig		*n;
+//	char		str[2];
 
 	(void)s;
-	n = &g_nav;
-	str[0] = n->t.c_cc[VSUSP];
-	str[1] = '\0';
-	dprintf(2, "on est sur un stop: |%d| string = %s\n", s, n->s);
-	n->t = ft_default_edit(n->t);
-	signal(SIGTSTP, SIG_DFL);
-	ioctl(0, TIOCSTI, str);
+	dprintf(2, "\nCtrl-Z received\n");
+//	n = &g_nav;
+//	str[0] = n->t.c_cc[VSUSP];
+//	str[1] = '\0';
+//	dprintf(2, "on est sur un stop: |%d| string = %s\n", s, n->s);
+//	n->t = ft_default_edit(n->t);
+//	signal(SIGTSTP, SIG_DFL);
+//	ioctl(0, TIOCSTI, str);
 }
 
 void		ft_signal_cont(int s)
