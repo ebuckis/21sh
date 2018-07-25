@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/20 14:43:18 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/25 17:22:38 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -46,28 +46,28 @@ LIB_A =		-L $(LIB_PATH) -lft			\
 all : $(NAME)
 
 $(NAME):	$(OBJ)
-			@make -C $(LIB_PATH)
 			@make -C $(PARSE_PATH)
 			@make -C $(EDIT_PATH)
 			@make -C $(EXEC_PATH)
 			@gcc $(WFLAGS) $(OBJ) $(INC) $(LIB_A) -o $(NAME)
+			#@make -C $(LIB_PATH)
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 			@mkdir -p $(OBJ_PATH)
 			@gcc -c $(FLAGS) $(INC) -o $@ $<
 	
 clean :
-			@make -C $(LIB_PATH) clean
 			@make -C $(PARSE_PATH) clean
 			@make -C $(EDIT_PATH) clean
 			@make -C $(EXEC_PATH) clean
 			@rm -rf $(OBJ_PATH)
+			#@make -C $(LIB_PATH) clean
 
 fclean : 	clean
-			@make -C $(LIB_PATH) fclean
 			@make -C $(PARSE_PATH) fclean
 			@make -C $(EDIT_PATH) fclean
 			@make -C $(EXEC_PATH) fclean
 			@rm -rf $(NAME)
+			#@make -C $(LIB_PATH) fclean
 
 re : fclean clean all
