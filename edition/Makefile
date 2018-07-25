@@ -30,6 +30,7 @@ INC = -I $(INC_PATH) -I $(LIB_PATH)
 OBJ_NAME = $(N_SRCS:.c=.o)
 
 N_SRCS =	ft_edition.c			\
+			ft_putcharint.c			\
 			ft_get_size.c			\
 			ft_init_nav.c			\
 			ft_key_move.c			\
@@ -50,6 +51,8 @@ N_SRCS =	ft_edition.c			\
 			ft_historique.c			\
 			ft_close_hist.c			\
 			ft_copy_paste.c			\
+			ft_gestion_signal.c		\
+			ft_init_term.c			\
 			ft_ring_the_bell.c
 
 all : $(NAME)
