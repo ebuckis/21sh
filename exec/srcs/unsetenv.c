@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/06 15:06:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 12:30:57 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 13:07:01 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,7 +100,7 @@ static char	**ft_unsetenv2(char **arg, char **env, int nb_double)
 	return (env2);
 }
 
-void		ft_unsetenv(char **arg, char ***env)
+int			ft_unsetenv(char **arg, char ***env)
 {
 	int		i;
 	int		nb_double;
@@ -124,4 +124,5 @@ void		ft_unsetenv(char **arg, char ***env)
 			*env = tmp;
 		}
 	}
+	return ((!arg[1]) ? 1 : 0);
 }

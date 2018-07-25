@@ -6,23 +6,24 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/05 16:51:13 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 12:31:01 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 13:02:10 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-void		display_env(char **env)
+int			display_env(char **env)
 {
 	int		i;
 
 	i = -1;
 	while (env[++i])
 		ft_putendl(env[i]);
+	return (0);
 }
 
-void		ft_setenv2(char **arg, char ***env)
+int			ft_setenv2(char **arg, char ***env)
 {
 	char	**env2;
 	char	*tmp;
@@ -37,14 +38,17 @@ void		ft_setenv2(char **arg, char ***env)
 	//ft_free_tab(*env);
 	//ft_free_tab(env2);
 	*env = tmp2;
+	return (0);
 }
 
-void		ft_setenv(char **arg, char ***env)
+int			ft_setenv(char **arg, char ***env)
 {
 	int		i;
+	int		ret;
 
+	ret = 1;
 	if (!arg[1])
-		display_env(*env);
+		ret = display_env(*env);
 	else if (arg[2] && arg[3])
 		ft_putendl("setenv: Too many arguments.");
 	else if (!ft_isalpha(arg[1][0]))
@@ -58,9 +62,10 @@ void		ft_setenv(char **arg, char ***env)
 			{
 				ft_putstr("setenv: Variable must contain alphanumeric ");
 				ft_putendl("characters.");
-				return ;
+				return (ret);
 			}
 		}
-		ft_setenv2(arg, env);
+		ret = ft_setenv2(arg, env);
 	}
+	return (ret);
 }

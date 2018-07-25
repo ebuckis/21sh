@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 17:52:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 13:42:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,20 +27,22 @@ int		check_builtin(char **tab_pipe_i)
 void	run_builtin(t_parse *p, char **tab_pipe_i, char ***p_env, int in_pipe)
 {
 	if (ft_strequ(tab_pipe_i[0], "echo"))
-		ft_echo(tab_pipe_i);
+		p->ret = ft_echo(tab_pipe_i);
 	else if (ft_strequ(tab_pipe_i[0], "cd"))
-		ft_cd(tab_pipe_i, p_env);
+		p->ret = ft_cd(tab_pipe_i, p_env);
 	else if (ft_strequ(tab_pipe_i[0], "setenv"))
-		ft_setenv(tab_pipe_i, p_env);
+		p->ret = ft_setenv(tab_pipe_i, p_env);
 	else if (ft_strequ(tab_pipe_i[0], "unsetenv"))
-		ft_unsetenv(tab_pipe_i, p_env);
+		p->ret = ft_unsetenv(tab_pipe_i, p_env);
 	else if (ft_strequ(tab_pipe_i[0], "env"))
-		ft_env(p, tab_pipe_i, *p_env);
+		p->ret = ft_env(p, tab_pipe_i, *p_env);
 	else if (ft_strequ(tab_pipe_i[0], "exit"))
 	// fait rien si entre pipe, si entre ';' gerer dans le main
 		;
 	if (in_pipe)
 		exit(p->ret);
+	else if (p->ret)
+		dprintf(2, "\e[31mreturn_value_final = %d\n\e[39m", p->ret);
 	else
-		ft_printf("return_value_final = %d\n", p->ret);
+		dprintf(2, "\e[32mreturn_value_final = %d\n\e[39m", p->ret);
 }

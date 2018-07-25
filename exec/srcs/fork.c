@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:49:00 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 12:06:09 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,16 +79,19 @@ void			ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
 			if (WIFEXITED(status))
 			{
 				p->ret = WEXITSTATUS(status);
-				ft_printf("return_value_final = %d\n", p->ret);
+				if (p->ret)
+					dprintf(2, "\e[31mreturn_value_final = %d\n\e[39m", p->ret);
+				else
+					dprintf(2, "\e[32mreturn_value_final = %d\n\e[39m", p->ret);
 			}
 			if (WIFSIGNALED(status))
 			{
 				p->ret = WTERMSIG(status) + 128;
-				ft_printf("value_termsig_signal = %d\n", WTERMSIG(status));
+				dprintf(2, "\e[31mvalue_termsig_signal = %d\n\e[39m",
+					WTERMSIG(status));
 			}
 			if (WIFSTOPPED(status))
-				ft_printf("value_stop_signal = %d\n", WSTOPSIG(status));
-			dprintf(2, "p->ret = %d\n", p->ret);
+				dprintf(2, "value_stop_signal = %d\n", WSTOPSIG(status));
 		}
 	}
 }

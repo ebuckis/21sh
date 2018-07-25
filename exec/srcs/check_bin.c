@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 14:24:58 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 12:35:08 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 13:47:12 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,11 +38,7 @@ char		*check_bin3(char *bin, int warning)
 	int			ret;
 
 	if ((ret = stat(bin, &buf)) == 0)
-	{
-		if (access(bin, X_OK))
-			ft_printf("21sh: permission denied: %s\n", bin);
 		return (bin);
-	}
 	else
 	{
 		if (warning)

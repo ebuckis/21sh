@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/24 17:52:30 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/25 13:43:40 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -18,8 +18,7 @@ kcabus :
 
 bpajot :
 - gestion des builtin sans fork en cours
-  - ajouter des valeurs de retour a chaque builtin
-- gestion des redirections combine au pipei
+- gestion des redirections combine au pipe
 	- pb de creation de file avant pipe OK ?
 - gestion des droits de fichier sur les redirections
 - gestion de tout le listing de redirections dont les fermetures
