@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 14:18:34 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 14:31:06 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,9 +69,7 @@ char			**manage_redir(char** tab_redir, char ***p_env)
 			if (ft_strchr(tab_redir[i], '>') || ft_strchr(tab_redir[i], '<'))
 			{
 				sep = (sep) ? sep : i;
-				if (i == 0) //|| (!tab[i + 1] &&  !ft_strchr(tab[i], '-')) ||
-//					ft_strchr(tab[i + 1], '>') || ft_strchr(tab[i + 1], '<'))
-// si redire en 1er ou dernier  argument ou si 2 redir colles
+				if (i == 0)
 				{
 					ft_putendl("parse error");
 					return (NULL);

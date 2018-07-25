@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_verif_term_size.c                             .::    .:/ .      .::   */
+/*   manage_signal.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/17 18:26:22 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 19:01:08 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/25 18:27:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_edition.h"
+#include "../includes/exec.h"
 
-int		ft_verif_term_size(t_navig *n)
+static void		ft_signal_ctrl_c(int s)
 {
-	int		nb;
+	(void)s;
+	dprintf(2, "\nCtrl-C received\n");
+}
 
-	nb = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;
-	if (nb == n->y_size * n->x_size)
-		return (0);
-	if (nb > n->y_size * n->x_size)
-		return (-1);
-	return (1);
+void		manage_signal(void)
+{
+		signal(SIGINT, ft_signal_ctrl_c); // ignorer Ctrl-C
+		//signal(SIGINT, SIG_IGN); // ignorer Ctrl-C
+		signal(SIGTSTP, ft_signal_stop);
+		//signal(SIGTSTP, SIG_IGN);
 }

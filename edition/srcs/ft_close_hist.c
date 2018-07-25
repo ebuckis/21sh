@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 16:32:16 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:36:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 19:03:50 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@ static void			ft_free_hist(t_hist *h)
 	if (h->str)
 		ft_strdel(&(h->str));
 	h->prev = NULL;
-	ft_copy_paste(NULL, NULL, 1);
 	free(h);
 }
 
@@ -33,8 +32,17 @@ t_hist				*ft_close_hist(int i, t_hist *list)
 	if (i == 0)
 		h = list;
 	if (i == CLOSE_HIST)
+	{
 		ft_free_hist(h);
+		ft_copy_paste(NULL, NULL, 1);
+	}
 	else
 		return (h);
 	return (NULL);
 }
+
+/*
+** ft_close enregistre l'historique
+** redonne l'hist
+** et free l'hist
+*/

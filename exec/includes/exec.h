@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 12:27:31 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 17:33:02 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,5 +48,6 @@ int			display_env(char **env);
 char		**ft_mix_env(char **env, char **env2);
 int			ft_setenv(char **arg, char ***env);
 int			ft_unsetenv(char **arg, char ***env);
+void		manage_signal(void);
 
 #endif

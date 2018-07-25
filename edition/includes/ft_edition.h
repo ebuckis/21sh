@@ -63,6 +63,8 @@ typedef struct		s_navig
 	int				y_size;
 	int				y_first;
 	int				to_small;
+	char			*tmp_char;
+	int				tmp_int;
 }					t_navig;
 typedef struct		s_hist
 {
@@ -96,6 +98,7 @@ char				*ft_give_hist(int i, t_hist *list);
 int					ft_add_hist(char *s);
 t_hist				*ft_close_hist(int i, t_hist *list);
 int					ft_ring_the_bell(void);
+void				ft_del_end_to_i(t_navig *n);
 void				ft_signal_size(int s);
 void				ft_signal_stop(int s);
 void				ft_signal_cont(int s);

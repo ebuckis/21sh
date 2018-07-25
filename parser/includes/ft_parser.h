@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 14:20:43 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 14:39:41 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,8 +20,7 @@
 # define SPACE -1
 # define SPECIAL '0'
 # define WORD '1'
-# define REDIR_FILE '2'
-# define REDIR '3'
+# define REDIR '2'
 # define PIPE '4'
 # define SEMICOLON '5'
 

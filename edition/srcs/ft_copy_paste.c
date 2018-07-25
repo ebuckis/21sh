@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 08:27:26 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 13:35:38 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 19:06:23 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-int		ft_cutstr_home(t_navig *n, char **copy, int nb)
+static int		ft_cutstr_home(t_navig *n, char **copy, int nb)
 {
 	char	buf[5];
 	int		i;
@@ -22,7 +22,7 @@ int		ft_cutstr_home(t_navig *n, char **copy, int nb)
 	buf[0] = 127;
 	if (n->i != 0)
 	{
-		ft_strdel(copy);//voir si null fonctionne
+		ft_strdel(copy);
 		i = n->i;
 		if (!(*copy = ft_strnew(n->i)))
 			return (0);
@@ -41,13 +41,10 @@ int		ft_cutstr_home(t_navig *n, char **copy, int nb)
 	return (1);
 }
 
-int		ft_cutstr_end(t_navig *n, char **copy, int nb)
+static int		ft_cutstr_end(t_navig *n, char **copy, int nb)
 {
-	char	buf[5];
 	int		i;
 
-	ft_bzero(buf, 5);
-	buf[0] = 127;
 	if (n->i != ft_strlen(n->s))
 	{
 		ft_strdel(copy);
@@ -60,21 +57,10 @@ int		ft_cutstr_end(t_navig *n, char **copy, int nb)
 			i++;
 		}
 		if (nb == 1)
-		{
-			i = n->i;
-			ft_move_to_xy(n->x_len, n->y_len);
-			n->x = n->x_len;// transformer en une fonction
-			n->y = n->y_len;
-			n->i = ft_strlen(n->s);
-			while (n->i != i)
-				ft_key_code(n, buf);
-		}
+			ft_del_end_to_i(n);
 	}
-	else
-	{
-		if (!ft_ring_the_bell())
-			return (0);
-	}
+	else if (!ft_ring_the_bell())
+		return (0);
 	return (1);
 }
 
@@ -93,7 +79,7 @@ static int		ft_small_verif(t_navig *n, char *copy)
 		return (1);
 }
 
-int		ft_paste(t_navig *n, char *copy)
+static int		ft_paste(t_navig *n, char *copy)
 {
 	char	buf[5];
 	int		i;
@@ -117,7 +103,7 @@ int		ft_paste(t_navig *n, char *copy)
 	return (1);
 }
 
-int		ft_copy_paste(t_navig *n, char *buf, int fr)
+int				ft_copy_paste(t_navig *n, char *buf, int fr)
 {
 	static char	*copy = NULL;
 
@@ -140,5 +126,5 @@ int		ft_copy_paste(t_navig *n, char *buf, int fr)
 }
 
 /*
-** le free s'efectue dans ft_close_hist
+** le free de copy s'efectue dans ft_close_hist
 */

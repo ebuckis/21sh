@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 19:05:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 14:40:23 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,15 +26,15 @@ static void	ft_double_end(t_parse *p)
 static void	ft_suite_sep(t_parse *p)
 {
 	if (ft_isdigit(p->s[p->i]))
-		ft_end_while(p, REDIR_FILE);
+		ft_end_while(p, REDIR);
 	if (p->s[p->i] == '<' || p->s[p->i] == '>')
-		ft_end_while(p, REDIR_FILE);
+		ft_end_while(p, REDIR);
 	if (p->s[p->i] == '<' || p->s[p->i] == '>')
-		ft_end_while(p, REDIR_FILE);
+		ft_end_while(p, REDIR);
 	if (p->s[p->i] == '&')
-		ft_end_while(p, REDIR_FILE);
+		ft_end_while(p, REDIR);
 	if ((p->s[p->i] <= '9' && p->s[p->i] >= '0') || p->s[p->i] == '-')
-		ft_end_while(p, REDIR_FILE);
+		ft_end_while(p, REDIR);
 }
 
 /*
