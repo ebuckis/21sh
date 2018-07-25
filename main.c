@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 14:22:53 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 17:29:42 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -122,6 +122,7 @@ int				main(int argc, char *argv[], char *env[])
 	int		begin;
 	char	**my_env;
 
+	manage_signal();
 	setlocale(LC_ALL, "");
 	ft_printf("%C kcabus\n%C bpajot\n", L'©', L'©');
 	my_env = ft_getenv(argc, argv, env);

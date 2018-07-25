@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/23 13:54:40 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/25 17:33:24 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -38,6 +38,7 @@ N_SRCS =	cd.c					\
 			fork.c					\
 			getenv.c				\
 			manage_redir.c			\
+			manage_signal.c			\
 			pipes.c					\
 			redir.c					\
 			setenv.c				\
