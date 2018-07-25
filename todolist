@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/25 13:43:40 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/07/25 13:51:36 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,13 +17,10 @@ kcabus :
 - modification du parser pour les != pattern de redirection
 
 bpajot :
-- gestion des builtin sans fork en cours
-- gestion des redirections combine au pipe
-	- pb de creation de file avant pipe OK ?
 - gestion des droits de fichier sur les redirections
 - gestion de tout le listing de redirections dont les fermetures
 - gestion des erreurs dans parsing
-- test avec binaire qui segfault, que fait-on si pipe derriere
+- gestion des $var et ~
 - leaks cd et tout ce qui est new
 - norminette
 
