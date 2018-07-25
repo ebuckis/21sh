@@ -88,7 +88,7 @@ static int		ft_del_all(t_navig *n, int nb)
 		}
 		ft_move_to_xy(0, n->y + 1);
 	}
-	ft_recup_pos(&(n->x), &(n->y));
+	ft_recup_pos(&(n->x), &(n->y));//utile ?
 	ft_recup_pos(&(n->x_len), &(n->y_len));
 	if (!(ft_goto_i_by_end(n)))
 		return (0);
@@ -106,7 +106,6 @@ int				ft_maj_win(t_navig *n)
 
 	ft_get_size(&x_stmp, &y_stmp);
 	nb = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;
-	//dprintf(2, "===========================\ni = %d\nnb = %d\nx_size = %d\ny_size = %d\n=============================\n", n->i, nb, n->x_size, n->y_size);
 	if (nb > x_stmp * y_stmp)
 	{
 		if (n->to_small == 0)

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 08:27:26 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:55:26 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 13:35:38 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,6 @@ int		ft_cutstr_home(t_navig *n, char **copy, int nb)
 		if (!ft_ring_the_bell())
 			return (0);
 	}
-	dprintf(2, "**copy : |%s|**\n", *copy);
 	return (1);
 }
 

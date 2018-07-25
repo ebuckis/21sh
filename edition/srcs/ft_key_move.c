@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 09:27:13 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/25 13:18:31 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,16 +59,11 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 	return (1);
 }
 
-//	dprintf(2, "\n----------------------------\ncalc = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;\n%d = %zu + %zu + 1\n-----------------------\n" , calc, ft_strlen(n->prompt), ft_strlen(n->s));
-//	dprintf(2, "\n----------------------------\ny_add = 1 + (calc / (n->x_size + 1));\n%d = 1 + (%d / %d + 1)\n-----------------------\n", y_add, calc, n->x_size);
-//	dprintf(2, "\n++++++++++++++++++++++++++++\nx = %d\nx_size = %d\nx_len = %d\n+++++++++++++++++++++++++\n", n->x, n->x_size, n->x_len);
 
 int				ft_key_move(t_navig *n, char *buf)
 {
 	char	*str;
 
-	//if (KEY_CODE_DELETE)
-	//	return (1);
 	if (KEY_CODE_UP)
 	{
 		str = ft_give_hist(1, NULL);
@@ -91,6 +86,7 @@ int				ft_key_move(t_navig *n, char *buf)
 		else if (n->id_hist == 1)
 		{
 			ft_maj_stuct_nav(n, n->s_save);
+			free(n->s_save);
 			n->s_save = NULL;
 			n->id_hist--;
 		}

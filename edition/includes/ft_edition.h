@@ -47,6 +47,7 @@
 
 typedef struct		s_navig
 {
+	struct termios	t;
 	char			*s;
 	char			*s_save;
 	int				id_hist;
@@ -69,11 +70,13 @@ typedef struct		s_hist
 	struct s_hist	*next;
 	struct s_hist	*prev;
 }					t_hist;
+t_navig				g_nav;
 char				*ft_edition(char *prompt);
 int					ft_putcharint(int c);
 int					ft_move_to_xy(int x, int y);
 int					ft_get_size(int *x, int *y);
 int					ft_init_nav(t_navig *n, char *p);
+int					ft_init_term(struct termios *t);
 int					ft_key_code(t_navig *n, char *buf);
 int					ft_key_move(t_navig *n, char *buf);
 void				ft_recup_pos(int *x, int *y);
@@ -93,5 +96,9 @@ char				*ft_give_hist(int i, t_hist *list);
 int					ft_add_hist(char *s);
 t_hist				*ft_close_hist(int i, t_hist *list);
 int					ft_ring_the_bell(void);
+void				ft_signal_size(int s);
+void				ft_signal_stop(int s);
+void				ft_signal_cont(int s);
+
 
 #endif
