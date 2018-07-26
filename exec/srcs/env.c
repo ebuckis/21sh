@@ -6,14 +6,14 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 13:44:43 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 17:23:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-static int	ft_doublon(char *line, char **arg, int j)
+int				ft_doublon(char *line, char **arg, int j)
 {
 	int		i;
 	char	*p;
@@ -42,7 +42,7 @@ static int	ft_doublon(char *line, char **arg, int j)
 	return (0);
 }
 
-static int	ft_tab_size(char **arg, char **tab_ref)
+int				ft_tab_size(char **arg, char **tab_ref)
 {
 	int		i;
 	int		doublon;
@@ -55,36 +55,7 @@ static int	ft_tab_size(char **arg, char **tab_ref)
 	return (i - doublon);
 }
 
-char		**ft_mix_env(char **env, char **env2)
-{
-	char	**arg;
-	int		size_tab;
-	int		i;
-	int		j;
-	int		k;
-
-	size_tab = ft_tab_size(env, NULL) + ft_tab_size(env2, env);
-	arg = (char**)malloc(sizeof(char*) * (size_tab + 1));
-	i = 0;
-	j = -1;
-	while (env[++j])
-	{
-		if (!(ft_doublon(env[j], env2, -1)))
-			arg[i++] = ft_strdup(env[j]);
-	}
-	j = i;
-	k = i;
-	while (env2[k - j])
-	{
-		if (!ft_doublon(env2[k - j], env2, k - j))
-			arg[i++] = ft_strdup(env2[k - j]);
-		k++;
-	}
-	arg[i] = NULL;
-	return (arg);
-}
-
-static int		ft_env2(t_parse *p,char **arg, char **env, int i)
+static int		ft_env3(t_parse *p, char **arg, char **env, int i)
 {
 	pid_t	pid;
 	int		status;
@@ -92,7 +63,6 @@ static int		ft_env2(t_parse *p,char **arg, char **env, int i)
 
 	if (arg[i])
 	{
-		//		ft_fork_shell(p, &(&arg[i]), &env, 0);
 		if (check_builtin(&arg[i]))
 			run_builtin(p, &arg[i], &env, 0);
 		else
@@ -102,11 +72,8 @@ static int		ft_env2(t_parse *p,char **arg, char **env, int i)
 				ft_execve(p, &arg[i], &env, 1);
 			else if (pid > 0)
 			{
-				wait(&status);
-				if (WIFEXITED(status))
-					p->ret = WEXITSTATUS(status);
-				if (WIFSIGNALED(status))
-					p->ret = WTERMSIG(status) + 128;
+				waitpid(pid, &status, WUNTRACED);
+				ft_ret_display(p, pid, status);
 			}
 		}
 		return (p->ret);
@@ -116,7 +83,7 @@ static int		ft_env2(t_parse *p,char **arg, char **env, int i)
 	return (0);
 }
 
-int				ft_env(t_parse *p, char **arg, char **env)
+static int		ft_env2(t_parse *p, char **arg, char **env)
 {
 	int		i;
 	int		option_i;
@@ -125,24 +92,31 @@ int				ft_env(t_parse *p, char **arg, char **env)
 	int		ret;
 
 	i = -1;
+	option_i = (ft_strequ(arg[1], "-i")) ? 1 : 0;
+	i = option_i;
+	while (arg[++i] && ft_strchr(arg[i], '='))
+		;
+	env2 = (char**)malloc(sizeof(char*) * i);
+	i = option_i;
+	while (arg[++i] && ft_strchr(arg[i], '='))
+		env2[i - option_i - 1] = ft_strdup(arg[i]);
+	env2[i - option_i - 1] = NULL;
+	env3 = (option_i) ? env2 : ft_mix_env(env, env2);
+	ret = ft_env3(p, arg, env3, i);
+	if (!option_i)
+		ft_memdel((void**)&env3);
+	ft_free_tab(env2);
+	return (ret);
+}
+
+int				ft_env(t_parse *p, char **arg, char **env)
+{
+	int		ret;
+
+	ret = 0;
 	if (!arg[1])
 		display_env(env);
 	else
-	{
-		option_i = (ft_strequ(arg[1], "-i")) ? 1 : 0;
-		i = option_i;
-		while (arg[++i] && ft_strchr(arg[i], '='))
-			;
-		env2 = (char**)malloc(sizeof(char*) * i);
-		i = option_i;
-		while (arg[++i] && ft_strchr(arg[i], '='))
-			env2[i - option_i - 1] = ft_strdup(arg[i]);
-		env2[i - option_i - 1] = NULL;
-		env3 = (option_i) ? env2 : ft_mix_env(env, env2);
-		ret = ft_env2(p, arg, env3, i);
-		if (!option_i)
-			ft_memdel((void**)&env3);
-		//ft_free_tab(env2);
-	}
+		return (ft_env2(p, arg, env));
 	return (ret);
 }

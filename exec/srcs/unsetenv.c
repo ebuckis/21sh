@@ -6,14 +6,14 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/06 15:06:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 13:07:01 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 17:27:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-static int	ft_doublon(char *line, char **arg)
+static int	ft_doublon3(char *line, char **arg)
 {
 	int		i;
 	char	*p;
@@ -61,7 +61,7 @@ static int	ft_doublon2(char *line, char **arg)
 	return (0);
 }
 
-static int	ft_tab_size(char **arg)
+static int	ft_tab_size2(char **arg)
 {
 	int		i;
 
@@ -82,7 +82,7 @@ static char	**ft_unsetenv2(char **arg, char **env, int nb_double)
 	int		j;
 
 	env2 = (char**)malloc(sizeof(char*) *
-		(ft_tab_size(env) - nb_double + 1));
+		(ft_tab_size2(env) - nb_double + 1));
 	i = 0;
 	j = i;
 	while (env[i])
@@ -114,13 +114,13 @@ int			ft_unsetenv(char **arg, char ***env)
 		i = 0;
 		while (arg[++i])
 		{
-			if (ft_doublon(arg[i], *env))
+			if (ft_doublon3(arg[i], *env))
 				nb_double++;
 		}
 		if (nb_double)
 		{
 			tmp = ft_unsetenv2(arg, *env, nb_double);
-			//ft_free_tab(*env);
+			ft_free_tab(*env);
 			*env = tmp;
 		}
 	}

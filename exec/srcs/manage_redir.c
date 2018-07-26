@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 14:31:06 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 16:37:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,15 +48,13 @@ static char		**create_redir(char **tab_redir, int sep, int size)
 	return (redir);
 }
 
-char			**manage_redir(char** tab_redir, char ***p_env)
+char			**manage_redir(char **tab_redir, char ***p_env)
 {
 	char	**commande;
 	char	**redir;
 	int		i;
 	int		sep;
 	int		nb_redir;
-	char	*line;
-	char	**my_env;
 
 	i = -1;
 	sep = 0;

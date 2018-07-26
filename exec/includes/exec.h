@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 16:25:10 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 17:24:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,8 +47,11 @@ int			ft_env(t_parse *p, char **arg, char **env);
 int			ft_fg(t_parse *p);
 int			display_env(char **env);
 char		**ft_mix_env(char **env, char **env2);
+int			ft_doublon(char *line, char **arg, int j);
+int			ft_tab_size(char **arg, char **tab_ref);
 int			ft_setenv(char **arg, char ***env);
 int			ft_unsetenv(char **arg, char ***env);
 void		manage_signal(void);
+void		ft_ret_display(t_parse *p, pid_t pid, int status);
 
 #endif

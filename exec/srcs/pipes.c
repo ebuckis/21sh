@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 14:24:46 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 17:28:59 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,21 +73,19 @@ int				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 
 	i = begin;
 	nb_pipe = 0;
-	if (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON)) //p->arg[i][0])
+	if (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 	{
 		while (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 		{
 			if (ft_strchr(p->arg_id[i], PIPE))
 			{
 				if (i == begin || ft_strchr(p->arg_id[i - 1], PIPE))
-// si pipe en 1er argument ou si 2 pipes colles
 				{
 					ft_putendl("parse error");
 					return (1);
 				}
 				else if (!p->arg[i + 1] || ft_strchr(p->arg_id[i + 1],
 					SEMICOLON))
-// si pipe en dernier argument
 				{
 					ft_putendl("pipe>");
 					return (0);
@@ -104,4 +102,3 @@ int				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 	}
 	return (0);
 }
-

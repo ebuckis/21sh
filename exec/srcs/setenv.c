@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/05 16:51:13 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 13:02:10 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 17:27:37 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,10 +35,39 @@ int			ft_setenv2(char **arg, char ***env)
 	ft_memdel((void**)&tmp);
 	env2[1] = NULL;
 	tmp2 = ft_mix_env(*env, env2);
-	//ft_free_tab(*env);
-	//ft_free_tab(env2);
+	ft_free_tab(*env);
+	ft_free_tab(env2);
 	*env = tmp2;
 	return (0);
+}
+
+char		**ft_mix_env(char **env, char **env2)
+{
+	char	**arg;
+	int		size_tab;
+	int		i;
+	int		j;
+	int		k;
+
+	size_tab = ft_tab_size(env, NULL) + ft_tab_size(env2, env);
+	arg = (char**)malloc(sizeof(char*) * (size_tab + 1));
+	i = 0;
+	j = -1;
+	while (env[++j])
+	{
+		if (!(ft_doublon(env[j], env2, -1)))
+			arg[i++] = ft_strdup(env[j]);
+	}
+	j = i;
+	k = i;
+	while (env2[k - j])
+	{
+		if (!ft_doublon(env2[k - j], env2, k - j))
+			arg[i++] = ft_strdup(env2[k - j]);
+		k++;
+	}
+	arg[i] = NULL;
+	return (arg);
 }
 
 int			ft_setenv(char **arg, char ***env)

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 14:38:45 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 17:31:31 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,6 @@ static int		ft_redir_in(char *path, char **redirec, int i)
 
 	if (!ft_strcmp(redirec[i], "<"))
 	{
-		// ajouter verifier droit lecture user et autres
 		fd = open(path, O_RDONLY);
 		dprintf(2, "< fd : %d\n", fd);
 		dup2(fd, STDIN_FILENO);
@@ -63,31 +62,27 @@ static int		ft_redir_out(char *path, char **redirec, int i)
 
 	if (!ft_strcmp(redirec[i], ">"))
 	{
-		// ajouter verifier droit lecture user et autres
-		// O_TRUNC efface le fichier
 		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dprintf(2, "> fd : %d\n", fd);
 		dup2(fd, STDOUT_FILENO);
 	}
 	else if (!ft_strcmp(redirec[i], ">>"))
 	{
-		// O_APPEND ouvert en mode ajout
 		fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		dprintf(2, ">> fd : %d\n", fd);
 		dup2(fd, STDOUT_FILENO);
 	}
 	else if (!ft_strcmp(redirec[i], ">&") || !ft_strcmp(redirec[i], "&>"))
 	{
-		//redirection de stdout et stderr
 		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dprintf(2, "&> fd : %d\n", fd);
 		dup2(fd, STDOUT_FILENO);
 		dup2(fd, STDERR_FILENO);
 	}
-	else if ((n = ft_atoi(redirec[i])) >= 0 && (p = ft_strchr(redirec[i], '>'))
+	else if ((n = ft_atoi(redirec[i])) >= 0 &&
+			(p = ft_strchr(redirec[i], '>'))
 			&& !p[1])
 	{
-		// redirection de fd n
 		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dprintf(2, "n> fd : %d\n", fd);
 		dup2(fd, n);
@@ -100,7 +95,7 @@ static int		ft_redir_out(char *path, char **redirec, int i)
 	return (fd);
 }
 
-static void		ft_redir2(char** commande, char **redirec,
+static void		ft_redir2(char **commande, char **redirec,
 		int nb_redirec, char **env)
 {
 	int		i;
@@ -130,9 +125,9 @@ static void		ft_redir2(char** commande, char **redirec,
 	}
 }
 
-void		ft_redir(char **commande, char **redirec, char **env,
+void			ft_redir(char **commande, char **redirec, char **env,
 		int nb_redirec)
 {
-		if (nb_redirec)
-			ft_redir2(commande, redirec, nb_redirec, env);
+	if (nb_redirec)
+		ft_redir2(commande, redirec, nb_redirec, env);
 }
