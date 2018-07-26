@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 13:46:04 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 16:25:10 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@
 int			ft_manage_pipe(t_parse *p, int begin, char ***p_env);
 void		ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
 		int nb_pipe);
-char		**manage_redir(char** tab_redir, char ***p_env);
+char		**manage_redir(char **tab_redir, char ***p_env);
 void		ft_redir(char **commande, char **redirec, char **env,
 		int nb_redirec);
 int			check_builtin(char **tab_pipe_i);

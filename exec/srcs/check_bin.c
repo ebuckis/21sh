@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 14:24:58 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 13:47:12 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 16:27:47 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,13 +64,13 @@ char		*check_bin2(char *tab0, char **env)
 		ft_memdel((void**)&tmp);
 		if (check_bin3(bin, 0))
 		{
-			//ft_free_tab(tab_path);
+			ft_free_tab(tab_path);
 			return (bin);
 		}
 		ft_memdel((void**)&bin);
 	}
 	ft_printf("21sh: command not found: %s\n", tab0);
-	//ft_free_tab(tab_path);
+	ft_free_tab(tab_path);
 	return (NULL);
 }
 

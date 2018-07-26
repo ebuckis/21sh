@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/24 15:47:24 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 16:26:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,6 @@ void		ft_execve(t_parse *p, char **tab_pipe_i, char ***p_env, int in_pipe)
 			execve(path, tab_com, *p_env);
 		else if (path)
 		{
-		// pas les droits d'execution sur le fichier
 			if (access(path, X_OK))
 				ft_printf("21sh: permission denied: %s\n", tab_com[0]);
 			else
@@ -39,7 +38,6 @@ void		ft_execve(t_parse *p, char **tab_pipe_i, char ***p_env, int in_pipe)
 			exit(126);
 		}
 		else
-		// le fichier n'existe pas
 			exit(127);
 	}
 }
