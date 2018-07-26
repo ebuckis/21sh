@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 15:33:46 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 16:28:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,6 +64,7 @@ t_parse			*ft_save_struct(t_parse *parsing);
 ** permet de garder une save de t_parse meme si on sort de la fonction
 */
 int				ft_close_parse(void);
+void			ft_free_tab(char **t);
 /*
 ** ft_close permet de free la structure t_parse
 */
