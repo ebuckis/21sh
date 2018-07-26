@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 17:29:42 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 13:57:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -135,7 +135,7 @@ int				main(int argc, char *argv[], char *env[])
 		begin = 0;
 		if (string)
 		{
-			p = ft_parser(string);
+			p = ft_parser(string, (p) ? p->child_pid : 0);
 			debug_display_struct(p);
 			ft_manage_semicolon_exit(p, &a, &my_env);
 		}

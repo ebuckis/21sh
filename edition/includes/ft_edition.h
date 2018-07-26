@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/12 15:30:501 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 13:52:19 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,13 +66,16 @@ typedef struct		s_navig
 	char			*tmp_char;
 	int				tmp_int;
 }					t_navig;
+
 typedef struct		s_hist
 {
 	char			*str;
 	struct s_hist	*next;
 	struct s_hist	*prev;
 }					t_hist;
+
 t_navig				g_nav;
+
 char				*ft_edition(char *prompt);
 int					ft_putcharint(int c);
 int					ft_move_to_xy(int x, int y);
@@ -100,8 +103,6 @@ t_hist				*ft_close_hist(int i, t_hist *list);
 int					ft_ring_the_bell(void);
 void				ft_del_end_to_i(t_navig *n);
 void				ft_signal_size(int s);
-void				ft_signal_stop(int s);
-void				ft_signal_cont(int s);
 
 
 #endif

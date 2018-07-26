@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 17:32:28 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 13:29:45 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,8 +22,8 @@ char			*ft_lance_edit(t_navig *n)
 	while (1)
 	{
 		signal(SIGWINCH, ft_signal_size);
-		signal(SIGTSTP, ft_signal_stop);
-		signal(SIGCONT, ft_signal_cont);
+	//	signal(SIGTSTP, ft_signal_stop);
+	//	signal(SIGCONT, ft_signal_cont);
 		while (ft_verif_term_size(n) < 0)
 			ft_maj_win(n);
 		ft_bzero(buf, 5);

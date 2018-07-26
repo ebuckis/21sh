@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 18:47:55 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 13:55:41 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ static int	ft_str_parser(t_parse *p)
 **				- sinon on copie betement
 */
 
-t_parse		*ft_parser(char *line)
+t_parse		*ft_parser(char *line, pid_t child_pid)
 {
 	t_parse	*p;
 
@@ -57,6 +57,7 @@ t_parse		*ft_parser(char *line)
 	{
 		if (!(p = ft_init_parse(line)))
 			return (NULL);
+		p->child_pid = child_pid;
 		if (!ft_str_parser(p))
 		{
 			ft_close_parse();

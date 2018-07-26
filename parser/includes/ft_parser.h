@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 14:39:41 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 13:55:34 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,7 @@ typedef struct	s_parse
 	int			i;
 	int			j;
 	int			ret;
+	pid_t		child_pid;
 }				t_parse;
 
 /*
@@ -47,7 +48,7 @@ typedef struct	s_parse
 ** arg : split de str
 ** arg_id : split de ident
 */
-t_parse			*ft_parser(char *line);
+t_parse			*ft_parser(char *line, pid_t child_pid);
 int				ft_antislash(t_parse *p);
 t_parse			*ft_init_parse(char *line);
 int				ft_is_separator(t_parse *p);

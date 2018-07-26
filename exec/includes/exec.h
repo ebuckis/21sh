@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 17:33:02 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 13:46:04 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,6 +44,7 @@ void		ft_setpwd(char **env, int old, char *pwd);
 int			ft_cd(char **arg, char ***p_env);
 int			ft_echo(char **arg);
 int			ft_env(t_parse *p, char **arg, char **env);
+int			ft_fg(t_parse *p);
 int			display_env(char **env);
 char		**ft_mix_env(char **env, char **env2);
 int			ft_setenv(char **arg, char ***env);

@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 18:38:44 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 15:19:45 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,9 +50,10 @@ static void		ft_fork_pipe(t_parse *p, char ***tab_pipe, char ***p_env, int i)
 void			ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
 		int nb_pipe)
 {
-	pid_t	pid;
-	int		status;
-	int		i;
+	pid_t			pid;
+	int				status;
+	int				i;
+	static pid_t	prev_pid = 0;
 
 	if (!nb_pipe && check_builtin(tab_pipe[0]))
 		run_builtin(p, tab_pipe[0], p_env, 0);
@@ -88,10 +89,21 @@ void			ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
 			{
 				p->ret = WTERMSIG(status) + 128;
 				dprintf(2, "\e[31mvalue_termsig_signal = %d\n\e[39m",
-					WTERMSIG(status));
+						WTERMSIG(status));
 			}
 			if (WIFSTOPPED(status))
 			{
+				p->child_pid = pid;
+				dprintf(2, "prev_pid = %d   p->child_pid = %d\n",
+						prev_pid, p->child_pid);
+				if (prev_pid && prev_pid != p->child_pid)
+				{
+					kill(prev_pid, 2);
+					prev_pid = p->child_pid;
+				}
+				else if (!prev_pid)
+					prev_pid = p->child_pid;
+				dprintf(2, "prev_pid = %d   p->child_pid = %d\n", prev_pid, p->child_pid);
 				p->ret = WSTOPSIG(status) + 128;
 				dprintf(2, "i\e[31mvalue_stop_signal = %d\n\e[39m",
 						WSTOPSIG(status));
