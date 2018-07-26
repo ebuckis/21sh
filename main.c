@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 16:23:52 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 18:53:37 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -136,6 +136,7 @@ int				main(int argc, char *argv[], char *env[])
 		if (string)
 		{
 			p = ft_parser(string, (p) ? p->child_pid : 0);
+			ft_memdel((void**)&string);
 			debug_display_struct(p);
 			ft_manage_semicolon_exit(p, &a, &my_env);
 		}

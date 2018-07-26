@@ -1,3 +1,4 @@
 *.[ao]
 *.out
+*.dSYM/
 21sh

@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 16:59:15 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 19:00:15 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ static void		ft_signal_ctrl_c(int s)
 {
 	(void)s;
 	ft_putendl("");
-	ft_putstr("prompt $>");
+	ft_putstr("prompt $> ");
 }
 
 /*
@@ -33,7 +33,7 @@ static void		ft_signal_stop(int s)
 {
 	(void)s;
 	ft_putendl("");
-	ft_putstr("prompt $>");
+	ft_putstr("prompt $> ");
 }
 
 void			manage_signal(void)
