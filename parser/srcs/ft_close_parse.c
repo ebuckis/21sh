@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 11:39:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/18 14:46:31 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 16:28:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static void	ft_free_tab(char **t)
+void	ft_free_tab(char **t)
 {
 	int		i;
 

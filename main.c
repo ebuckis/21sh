@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 16:14:56 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 16:23:52 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -141,6 +141,7 @@ int				main(int argc, char *argv[], char *env[])
 		}
 		else
 			p->ret = 0;
+		//ft_close_parse(); a mettre quand on aura recup le pid
 	}
 	return (a);
 }
