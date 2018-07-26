@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 15:33:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 15:55:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,8 +48,8 @@ int			ft_separator(t_parse *p)
 	p->str = ft_realloc(p->str, p->len);
 	p->ident = ft_realloc(p->ident, p->len);
 	ft_add_space(p);
-	while (ft_isdigit(p->s[p->i]))
-		ft_end_while
+//	while (ft_isdigit(p->s[p->i]))
+		//ft_end_while
 	if (p->s[p->i] == ';')
 	{
 		if (ft_is_redirection(p->s[p->i + 1]))
