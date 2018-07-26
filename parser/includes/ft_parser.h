@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 13:55:34 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 15:33:46 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,6 +58,7 @@ int				ft_parse_quote(t_parse *p);
 int				ft_suite_line(t_parse *p, int i, char *prompt);
 void			ft_end_while(t_parse *p, char c);
 int				ft_separator(t_parse *p);
+int				ft_is_redirection(char c);
 t_parse			*ft_save_struct(t_parse *parsing);
 /*
 ** permet de garder une save de t_parse meme si on sort de la fonction

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 14:40:23 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/26 15:33:43 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,15 +48,23 @@ int			ft_separator(t_parse *p)
 	p->str = ft_realloc(p->str, p->len);
 	p->ident = ft_realloc(p->ident, p->len);
 	ft_add_space(p);
+	while (ft_isdigit(p->s[p->i]))
+		ft_end_while
 	if (p->s[p->i] == ';')
+	{
+		if (ft_is_redirection(p->s[p->i + 1]))
+			return (0);//parse error
 		ft_end_while(p, SEMICOLON);
+	}
 	else if (p->s[p->i] == '|')
 	{
+		if (ft_is_redirection(p->s[p->i + 1]))
+			return (0);//parse error
 		ft_end_while(p, PIPE);
 		if (p->s[p->i] == '|')
 			ft_end_while(p, PIPE);
 	}
-	else if (p->s[p->i] == '&' && p->s[p->i + 1] == '&')
+	else if (p->s[p->i] == '&')
 		ft_double_end(p);
 	//else if ((p->s[p->i] == '<' || p->s[p->i] == '>')
 	//	&& p->s[p->i + 1] == p->s[p->i])
