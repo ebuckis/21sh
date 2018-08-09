@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/26 19:13:18 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/09 17:51:54 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,10 +20,10 @@ bpajot :
 - gestion des droits de fichier sur les redirections
 - gestion de tout le listing de redirections dont les fermetures
 - gestion des erreurs dans parsing
-- gestion des $var et ~
+- gestion des $var et ~ et $?
 - leaks tout ce qui est new
-	- cd
-	- create tabe pipe
+	- cd OK ?
+	- create tabe pipe OK ?
 - norminette en cours
 	- create tabe pipe + enlever debug affichage sur reste
 

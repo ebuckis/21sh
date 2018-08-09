@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 18:53:37 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/09 18:18:02 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,12 +14,12 @@
 #include "./exec/includes/exec.h"
 
 /*
-// transforme les *char en *wchar_t et remplace les -1 non imprimables par le 
-// caractere speciale '·' pour l'afficghae du debug
-// a supprimer a la fin
+** transforme les *char en *wchar_t et remplace les -1 non imprimables par le
+** caractere speciale '·' pour l'afficghae du debug
+** a supprimer a la fin
 */
 
-static wchar_t *ft_strdup_wchar(char *str)
+static wchar_t	*ft_strdup_wchar(char *str)
 {
 	wchar_t	*wstr;
 	int		i;
@@ -56,11 +56,18 @@ static void		debug_display_struct(t_parse *p)
 		dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
 	}
 	dprintf(2, "----------\n");
+	ft_memdel((void**)&str);
+	ft_memdel((void**)&ident);
 }
 
-static void		ft_exit(int *a, int n, char* arg)
+/*
+** gestion valeur retour exit
+*/
+
+static void		ft_exit(int *a, int n, char *arg)
 {
 	int		i;
+
 	ft_printf("----------\n");
 	ft_printf("command nb %d\n", n);
 	i = 0;
@@ -79,6 +86,10 @@ static void		ft_exit(int *a, int n, char* arg)
 	ft_printf("----------\n");
 }
 
+/*
+** gestion exit ou ;
+*/
+
 static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 {
 	int		i;
@@ -90,7 +101,6 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 	while (p->arg_id[i] && ft_strcmp(p->arg[i], "exit"))
 	{
 		begin = i;
-		//ft_printf("begin = %d\n", begin);
 		dprintf(2, "----------\n");
 		dprintf(2, "command nb %d\n", n);
 		while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
@@ -103,15 +113,15 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 		n++;
 		dprintf(2, "begin = %d\n", begin);
 		ft_manage_pipe(p, begin, p_env);
-		dprintf(2, "----------\n");
 	}
 	if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
 		ft_exit(a, n, p->arg[i + 1]);
 }
 
 /*
-// gcc main2.c libft/libft.a edition/libedition.a parser/libparser.a -ltermcap
-// ./a.out 2> /dev/ttys001
+** affichage auteurs
+** affichage titre 21sh
+** en boucle, edition, parsing puis execution
 */
 
 int				main(int argc, char *argv[], char *env[])
@@ -142,7 +152,8 @@ int				main(int argc, char *argv[], char *env[])
 		}
 		else
 			p->ret = 0;
-		//ft_close_parse(); a mettre quand on aura recup le pid
+		ft_close_parse();
 	}
+	ft_free_tab(my_env);
 	return (a);
 }
