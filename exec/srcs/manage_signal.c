@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 19:00:15 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/10 14:50:00 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,8 @@ static void		ft_signal_stop(int s)
 
 void			manage_signal(void)
 {
+	setlocale(LC_ALL, "");
+	ft_printf("%C kcabus\n%C bpajot\n", L'©', L'©');
 	signal(SIGINT, ft_signal_ctrl_c);
 	signal(SIGTSTP, ft_signal_stop);
 	signal(SIGCONT, SIG_IGN);

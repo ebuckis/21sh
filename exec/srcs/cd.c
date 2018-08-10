@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 10:50:52 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/09 17:42:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/10 11:40:49 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,12 +33,9 @@ static int		ft_cd2(char ***p_env, char *pwd, char *oldpwd, char **arg)
 		ret = ft_cd3(p_env, oldpwd, pwd);
 	else
 	{
-		if (arg[1][0] != '/')
-		{
-			mem = ft_strjoin(pwd, "/");
-			path = ft_strjoin(mem, arg[1]);
-			ft_memdel((void**)&mem);
-		}
+		mem = ft_strjoin(pwd, "/");
+		path = (arg[1][0] == '/') ? ft_strdup(arg[1]) : ft_strjoin(mem, arg[1]);
+		ft_memdel((void**)&mem);
 		if (stat(path, &buf) != 0)
 			ft_printf("cd: no such file or directory: %s\n", path);
 		else if (!(buf.st_mode & S_IFDIR) || (buf.st_mode & S_IFCHR))

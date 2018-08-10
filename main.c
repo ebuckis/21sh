@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/09 18:18:02 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/10 14:55:47 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -133,27 +133,23 @@ int				main(int argc, char *argv[], char *env[])
 	char	**my_env;
 
 	manage_signal();
-	setlocale(LC_ALL, "");
-	ft_printf("%C kcabus\n%C bpajot\n", L'©', L'©');
 	my_env = ft_getenv(argc, argv, env);
 	a = -1;
-	begin = 1;
+	begin = 0;
 	while (a == -1)
 	{
-		string = (begin) ? ft_strdup("toilet -f bigascii12  21 sh | lolcat") :
-			ft_edition("prompt $> ");
-		begin = 0;
+		string = (!begin++) ? ft_strdup("toilet -f bigascii12  21 sh | lolcat")
+			: ft_edition("prompt $> ");
 		if (string)
 		{
 			p = ft_parser(string, (p) ? p->child_pid : 0);
 			ft_memdel((void**)&string);
 			debug_display_struct(p);
 			ft_manage_semicolon_exit(p, &a, &my_env);
+			ft_close_parse();
 		}
-		else
-			p->ret = 0;
-		ft_close_parse();
 	}
 	ft_free_tab(my_env);
+	sleep(3);
 	return (a);
 }
