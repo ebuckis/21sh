@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:20:08 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 18:46:59 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/14 13:00:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
+#include "../includes/ft_parser.h"
 
 int			ft_antislash(t_parse *p)
 {
@@ -23,7 +23,7 @@ int			ft_antislash(t_parse *p)
 	else
 	{
 		p->i++;
-		ft_end_while(p, SPECIAL);
+		ft_end_while(p, BACKSLASH);
 	}
 	return (1);
 }

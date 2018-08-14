@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:21:39 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 19:02:13 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/14 11:40:13 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ int			ft_parse_dquote(t_parse *p)
 			if (p->s[p->i + 1] == '`' || p->s[p->i + 1] == '$'
 				|| p->s[p->i + 1] == '\\' || p->s[p->i + 1] == '\"')
 				p->i++;
-			ft_end_while(p, SPECIAL);
+			ft_end_while(p, DOUBLE_QUOTE);
 		}
 		else if (p->s[p->i] == '\"')
 		{
@@ -31,7 +31,7 @@ int			ft_parse_dquote(t_parse *p)
 			return (1);
 		}
 		else if (p->s[p->i] != '\0')
-			ft_end_while(p, SPECIAL);
+			ft_end_while(p, DOUBLE_QUOTE);
 		else
 		{
 			if (!(ft_suite_line(p, 1, "dquote> ")))

@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/14 10:45:39 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/14 12:17:30 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -26,6 +26,7 @@ bpajot :
 - norminette en cours
 - commentaire
 - enlever debug affichage
+- enlever sleep 3 pour debug leaks
 
 other :
 - gestion des signaux pendant edition ou execution + Ctrl_D EOF

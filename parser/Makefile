@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/20 14:47:46 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/14 12:10:02 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -39,7 +39,8 @@ N_SRCS =	ft_parser.c				\
 			ft_parse_quote.c		\
 			ft_suite_line.c			\
 			ft_save_struct.c		\
-			ft_close_parse.c
+			ft_close_parse.c		\
+			ft_tilde_dollar.c
 
 all : $(NAME)
 

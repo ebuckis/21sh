@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/10 15:56:37 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/14 13:00:26 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
+#include "../includes/ft_parser.h"
 
 static void	ft_double_end(t_parse *p)
 {

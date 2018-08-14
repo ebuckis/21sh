@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:15:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 15:17:13 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/14 13:01:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
+#include "../includes/ft_parser.h"
 
 int	ft_is_redirection(char c)
 {

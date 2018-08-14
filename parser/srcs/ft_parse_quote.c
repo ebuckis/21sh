@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:22:22 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 18:47:42 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/14 13:01:37 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
+#include "../includes/ft_parser.h"
 
 int			ft_parse_quote(t_parse *p)
 {
@@ -25,7 +25,7 @@ int			ft_parse_quote(t_parse *p)
 		}
 		else if (p->s[p->i] != '\0')
 		{
-			ft_end_while(p, SPECIAL);
+			ft_end_while(p, SINGLE_QUOTE);
 		}
 		while (p->s[p->i] == '\0')
 		{

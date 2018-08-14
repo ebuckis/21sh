@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 11:34:59 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/14 13:01:47 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_parser.h"
+#include "../includes/ft_parser.h"
 
 static int	ft_str_parser(t_parse *p)
 {
@@ -48,7 +48,7 @@ static int	ft_str_parser(t_parse *p)
 **				- sinon on copie betement
 */
 
-t_parse		*ft_parser(char *line, pid_t child_pid)
+t_parse		*ft_parser(char *line, pid_t child_pid, char **env)
 {
 	t_parse	*p;
 
@@ -65,6 +65,7 @@ t_parse		*ft_parser(char *line, pid_t child_pid)
 		}
 		p->arg = ft_strsplit(p->str, -1);
 		p->arg_id = ft_strsplit(p->ident, -1);
+		p = ft_tilde_dollar(p, env);
 		if (!p->arg && !p->arg_id)
 			return (NULL);
 	}
