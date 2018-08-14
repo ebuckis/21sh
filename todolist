@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/09 17:51:54 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/14 10:45:39 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -15,17 +15,17 @@ kcabus :
 - couper, copier et coller
 - prendre en compte le ctrl+z pour suspension du programme et reprendre correctement
 - modification du parser pour les != pattern de redirection
+ modif partiel baptiste pour continuer debug nok pour redirection avec nb
 
 bpajot :
 - gestion des droits de fichier sur les redirections
 - gestion de tout le listing de redirections dont les fermetures
 - gestion des erreurs dans parsing
 - gestion des $var et ~ et $?
-- leaks tout ce qui est new
-	- cd OK ?
-	- create tabe pipe OK ?
+- leaks OK ?
 - norminette en cours
-	- create tabe pipe + enlever debug affichage sur reste
+- commentaire
+- enlever debug affichage
 
 other :
 - gestion des signaux pendant edition ou execution + Ctrl_D EOF

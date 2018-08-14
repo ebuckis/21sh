@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 16:29:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/10 15:56:37 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,7 +69,9 @@ int			ft_separator(t_parse *p)
 	}
 	else if (ft_isdigit(p->s[p->i]) || p->s[p->i] == '<' || p->s[p->i] == '>')
 	{
-		
+		if (ft_is_redirection(p->s[p->i + 1]))
+			return (0);//parse error
+		ft_end_while(p, REDIR);
 	}
 	//else if ((p->s[p->i] == '<' || p->s[p->i] == '>')
 	//	&& p->s[p->i + 1] == p->s[p->i])

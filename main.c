@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/10 14:55:47 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/14 11:25:58 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,8 +68,8 @@ static void		ft_exit(int *a, int n, char *arg)
 {
 	int		i;
 
-	ft_printf("----------\n");
-	ft_printf("command nb %d\n", n);
+	dprintf(2, "----------\n");
+	dprintf(2, "command nb %d\n", n);
 	i = 0;
 	while (arg && ((i == 0 && arg[i] == '-') || ft_isdigit(arg[i])))
 		i++;
@@ -82,8 +82,8 @@ static void		ft_exit(int *a, int n, char *arg)
 		ft_printf("21sh: exit: %s: numeric argument required\n", arg);
 		*a = 255;
 	}
-	ft_printf("exit value = %d\n", *a);
-	ft_printf("----------\n");
+	dprintf(2, "exit value = %d\n", *a);
+	dprintf(2, "----------\n");
 }
 
 /*
@@ -139,7 +139,7 @@ int				main(int argc, char *argv[], char *env[])
 	while (a == -1)
 	{
 		string = (!begin++) ? ft_strdup("toilet -f bigascii12  21 sh | lolcat")
-			: ft_edition("prompt $> ");
+			: ft_edition("21sh $> ");
 		if (string)
 		{
 			p = ft_parser(string, (p) ? p->child_pid : 0);
