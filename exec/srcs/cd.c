@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 10:50:52 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/10 11:40:49 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 14:45:05 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ static int		ft_cd2(char ***p_env, char *pwd, char *oldpwd, char **arg)
 			ft_printf("cd: no such file or directory: %s\n", path);
 		else if (!(buf.st_mode & S_IFDIR) || (buf.st_mode & S_IFCHR))
 			ft_printf("cd: not a directory: %s\n", path);
-		else if (!(buf.st_mode & S_IROTH))
+		else if (access(path, X_OK))
 			ft_printf("cd: permission denied: %s\n", path);
 		else
 			ret = ft_cd3(p_env, path, pwd);
