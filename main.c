@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 18:01:39 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 18:14:05 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -136,10 +136,10 @@ void			main2(char *string, char **env, int *a)
 		{
 			debug_display_struct(p);
 			ft_manage_semicolon_exit(p, a, &env);
+			ret = p->ret;
+			child_pid = p->child_pid;
 		}
 		ft_memdel((void**)&string);
-		ret = p->ret;
-		child_pid = p->child_pid;
 		ft_close_parse();
 	}
 }
