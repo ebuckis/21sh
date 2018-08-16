@@ -6,12 +6,23 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 13:01:47 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 16:56:49 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/ft_parser.h"
+
+static void	ft_print_parse_err(t_parse *p)
+{
+	char	c;
+
+	dprintf(2, "+++++++on print error++++++++++\n");
+	if (p->s[p->i])
+		ft_printf("parse error near : `%c'\n", p->s[p->i]);
+	else
+		ft_printf("parse error near : `\\n'\n");
+}
 
 static int	ft_str_parser(t_parse *p)
 {
@@ -32,8 +43,9 @@ static int	ft_str_parser(t_parse *p)
 		}
 		else
 			ft_end_while(p, WORD);
-		if (p->err == 0)
-			return (0);
+		if (p->err <= 0)
+			return (p->err);
+		dprintf(2, "test\n");
 	}
 	return (1);
 }
@@ -51,6 +63,7 @@ static int	ft_str_parser(t_parse *p)
 t_parse		*ft_parser(char *line, pid_t child_pid, char **env)
 {
 	t_parse	*p;
+	int		n;
 
 	p = NULL;
 	if (line)
@@ -58,9 +71,10 @@ t_parse		*ft_parser(char *line, pid_t child_pid, char **env)
 		if (!(p = ft_init_parse(line)))
 			return (NULL);
 		p->child_pid = child_pid;
-		if (!ft_str_parser(p))
+		if ((n = ft_str_parser(p)) <= 0)
 		{
-			ft_close_parse();
+			if (n == -1)
+				ft_print_parse_err(p);
 			return (NULL);
 		}
 		p->arg = ft_strsplit(p->str, -1);
