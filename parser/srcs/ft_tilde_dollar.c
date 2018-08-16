@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 14:24:46 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 17:08:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,7 +73,7 @@ static t_parse		*ft_tilde(t_parse *p, int i, char **env)
 	home = getenv("HOME");
 	if (home)
 	{
-		tmp = ft_strjoin_free(home, &(p->arg[i][1]), 1, 0);
+		tmp = ft_strjoin_free(home, &(p->arg[i][1]), 0, 0);
 		ft_memdel((void**)&(p->arg[i]));
 		p->arg[i] = ft_strdup(tmp);
 		ft_memdel((void**)&tmp);
@@ -90,29 +90,34 @@ static t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
 	char	*var;
 	char	*key;
 	char	*tmp;
+	char	*arg;
 	char	*p1;
 	char	*p2;
 
-	p1 = ft_strchr(&(p->arg_id[i][j]), '{');
-	p2 = ft_strchr(&(p->arg_id[i][j]), '}');
-	if (p1 && p2 && p2 > p1)
-	{
-	}
-	/*key =  (p1 && p2 && p2 > p1) ? ft_strsub(p1, 1, p2 - p1 + 1) :
+	p1 = ft_strchr(&(p->arg[i][j]), '{');
+	p2 = ft_strchr(&(p->arg[i][j]), '}');
+	var = (p1 && p2 && p2 > p1) ? ft_strsub(p1, 1, p2 - p1 - 1) : 
 		ft_strdup(&(p->arg[i][j + 1]));
+	key = getenv(var);
+	dprintf(2, "var = %s\n", var);
 	dprintf(2, "key = %s\n", key);
-	var = getenv(key);
-	tmp = ft_strjoin(var, &(p->arg[i][j + 1]));
-	tmp = ft_strjoin(var, &(p->arg[i][j + 1]));
+	if (j)
+		tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), key);
+	else
+		tmp = (key) ? ft_strdup(key) : ft_strdup("");
+	arg = (p1 && p2 && p2 > p1) ? ft_strjoin(tmp, &(p->arg[i][j + 1]) +
+		ft_strlen(var) + 2) : ft_strdup(tmp);
 	ft_memdel((void**)&(p->arg[i]));
-	p->arg[i] = ft_strdup(tmp);
 	ft_memdel((void**)&tmp);
+	dprintf(2, "arg = %s\n", arg);
+	ft_memdel((void**)&(p->arg[i]));
+	p->arg[i] = ft_strdup(arg);
+	ft_memdel((void**)&arg);
 	ft_memdel((void**)&(p->arg_id[i]));
 	p->arg_id[i] = ft_memalloc(ft_strlen(p->arg[i]) + 1);
 	ft_bzero((void*)p->arg_id[i], ft_strlen(p->arg[i]) + 1);
 	ft_memset((void*)p->arg_id[i], WORD, ft_strlen(p->arg[i]));
-	ft_memdel((void**)&home);*/
-
+	ft_memdel((void**)&var);
 	return (p);
 }
 
@@ -133,6 +138,7 @@ t_parse		*ft_tilde_dollar(t_parse *p, char **env)
 				j = -1;
 				while (p->arg[i][++j])
 				{
+				//	dprintf(2, "debug i = %d j= %d\n", i, j);
 					if (p->arg[i][j] == '$' && p->arg[i][j + 1] &&
 						(p->arg_id[i][j] == WORD || p->arg_id[i][j] ==
 						DOUBLE_QUOTE))
