@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 13:00:26 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 16:52:12 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/ft_parser.h"
+#include "ft_parser.h"
 
 static void	ft_double_end(t_parse *p)
 {
@@ -23,18 +23,23 @@ static void	ft_double_end(t_parse *p)
 ** on gagne quelques lignes
 */
 
-static void	ft_suite_sep(t_parse *p)
+static int	ft_suite_sep(t_parse *p)
 {
 	if (ft_isdigit(p->s[p->i]))
 		ft_end_while(p, REDIR);
 	if (p->s[p->i] == '<' || p->s[p->i] == '>')
 		ft_end_while(p, REDIR);
+	else
+		return (-1);
 	if (p->s[p->i] == '<' || p->s[p->i] == '>')
 		ft_end_while(p, REDIR);
 	if (p->s[p->i] == '&')
 		ft_end_while(p, REDIR);
+	if (!p->s[p->i])
+		return (-1);
 	if ((p->s[p->i] <= '9' && p->s[p->i] >= '0') || p->s[p->i] == '-')
 		ft_end_while(p, REDIR);
+	return (1);
 }
 
 /*
@@ -53,31 +58,26 @@ int			ft_separator(t_parse *p)
 	if (p->s[p->i] == ';')
 	{
 		if (ft_is_redirection(p->s[p->i + 1]))
-			return (0);//parse error
+			return (-1);//parse error
 		ft_end_while(p, SEMICOLON);
 	}
 	else if (p->s[p->i] == '|')
 	{
 		if (ft_is_redirection(p->s[p->i + 1]))
-			return (0);//parse error
+			return (-1);//parse error
 		ft_end_while(p, PIPE);
 	}
 	else if (p->s[p->i] == '&')
 	{
-		return (0);
-		//return (ft_suite_and())
+		return (-1);
 	}
 	else if (ft_isdigit(p->s[p->i]) || p->s[p->i] == '<' || p->s[p->i] == '>')
 	{
-		if (ft_is_redirection(p->s[p->i + 1]))
-			return (0);//parse error
-		ft_end_while(p, REDIR);
+		if (ft_suite_sep(p) < 1)
+			return (-1);//parse error
 	}
-	//else if ((p->s[p->i] == '<' || p->s[p->i] == '>')
-	//	&& p->s[p->i + 1] == p->s[p->i])
-	//	ft_double_end(p);
 	else
-		ft_suite_sep(p);
+		return (-1);
 	ft_add_space(p);
 	return (1);
 }
