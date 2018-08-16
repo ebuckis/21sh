@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 16:56:49 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 17:59:32 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,7 @@ static int	ft_str_parser(t_parse *p)
 **				- sinon on copie betement
 */
 
-t_parse		*ft_parser(char *line, pid_t child_pid, char **env)
+t_parse		*ft_parser(char *line, pid_t child_pid, char **env, int ret)
 {
 	t_parse	*p;
 	int		n;
@@ -79,6 +79,7 @@ t_parse		*ft_parser(char *line, pid_t child_pid, char **env)
 		}
 		p->arg = ft_strsplit(p->str, -1);
 		p->arg_id = ft_strsplit(p->ident, -1);
+		p->ret = ret;
 		p = ft_tilde_dollar(p, env);
 		if (!p->arg && !p->arg_id)
 			return (NULL);

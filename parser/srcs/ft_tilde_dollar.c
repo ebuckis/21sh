@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 17:08:48 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 17:46:01 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,7 +98,7 @@ static t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
 	p2 = ft_strchr(&(p->arg[i][j]), '}');
 	var = (p1 && p2 && p2 > p1) ? ft_strsub(p1, 1, p2 - p1 - 1) : 
 		ft_strdup(&(p->arg[i][j + 1]));
-	key = getenv(var);
+	key = (ft_strequ(var, "?")) ? ft_itoa(p->ret) : ft_strdup(getenv(var));
 	dprintf(2, "var = %s\n", var);
 	dprintf(2, "key = %s\n", key);
 	if (j)
@@ -118,6 +118,7 @@ static t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
 	ft_bzero((void*)p->arg_id[i], ft_strlen(p->arg[i]) + 1);
 	ft_memset((void*)p->arg_id[i], WORD, ft_strlen(p->arg[i]));
 	ft_memdel((void**)&var);
+	ft_memdel((void**)&key);
 	return (p);
 }
 
@@ -138,7 +139,6 @@ t_parse		*ft_tilde_dollar(t_parse *p, char **env)
 				j = -1;
 				while (p->arg[i][++j])
 				{
-				//	dprintf(2, "debug i = %d j= %d\n", i, j);
 					if (p->arg[i][j] == '$' && p->arg[i][j + 1] &&
 						(p->arg_id[i][j] == WORD || p->arg_id[i][j] ==
 						DOUBLE_QUOTE))
