@@ -6,14 +6,14 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 15:15:57 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 14:24:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/ft_parser.h"
 
-static char		*ft_home(char **env)
+/*static char		*ft_home(char **env)
 {
 	int		i;
 	char	*home;
@@ -28,17 +28,52 @@ static char		*ft_home(char **env)
 		}
 	}
 	return (NULL);
+}*/
+
+static char		*ft_strjoin_free(char *line1, char *line2, int i, int j)
+{
+	char *tmp;
+
+	tmp = ft_strjoin(line1, line2);
+	if (i)
+		ft_memdel((void**)&line1);
+	if (j)
+		ft_memdel((void**)&line2);
+	return (tmp);
 }
+
+/*static char		*ft_getenv_value(char **env, char *key)
+{
+	int		i;
+	char	*p;
+	char	*tmp;
+
+	i = -1;
+	if (env)
+	{
+		while (env[++i])
+		{
+			tmp = ft_strjoin_free(key, "=", 1, 0);
+			if ((p = ft_strnstr(env[i], tmp, ft_strlen(tmp))))
+			{
+				ft_memdel((void**)&tmp);
+				return (ft_strdup(p + ft_strlen(key + 1)));
+			}
+			ft_memdel((void**)&tmp);
+		}
+	}
+	return (NULL);
+}*/
 
 static t_parse		*ft_tilde(t_parse *p, int i, char **env)
 {
 	char	*home;
 	char	*tmp;
 
-	home = ft_home(env);
+	home = getenv("HOME");
 	if (home)
 	{
-		tmp = ft_strjoin(home, &(p->arg[i][1]));
+		tmp = ft_strjoin_free(home, &(p->arg[i][1]), 1, 0);
 		ft_memdel((void**)&(p->arg[i]));
 		p->arg[i] = ft_strdup(tmp);
 		ft_memdel((void**)&tmp);
@@ -46,27 +81,64 @@ static t_parse		*ft_tilde(t_parse *p, int i, char **env)
 		p->arg_id[i] = ft_memalloc(ft_strlen(p->arg[i]) + 1);
 		ft_bzero((void*)p->arg_id[i], ft_strlen(p->arg[i]) + 1);
 		ft_memset((void*)p->arg_id[i], WORD, ft_strlen(p->arg[i]));
-		ft_memdel((void**)&home);
 	}
 	return (p);
 }
 
-//static t_parse		*ft_dollar(t_parse *p, int i, char **env)
+static t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
+{
+	char	*var;
+	char	*key;
+	char	*tmp;
+	char	*p1;
+	char	*p2;
+
+	p1 = ft_strchr(&(p->arg_id[i][j]), '{');
+	p2 = ft_strchr(&(p->arg_id[i][j]), '}');
+	if (p1 && p2 && p2 > p1)
+	{
+	}
+	/*key =  (p1 && p2 && p2 > p1) ? ft_strsub(p1, 1, p2 - p1 + 1) :
+		ft_strdup(&(p->arg[i][j + 1]));
+	dprintf(2, "key = %s\n", key);
+	var = getenv(key);
+	tmp = ft_strjoin(var, &(p->arg[i][j + 1]));
+	tmp = ft_strjoin(var, &(p->arg[i][j + 1]));
+	ft_memdel((void**)&(p->arg[i]));
+	p->arg[i] = ft_strdup(tmp);
+	ft_memdel((void**)&tmp);
+	ft_memdel((void**)&(p->arg_id[i]));
+	p->arg_id[i] = ft_memalloc(ft_strlen(p->arg[i]) + 1);
+	ft_bzero((void*)p->arg_id[i], ft_strlen(p->arg[i]) + 1);
+	ft_memset((void*)p->arg_id[i], WORD, ft_strlen(p->arg[i]));
+	ft_memdel((void**)&home);*/
+
+	return (p);
+}
 
 t_parse		*ft_tilde_dollar(t_parse *p, char **env)
 {
 	int		i;
+	int		j;
 
-	i = 0;
+	i = -1;
 	if (p->arg)
 	{
-		while (p->arg[i])
+		while (p->arg[++i])
 		{
 			if (p->arg[i][0] == '~' && p->arg_id[i][0] == WORD)
 				ft_tilde(p, i, env);
-			//if (ft_strchr(p->arg[i], '$')) 
-			//	p = ft_dollar(p, i);
-			i++;
+			if (ft_strchr(p->arg[i], '$'))
+			{
+				j = -1;
+				while (p->arg[i][++j])
+				{
+					if (p->arg[i][j] == '$' && p->arg[i][j + 1] &&
+						(p->arg_id[i][j] == WORD || p->arg_id[i][j] ==
+						DOUBLE_QUOTE))
+						p = ft_dollar(p, i, j, env);
+				}
+			}
 		}
 	}
 	return (p);
