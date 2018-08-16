@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 11:39:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 13:00:58 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 18:23:11 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,6 +50,7 @@ int			ft_close_parse(void)
 {
 	t_parse		*p;
 
+	dprintf(2, "CLOSE PARSE\n");
 	p = ft_save_struct(NULL);
 	if (p)
 	{
@@ -64,6 +65,7 @@ int			ft_close_parse(void)
 		free(p);
 		p = NULL;
 	}
+	dprintf(2, "CLOSE PARSE FIN --------\n");
 	return (1);
 }
 

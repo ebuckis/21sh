@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:18:37 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 13:01:04 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 18:25:19 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,8 @@ t_parse		*ft_init_parse(char *line)
 	p->s = ft_strdup(line);
 	if (!p->ident)
 		return (NULL);
+	p->arg = NULL;
+	p->arg_id = NULL;
 	p->i = 0;
 	p->j = 0;
 	p->err = 1;
