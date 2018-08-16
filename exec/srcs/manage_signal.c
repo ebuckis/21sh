@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 17:43:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/16 18:01:22 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ static void		ft_signal_ctrl_c(int s)
 {
 	(void)s;
 	ft_putendl("");
-	ft_putstr("21sh $> ");
+	//ft_putstr("21sh $> ");
 }
 
 /*
@@ -33,7 +33,7 @@ static void		ft_signal_stop(int s)
 {
 	(void)s;
 	ft_putendl("");
-	ft_putstr("21sh $> ");
+	//ft_putstr("21sh $> ");
 }
 
 void			manage_signal(void)
