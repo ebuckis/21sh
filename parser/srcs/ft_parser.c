@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/17 14:26:09 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/17 14:34:09 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,6 @@ static void	ft_print_parse_err(t_parse *p)
 {
 	char	c;
 
-	dprintf(2, "+++++++on print error++++++++++\n");
 	if (p->s[p->i])
 		ft_printf("parse error near : `%c'\n", p->s[p->i]);
 	else
