@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 18:14:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/17 14:14:22 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -152,6 +152,8 @@ int				main(int argc, char *argv[], char *env[])
 	int		begin;
 	char	**my_env;
 
+	if (!isatty(0))
+		return (0);
 	manage_signal();
 	my_env = ft_getenv(argc, argv, env);
 	a = -1;

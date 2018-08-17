@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 17:59:32 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/17 14:26:09 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,6 @@ static int	ft_str_parser(t_parse *p)
 			ft_end_while(p, WORD);
 		if (p->err <= 0)
 			return (p->err);
-		dprintf(2, "test\n");
 	}
 	return (1);
 }
