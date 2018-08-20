@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:20:08 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 13:00:54 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 16:42:43 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/ft_parser.h"
+#include "ft_parser.h"
 
 int			ft_antislash(t_parse *p)
 {
