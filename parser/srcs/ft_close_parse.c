@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 11:39:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 13:51:04 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 16:04:30 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ void	ft_free_tab3(char ***t)
 	t = NULL;
 }
 
-int			ft_close_parse(void)
+int		ft_close_parse(void)
 {
 	t_parse		*p;
 

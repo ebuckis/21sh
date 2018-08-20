@@ -6,20 +6,17 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 15:40:16 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 16:04:06 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static int	ft_save_hdoc(t_parse *p, int j)
+static char	*ft_recup_s(t_parse *p)
 {
 	int		start;
 	int		lg;
-	char	*stop;
-	char	*line;
-	char	*tmp;
 
 	lg = 0;
 	p->i += 3;
@@ -29,7 +26,16 @@ static int	ft_save_hdoc(t_parse *p, int j)
 		lg++;
 		p->i++;
 	}
-	if (!(stop = ft_strsub(p->str, start, lg)))
+	return (ft_strsub(p->str, start, lg));
+}
+
+static int	ft_save_hdoc(t_parse *p, int j)
+{
+	char	*stop;
+	char	*line;
+	char	*tmp;
+
+	if (!(stop = ft_recup_s(p)))
 		return (0);
 	while (101)
 	{

@@ -6,18 +6,20 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 15:28:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 16:09:11 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static void	ft_double_end(t_parse *p)
+static void	ft_win_line(t_parse *p)
 {
-	ft_end_while(p, 2);
-	ft_end_while(p, 2);
-}//inutilisee
+	p->len += 2;
+	p->str = ft_realloc(p->str, p->len);
+	p->ident = ft_realloc(p->ident, p->len);
+	ft_add_space(p);
+}
 
 /*
 ** on gagne quelques lignes
@@ -28,10 +30,9 @@ static int	ft_get_hdoc(t_parse *p)
 	int		tmp;
 
 	tmp = p->j;
-	while (p->j != 0 && ft_isdigit(p->str[p->j - 1]) 
+	while (p->j != 0 && ft_isdigit(p->str[p->j - 1])
 		&& p->ident[p->j - 1] == REDIR)
 	{
-		dprintf(2, "j--\n");
 		p->j--;
 		p->ident[p->j] = WORD;
 	}
@@ -59,7 +60,6 @@ static int	ft_suite_sep(t_parse *p)
 		ft_end_while(p, REDIR);
 	if (p->s[p->i] == '<' && p->s[p->i + 1] && p->s[p->i + 1] == '<')
 	{
-		dprintf(2, "HEREDOC\n");
 		if (ft_get_hdoc(p) == -1)
 			return (-1);
 		return (1);
@@ -86,30 +86,25 @@ static int	ft_suite_sep(t_parse *p)
 
 int			ft_separator(t_parse *p)
 {
-	p->len += 2;
-	p->str = ft_realloc(p->str, p->len);
-	p->ident = ft_realloc(p->ident, p->len);
-	ft_add_space(p);
+	ft_win_line(p);
 	if (p->s[p->i] == ';')
 	{
 		if (ft_is_redirection(p->s[p->i + 1]))
-			return (-1);//parse error
+			return (-1);
 		ft_end_while(p, SEMICOLON);
 	}
 	else if (p->s[p->i] == '|')
 	{
 		if (ft_is_redirection(p->s[p->i + 1]))
-			return (-1);//parse error
+			return (-1);
 		ft_end_while(p, PIPE);
 	}
 	else if (p->s[p->i] == '&')
-	{
 		return (-1);// a revoir
-	}
 	else if (ft_isdigit(p->s[p->i]) || p->s[p->i] == '<' || p->s[p->i] == '>')
 	{
-		if (ft_suite_sep(p) < 1)
-			return (-1);//parse error
+		if ((p->err = ft_suite_sep(p)) < 1)
+			return (p->err);
 	}
 	else
 		return (-1);
