@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 17:48:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 14:14:54 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,6 @@ char			*ft_edition(char *prompt)
 	if (!(ft_init_nav(&g_nav, prompt)))
 		return (NULL);
 	str = ft_lance_edit(&g_nav);
-	// il faut une fontion free
 	g_nav.t = ft_default_edit(g_nav.t);
 	return (str);
 }

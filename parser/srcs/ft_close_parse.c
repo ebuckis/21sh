@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 11:39:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/17 14:34:34 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 13:51:04 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,6 +61,7 @@ int			ft_close_parse(void)
 			free(p->ident);
 		ft_free_tab(p->arg);
 		ft_free_tab(p->arg_id);
+		ft_free_tab(p->hdoc);
 		free(p);
 		p = NULL;
 	}
