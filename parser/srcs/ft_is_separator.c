@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:15:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 13:01:21 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 13:06:59 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/ft_parser.h"
+#include "ft_parser.h"
 
-int	ft_is_redirection(char c)
+int			ft_is_redirection(char c)
 {
 	if (c == ';')
 		return (1);
