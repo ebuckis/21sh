@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 14:45:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 15:40:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,9 +31,14 @@ static int	ft_save_hdoc(t_parse *p, int j)
 	}
 	if (!(stop = ft_strsub(p->str, start, lg)))
 		return (0);
-	while (ft_strcmp(stop, (line = ft_edition("heredoc > "))) != 0)
+	while (101)
 	{
-		dprintf(2, "4 - stop |%s| et line : |%s|\n", stop, line);
+		line = ft_edition("heredoc > ");
+		if (line && ft_strcmp(stop, line) == 0)
+		{
+			free(line);
+			break ;
+		}
 		tmp = ft_strjoin(line, "\n");
 		free(line);
 		line = ft_strjoin(p->hdoc[j], tmp);
