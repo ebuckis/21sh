@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 13:14:35 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 14:27:32 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,5 +74,6 @@ void			ft_free_tab3(char ***t);
 ** ft_close permet de free la structure t_parse
 */
 void			ft_add_space(t_parse *p);
+int				ft_heredoc(t_parse *p);
 
 #endif

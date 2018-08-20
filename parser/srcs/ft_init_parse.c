@@ -6,12 +6,24 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:18:37 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 18:25:19 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 14:30:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/ft_parser.h"
+#include "ft_parser.h"
+
+static void	ft_mise_a_zero(t_parse *p)
+{
+	p->i = 0;
+	p->j = 0;
+	p->ret = 0;
+	p->child_pid = 0;
+	p->nb_hdoc = 0;
+	p->arg = NULL;
+	p->arg_id = NULL;
+	p->hdoc = NULL;
+}
 
 t_parse		*ft_init_parse(char *line)
 {
@@ -29,14 +41,9 @@ t_parse		*ft_init_parse(char *line)
 	p->s = ft_strdup(line);
 	if (!p->ident)
 		return (NULL);
-	p->arg = NULL;
-	p->arg_id = NULL;
-	p->i = 0;
-	p->j = 0;
 	p->err = 1;
+	ft_mise_a_zero(p);
 	p->len = ft_strlen(line);
-	p->ret = 0;
-	p->child_pid = 0;
 	ft_save_struct(p);
 	return (p);
 }

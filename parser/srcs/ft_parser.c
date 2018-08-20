@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/17 14:34:09 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/20 15:26:56 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,6 +45,7 @@ static int	ft_str_parser(t_parse *p)
 		if (p->err <= 0)
 			return (p->err);
 	}
+	ft_heredoc(p);
 	return (1);
 }
 
@@ -71,6 +72,7 @@ t_parse		*ft_parser(char *line, pid_t child_pid, char **env, int ret)
 		p->child_pid = child_pid;
 		if ((n = ft_str_parser(p)) <= 0)
 		{
+			dprintf(2, "---str : |%s|---\n---ident |%s|---\n", p->str, p->ident);
 			if (n == -1)
 				ft_print_parse_err(p);
 			return (NULL);
