@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   unsetenv.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/06 15:06:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 13:35:35 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:06:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -120,7 +120,7 @@ void		ft_unsetenv(char **tab, char ***env)
 		if (nb_double)
 		{
 			tmp = ft_unsetenv2(tab, *env, nb_double);
-			ft_free_tab(*env);
+			ft_free_tab(env);
 			*env = tmp;
 		}
 	}

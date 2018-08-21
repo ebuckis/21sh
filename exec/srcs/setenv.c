@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   setenv.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/05 16:51:13 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 17:27:37 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:04:13 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,8 +35,8 @@ int			ft_setenv2(char **arg, char ***env)
 	ft_memdel((void**)&tmp);
 	env2[1] = NULL;
 	tmp2 = ft_mix_env(*env, env2);
-	ft_free_tab(*env);
-	ft_free_tab(env2);
+	ft_free_tab(env);
+	ft_free_tab(&env2);
 	*env = tmp2;
 	return (0);
 }

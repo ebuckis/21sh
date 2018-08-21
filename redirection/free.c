@@ -3,16 +3,16 @@
 /*                                                              /             */
 /*   free.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/07 14:48:24 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 13:38:17 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:06:39 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "redirec.h"
-
+/*
 void	ft_free_tab(char **tab)
 {
 	int		i;
@@ -25,7 +25,7 @@ void	ft_free_tab(char **tab)
 		ft_memdel((void**)&tab);
 	}
 }
-
+*/
 char	*ft_strjoin2(char *line)
 {
 	char	*tmp;

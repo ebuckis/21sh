@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   exit.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/05 16:17:23 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 13:34:00 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:05:51 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,10 +21,10 @@ void		ft_exit(char **tab, char **env, int i)
 	if (i)
 	{
 		ret = (tab[1]) ? ft_atoi(tab[1]) : 0;
-		ft_free_tab(tab);
-		ft_free_tab(env);
+		ft_free_tab(&tab);
+		ft_free_tab(&env);
 		exit(ret);
 	}
-	ft_free_tab(env);
+	ft_free_tab(&env);
 	exit(0);
 }

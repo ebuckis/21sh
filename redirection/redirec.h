@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   redirec.h                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/09 12:12:20 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 13:49:55 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:06:44 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ char		*ft_getpwd(char **env, int old);
 char		**ft_getenv(int argc, char *argv[], char *env[]);
 char		*ft_home(char **env);
 int			ft_cd(char **tab, char **env);
-void		ft_free_tab(char **tab);
+//void		ft_free_tab(char **tab);
 char		*check_bin(char **tab, char **env);
 char		*check_bin2(char *tab0, char **env);
 char		*check_bin3(char *bin, int warning);

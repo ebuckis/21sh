@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/20 15:50:14 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/21 14:35:45 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -32,7 +32,7 @@ bpajot :
 other :
 - gestion des signaux pendant edition ou execution + Ctrl_D EOF
 - se faire une vraie gestion d'erreurs avec des retours coherents ?
-- segfault avec echo $$
+- segfault avec echo $$ --> getpid
 - wc | ls
 _______________________________________________________________________________
 nota-bene :

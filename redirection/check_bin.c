@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   check_bin.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 14:24:58 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 13:38:38 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:05:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,13 +69,13 @@ char		*check_bin2(char *tab0, char **env)
 		ft_memdel((void**)&tmp);
 		if (check_bin3(bin, 0))
 		{
-			ft_free_tab(tab_path);
+			ft_free_tab(&tab_path);
 			return (bin);
 		}
 		ft_memdel((void**)&bin);
 	}
 	ft_printf("minishell: command not found: %s\n", tab0);
-	ft_free_tab(tab_path);
+	ft_free_tab(&tab_path);
 	return (NULL);
 }
 
