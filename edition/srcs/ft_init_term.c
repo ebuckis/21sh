@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 13:56:51 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/21 16:31:17 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 17:03:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 static void ft_exit_term(void)
 {
 	ft_close_parse();
-	ft_putendl("Sorry, terminal name is not found, bye");
+	ft_putendl("Sorry, terminal name is not found, bye.");
 	exit(1);//a definir
 }
 

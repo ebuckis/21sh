@@ -6,17 +6,16 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/21 14:35:45 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/21 17:04:49 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 kcabus :
-- couper, copier et coller OK
 - prendre en compte le ctrl+z pour suspension du programme et reprendre correctement
 - modification du parser pour les != pattern de redirection OK a checker
 - gestion des erreurs dans parsin OK a verifier
-- heredoc <<
+- heredoc << OK
 
 bpajot :
 - gestion des droits de fichier sur les redirections
@@ -34,6 +33,7 @@ other :
 - se faire une vraie gestion d'erreurs avec des retours coherents ?
 - segfault avec echo $$ --> getpid
 - wc | ls
+- affichage d'un message lors d'un segfault (voir bash)
 _______________________________________________________________________________
 nota-bene :
 - le prompt du bash est masqué par le 2> /dev/null
