@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 08:27:26 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 19:06:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 16:49:14 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -126,5 +126,5 @@ int				ft_copy_paste(t_navig *n, char *buf, int fr)
 }
 
 /*
-** le free de copy s'efectue dans ft_close_hist
+** le free de copy s'efectue depuis ft_close_hist
 */
