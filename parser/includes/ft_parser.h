@@ -6,6 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/08/22 15:07:02 by bpajot      ###    #+. /#+    ###.fr     */
 /*   Updated: 2018/08/22 14:11:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
@@ -23,9 +24,9 @@
 # define DOUBLE_QUOTE	'2'
 # define BACKSLASH		'3'
 # define REDIR			'4'
-# define PIPE			'5'
-# define SEMICOLON		'6'
-# define HEREDOC		'7'
+# define HEREDOC		'5'
+# define PIPE			'6'
+# define SEMICOLON		'7'
 
 typedef struct	s_parse
 {
@@ -43,6 +44,7 @@ typedef struct	s_parse
 	int			nb_hdoc;
 	char		**hdoc;
 }				t_parse;
+
 typedef struct	s_doll
 {
 	char	*var;
