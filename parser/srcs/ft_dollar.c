@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 14:11:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 14:23:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 15:47:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static void			ft_end_dollar(t_parse *p, t_doll *d, int i, int j)
+static void		ft_end_dollar(t_parse *p, t_doll *d, int i, int j)
 {
 	ft_strdel(&(p->arg[i]));
 	ft_strdel(&(d->tmp));
@@ -29,7 +29,7 @@ static void			ft_end_dollar(t_parse *p, t_doll *d, int i, int j)
 	ft_strdel(&(d->key));
 }
 
-static void			ft_getvalue_var(t_parse *p, t_doll *d, int i, int j)
+static void		ft_getvalue_var(t_parse *p, t_doll *d, int i, int j)
 {
 	if (d->p1 && d->p2 && d->p2 > d->p1)
 		d->var = ft_strsub(d->p1, 1, d->p2 - d->p1 - 1);
@@ -39,7 +39,7 @@ static void			ft_getvalue_var(t_parse *p, t_doll *d, int i, int j)
 		d->var = ft_strdup(&(p->arg[i][j + 1]));
 }
 
-t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
+t_parse			*ft_dollar(t_parse *p, int i, int j, char **env)
 {
 	t_doll	d;
 
@@ -47,10 +47,10 @@ t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
 	d.p2 = ft_strchr(&(p->arg[i][j + 1]), '}');
 	d.p3 = ft_strchr(&(p->arg[i][j + 1]), '$');
 	ft_getvalue_var(p, &d, i, j);
-dprintf(2, "var = %s\n", d.var);
+//dprintf(2, "var = %s\n", d.var);
 	d.key = (ft_strequ(d.var, "?")) ?
 		ft_itoa(p->ret) : ft_strdup(getenv(d.var));
-dprintf(2, "key = %s\n", d.key);
+//dprintf(2, "key = %s\n", d.key);
 	if (j)
 		d.tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), d.key);
 	else

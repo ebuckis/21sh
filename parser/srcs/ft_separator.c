@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/21 13:04:57 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 15:49:12 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,47 +56,26 @@ static int	ft_get_hdoc(t_parse *p)
 
 static int	ft_suite_sep(t_parse *p)
 {
-		dprintf(2, "-- error 1 --\n");
 	while (ft_isdigit(p->s[p->i]))
 		ft_end_while(p, REDIR);
 	if (p->s[p->i] == '<' && p->s[p->i + 1] && p->s[p->i + 1] == '<')
 	{
 		if (ft_get_hdoc(p) == -1)
 			return (-1);
-		dprintf(2, "-- error 2 --\n");
 		return (1);
 	}
 	if (p->s[p->i] == '<' || p->s[p->i] == '>')
-	{
 		ft_end_while(p, REDIR);
-		dprintf(2, "-- error 3 --\n");
-	}
 	else
-	{
-		dprintf(2, "-- error 4 --\n");
 		return (-1);
-	}
 	if (p->s[p->i] == '<' || p->s[p->i] == '>')
-	{
 		ft_end_while(p, REDIR);
-		dprintf(2, "-- error 5 --\n");
-	}
 	if (p->s[p->i] == '&')
-	{
 		ft_end_while(p, REDIR);
-		dprintf(2, "-- error 6 --\n");
-	}
 	if (!p->s[p->i])
-	{
-		dprintf(2, "-- error 7 --\n");
 		return (-1);
-	}
 	if ((p->s[p->i] <= '9' && p->s[p->i] >= '0') || p->s[p->i] == '-')
-	{
-		dprintf(2, "-- error 8 --\n");
 		ft_end_while(p, REDIR);
-	}
-	dprintf(2, "-- error 9 --\n");
 	return (1);
 }
 
@@ -121,8 +100,6 @@ int			ft_separator(t_parse *p)
 			return (-1);
 		ft_end_while(p, PIPE);
 	}
-//	else if (p->s[p->i] == '&')
-//		return (-1);// a revoir
 	else if (ft_isdigit(p->s[p->i]) || p->s[p->i] == '<' || p->s[p->i] == '>')
 	{
 		if ((p->err = ft_suite_sep(p)) < 1)
