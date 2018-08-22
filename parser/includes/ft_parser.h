@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/21 16:46:07 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 14:11:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,16 @@ typedef struct	s_parse
 	int			nb_hdoc;
 	char		**hdoc;
 }				t_parse;
-
+typedef struct	s_doll
+{
+	char	*var;
+	char	*key;
+	char	*tmp;
+	char	*arg;
+	char	*p1;
+	char	*p2;
+	char	*p3;
+}				t_doll;
 /*
 ** s : line d'entree
 ** str : line parsee
@@ -75,5 +84,6 @@ void			ft_free_tab3(char ***t);
 */
 void			ft_add_space(t_parse *p);
 int				ft_heredoc(t_parse *p);
+t_parse			*ft_dollar(t_parse *p, int i, int j, char **env);
 
 #endif
