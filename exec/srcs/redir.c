@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 18:11:15 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 18:17:36 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,8 @@ static char		*get_path_redir(t_parse *p, int *i, char **env)
 static int		ft_redir_in(t_parse *p, int *i, char **env)
 {
 	int		fd;
+	int		n;
+	char	*pt;
 	char	*path;
 
 	if (!ft_strcmp(p->arg[*i], "<"))
@@ -37,6 +39,14 @@ static int		ft_redir_in(t_parse *p, int *i, char **env)
 		fd = open(path, O_RDONLY);
 		dprintf(2, "< fd : %d\n", fd);
 		dup2(fd, STDIN_FILENO);
+	}
+	else if ((n = ft_atoi(p->arg[*i])) >= 0 && (pt = ft_strchr(p->arg[*i], '<'))
+		&& !pt[1])
+	{
+		path = get_path_redir(p, i, env);
+		fd = open(path, O_RDONLY);
+		dprintf(2, "n< fd : %d\n", fd);
+		dup2(fd, n);
 	}
 	else
 	{

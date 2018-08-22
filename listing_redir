@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/10 11:20:28 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/22 18:12:05 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/22 18:18:53 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -22,7 +22,7 @@ cas possible :
 - OK command n>&-			close fd n
 
 - OK command < file		redirige file sur stdin
-- command n< file		redirige file sur fd n
+- OK command n< file		redirige file sur fd n
 
 - commande << heredoc
 
