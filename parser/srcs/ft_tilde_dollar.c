@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/21 13:06:10 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 10:13:05 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -93,13 +93,19 @@ static t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
 	char	*arg;
 	char	*p1;
 	char	*p2;
+	char	*p3;
 
-	p1 = ft_strchr(&(p->arg[i][j]), '{');
-	p2 = ft_strchr(&(p->arg[i][j]), '}');
-	var = (p1 && p2 && p2 > p1) ? ft_strsub(p1, 1, p2 - p1 - 1) : 
-		ft_strdup(&(p->arg[i][j + 1]));
-	key = (ft_strequ(var, "?")) ? ft_itoa(p->ret) : ft_strdup(getenv(var));
+	p1 = ft_strchr(&(p->arg[i][j + 1]), '{');
+	p2 = ft_strchr(&(p->arg[i][j + 1]), '}');
+	p3 = ft_strchr(&(p->arg[i][j + 1]), '$');
+	if (p1 && p2 && p2 > p1)
+		var = ft_strsub(p1, 1, p2 - p1 - 1);
+	else if (p3)
+		var = ft_strsub(&(p->arg[i][j + 1]), 0, p3 - &(p->arg[i][j + 1]));
+	else
+		var = ft_strdup(&(p->arg[i][j + 1]));
 	dprintf(2, "var = %s\n", var);
+	key = (ft_strequ(var, "?")) ? ft_itoa(p->ret) : ft_strdup(getenv(var));
 	dprintf(2, "key = %s\n", key);
 	if (j)
 		tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), key);
@@ -107,6 +113,12 @@ static t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
 		tmp = (key) ? ft_strdup(key) : ft_strdup("");
 	arg = (p1 && p2 && p2 > p1) ? ft_strjoin(tmp, &(p->arg[i][j + 1]) +
 		ft_strlen(var) + 2) : ft_strdup(tmp);
+	if (p1 && p2 && p2 > p1)
+		arg = ft_strjoin(tmp, &(p->arg[i][j + 1]) + ft_strlen(var) + 2);
+	else if (p3)
+		arg = ft_strjoin(tmp, &(p->arg[i][j + 1]) + ft_strlen(var));
+	else
+		arg = ft_strdup(tmp);
 	ft_memdel((void**)&(p->arg[i]));
 	ft_memdel((void**)&tmp);
 	dprintf(2, "arg = %s\n", arg);

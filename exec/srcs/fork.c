@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 17:41:54 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 09:33:08 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -110,20 +110,20 @@ void			ft_fork_shell(t_parse *p, char ***tab_pipe, char ***p_env,
 			j = -1;
 			while (tab_pid[++j])
 				dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
-			pid2 = fork();
-			if (pid2 == 0)
+			//pid2 = fork();
+			//if (pid2 == 0)
 				ft_execve(p, tab_pipe[i], p_env, 1);
-			else if (pid2 > 0)
-			{
-				waitpid(pid2, &status, WUNTRACED);
-				j = -1;
-				while (tab_pid[++j])
-				{
-					dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
-					waitpid(tab_pid[j], NULL, WUNTRACED);
-				}
-				exit(status);
-			}
+			//else if (pid2 > 0)
+			//{
+			//	waitpid(pid2, &status, WUNTRACED);
+			//	j = -1;
+			//	while (tab_pid[++j])
+			//	{
+			//		dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
+			//		waitpid(tab_pid[j], NULL, WUNTRACED);
+			//	}
+			//	exit(status);
+			//}
 		}
 		else if (pid > 0)
 		{
