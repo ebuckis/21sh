@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:49:12 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 16:29:10 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -86,7 +86,6 @@ static int	ft_suite_sep(t_parse *p)
 
 int			ft_separator(t_parse *p)
 {
-	dprintf(2, "-- error XXX --\n");
 	ft_win_line(p);
 	if (p->s[p->i] == ';')
 	{
