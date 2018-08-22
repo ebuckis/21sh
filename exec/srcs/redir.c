@@ -6,19 +6,34 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 19:14:09 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 17:04:11 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-static int		ft_redir_in(char *path, char **redirec, int i)
+static char		*get_path_redir(t_parse *p, int *i, char **env)
+{
+	char	*pwd;
+	char	*path;
+
+	pwd = ft_getpwd(env, 0);
+	pwd = ft_strjoin(pwd, "/");
+	(*i)++;
+	path = ft_strjoin(pwd, p->arg[*i]);
+	dprintf(2, "path : %s\n", path);
+	return (path);
+}
+
+static int		ft_redir_in(t_parse *p, int *i, char **env)
 {
 	int		fd;
+	char	*path;
 
-	if (!ft_strcmp(redirec[i], "<"))
+	if (!ft_strcmp(p->arg[*i], "<"))
 	{
+		path = get_path_redir(p, i, env);
 		fd = open(path, O_RDONLY);
 		dprintf(2, "< fd : %d\n", fd);
 		dup2(fd, STDIN_FILENO);
@@ -31,7 +46,7 @@ static int		ft_redir_in(char *path, char **redirec, int i)
 	return (fd);
 }
 
-static int		ft_redir_close(char **redirec, int i)
+/*static int		ft_redir_close(char **redirec, int i)
 {
 	int		fd;
 
@@ -52,37 +67,42 @@ static int		ft_redir_close(char **redirec, int i)
 		return (-1);
 	}
 	return (fd);
-}
+}*/
 
-static int		ft_redir_out(char *path, char **redirec, int i)
+static int		ft_redir_out(t_parse *p, int *i, char **env)
 {
 	int		n;
 	int		fd;
-	char	*p;
+	char	*path;
+	char	*pt;
 
-	if (!ft_strcmp(redirec[i], ">"))
+	if (!ft_strcmp(p->arg[*i], ">"))
 	{
+		path = get_path_redir(p, i, env);
 		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dprintf(2, "> fd : %d\n", fd);
 		dup2(fd, STDOUT_FILENO);
 	}
-	else if (!ft_strcmp(redirec[i], ">>"))
+	else if (!ft_strcmp(p->arg[*i], ">>"))
 	{
+		path = get_path_redir(p, i, env);
 		fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		dprintf(2, ">> fd : %d\n", fd);
 		dup2(fd, STDOUT_FILENO);
 	}
-	else if (!ft_strcmp(redirec[i], ">&") || !ft_strcmp(redirec[i], "&>"))
+	else if (!ft_strcmp(p->arg[*i], ">&") || !ft_strcmp(p->arg[*i], "&>"))
 	{
+		path = get_path_redir(p, i, env);
 		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dprintf(2, "&> fd : %d\n", fd);
 		dup2(fd, STDOUT_FILENO);
 		dup2(fd, STDERR_FILENO);
 	}
-	else if ((n = ft_atoi(redirec[i])) >= 0 &&
-			(p = ft_strchr(redirec[i], '>'))
-			&& !p[1])
+	else if ((n = ft_atoi(p->arg[*i])) >= 0 &&
+			(pt = ft_strchr(p->arg[*i], '>'))
+			&& !pt[1])
 	{
+		path = get_path_redir(p, i, env);
 		fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dprintf(2, "n> fd : %d\n", fd);
 		dup2(fd, n);
@@ -95,39 +115,40 @@ static int		ft_redir_out(char *path, char **redirec, int i)
 	return (fd);
 }
 
-static void		ft_redir2(char **commande, char **redirec,
+static void		ft_redir2(t_parse *p, int *redir_lim,
 		int nb_redirec, char **env)
 {
 	int		i;
 	int		fd;
-	char	*pwd;
-	char	*path;
 	pid_t	pid;
 
-	i = -1;
+	i = redir_lim[1] - 1;
 	fd = -1;
-	while (redirec[++i])
+	while (p->arg[++i] && p->arg_id[i][0] < PIPE)
 	{
-		if (ft_strchr(redirec[i * 2], '-'))
-			fd = ft_redir_close(redirec, i);
+		if (ft_strchr(p->arg[i], '-'))
+			;//fd = ft_redir_close(p, i);
+		else if (ft_strchr(p->arg_id[i], HEREDOC))
+			;//???
 		else
 		{
-			pwd = ft_getpwd(env, 0);
-			pwd = ft_strjoin(pwd, "/");
-			path = ft_strjoin(pwd, redirec[i + 1]);
-			dprintf(2, "path : %s\n", path);
-			if (ft_strchr(redirec[i], '>'))
-				fd = ft_redir_out(path, redirec, i);
-			else if (ft_strchr(redirec[i], '<'))
-				fd = ft_redir_in(path, redirec, i);
-			i++;
+			if (ft_strchr(p->arg[i], '>'))
+				fd = ft_redir_out(p, &i, env);
+			else if (ft_strchr(p->arg[i], '<'))
+				fd = ft_redir_in(p, &i, env);
 		}
 	}
 }
 
-void			ft_redir(char **commande, char **redirec, char **env,
+/*void			ft_redir(char **commande, char **redirec, char **env,
 		int nb_redirec)
 {
 	if (nb_redirec)
 		ft_redir2(commande, redirec, nb_redirec, env);
+}*/
+void			ft_redir(t_parse *p, int *redir_lim, char **env,
+		int nb_redirec)
+{
+	if (nb_redirec)
+		ft_redir2(p, redir_lim, nb_redirec, env);
 }
