@@ -6,14 +6,21 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 14:14:54 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 11:49:49 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-char			*ft_lance_edit(t_navig *n)
+char		*ft_ctrl_s(t_navig *n)
+{
+	n->s = ft_strdup("exit");
+	ft_push_enter(n);
+	return (n->s);
+}
+
+char		*ft_lance_edit(t_navig *n)
 {
 	char		buf[5];
 
@@ -26,7 +33,10 @@ char			*ft_lance_edit(t_navig *n)
 			ft_maj_win(n);
 		ft_bzero(buf, 5);
 		read(0, buf, 4);
-		if (KEY_CODE_DIR || KEY_CODE_DEL || KEY_CODE_ALT || IS_PRINTABLE)
+		dprintf(2, "|%d|_|%d|_|%d|_|%d|\n", buf[0], buf[1], buf[2], buf[3]);
+		if (KEY_CTRL_D)
+			return (ft_ctrl_s(n));
+		else if (KEY_CODE_DIR || KEY_CODE_DEL || KEY_CODE_ALT || IS_PRINTABLE)
 		{
 			if (!(ft_key_code(n, buf)))
 				return (NULL);
@@ -43,14 +53,11 @@ char			*ft_lance_edit(t_navig *n)
 				return (0);
 		}
 	}
-	if (n->s_save)
-	{
-		ft_strdel(&(n->s_save));
-	}
+	ft_strdel(&(n->s_save));
 	return (n->s);
 }
 
-char			*ft_edition(char *prompt)
+char		*ft_edition(char *prompt)
 {
 	char		*str;
 
