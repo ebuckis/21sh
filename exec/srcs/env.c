@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   env.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 17:23:35 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:03:46 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,7 +105,7 @@ static int		ft_env2(t_parse *p, char **arg, char **env)
 	ret = ft_env3(p, arg, env3, i);
 	if (!option_i)
 		ft_memdel((void**)&env3);
-	ft_free_tab(env2);
+	ft_free_tab(&env2);
 	return (ret);
 }
 

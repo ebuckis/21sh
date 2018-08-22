@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 11:39:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 16:42:38 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 16:52:48 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-void	ft_free_tab(char **t)
+void	ft_free_tab_2(char **t)
 {
 	int		i;
 
@@ -27,7 +27,12 @@ void	ft_free_tab(char **t)
 		i++;
 	}
 	free(t);
-	t = NULL;
+}
+
+void	ft_free_tab(char ***t)
+{
+	ft_free_tab_2(*(t));
+	*t = NULL;
 }
 
 void	ft_free_tab3(char ***t)
@@ -39,7 +44,7 @@ void	ft_free_tab3(char ***t)
 	i = 0;
 	while (t[i])
 	{
-		ft_free_tab(t[i]);
+		ft_free_tab(&t[i]);
 		i++;
 	}
 	free(t);
@@ -48,22 +53,20 @@ void	ft_free_tab3(char ***t)
 
 int		ft_close_parse(void)
 {
-	t_parse		*p;
-
+	t_parse		**p;
+	
 	p = ft_save_struct(NULL);
-	if (p)
+	if (*p)
 	{
-		if (p->s)
-			free(p->s);
-		if (p->str)
-			free(p->str);
-		if (p->ident)
-			free(p->ident);
-		ft_free_tab(p->arg);
-		ft_free_tab(p->arg_id);
-		ft_free_tab(p->hdoc);
-		free(p);
-		p = NULL;
+		ft_strdel(&((*p)->s));
+		ft_strdel(&((*p)->str));
+		ft_strdel(&((*p)->ident));
+		ft_free_tab(&((*p)->arg));
+		ft_free_tab(&((*p)->arg_id));
+		ft_free_tab(&((*p)->hdoc));
+		if (*p)
+			free(*p);
+		*p = NULL;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 18:18:38 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 11:52:35 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ static void		ft_signal_ctrl_c(int s)
 {
 	(void)s;
 	ft_putendl("");
-	//ft_putstr("21sh $> ");
+	//;printf("%s > \n", getenv("PWD")); a mettre uniquement si on on stop une edition de ligne 
 }
 
 /*
@@ -33,6 +33,7 @@ static void		ft_signal_stop(int s)
 {
 	(void)s;
 	ft_putendl("");
+	//;printf("%s > \n", getenv("PWD")); a mettre uniquement si on on stop une edition de ligne 
 	//ft_putstr("21sh $> ");
 }
 

@@ -3,20 +3,19 @@
 #                                                               /              #
 #    todolist                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
+#    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2018/07/20 15:07:17 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/20 16:11:47 by bpajot      ###    #+. /#+    ###.fr      #
+#    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
+#    Updated: 2018/08/22 09:27:25 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 kcabus :
-- couper, copier et coller OK
 - prendre en compte le ctrl+z pour suspension du programme et reprendre correctement
 - modification du parser pour les != pattern de redirection OK a checker
 - gestion des erreurs dans parsin OK a verifier
-- heredoc <<
+- heredoc << OK
 
 bpajot :
 - gestion des droits de fichier sur les redirections
@@ -32,8 +31,9 @@ bpajot :
 other :
 - gestion des signaux pendant edition ou execution + Ctrl_D EOF
 - se faire une vraie gestion d'erreurs avec des retours coherents ?
-- segfault avec echo $$
+- segfault avec echo $$ --> getpid
 - wc | ls
+- affichage d'un message lors d'un segfault (voir bash)
 _______________________________________________________________________________
 nota-bene :
 - le prompt du bash est masqué par le 2> /dev/null

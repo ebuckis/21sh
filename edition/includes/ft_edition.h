@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 13:52:19 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/21 15:06:18 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,7 @@
 # define CLOSE_HIST -1
 
 # include "../../libft/includes/libft.h"
+# include "../../parser/includes/ft_parser.h"
 # include <curses.h>
 # include <sys/ioctl.h>
 # include <unistd.h>
