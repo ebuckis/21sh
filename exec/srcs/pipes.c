@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 14:28:56 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 15:31:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,22 @@ static void			display(int *tab_pipe)
 		(*i)++;
 	tab_pipe[j] = (char**)malloc(sizeof(char*) * (*i - buf + 1));
 	*i = buf;
+}*/
+
+/*static int			empty_pipe(t_parse *p, int *tab_pipe)
+{
+	int		i;
+
+	i = -1;
+	while (tab_pipe[++i] >= 0)
+	{
+		if (p->arg[tab_pipe[i]] == NULL || p->arg[tab_pipe[i]][0] == 0)
+		{
+			dprintf(2, "arg empty\n");
+			return (1);
+		}
+	}
+	return (0);
 }*/
 
 static int			*create_tab_pipe(t_parse *p, int i, int nb_pipe,
@@ -85,7 +101,10 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 		dprintf(2, "begin = %d\n", begin);
 		tab_pipe = create_tab_pipe(p, begin, nb_pipe, tab_pipe);
 		display(tab_pipe);
-		ft_fork_shell(p, tab_pipe, p_env, nb_pipe);
+		//if (!empty_pipe(p, tab_pipe))
+			ft_fork_shell(p, tab_pipe, p_env, nb_pipe);
+		//else
+		//	p->ret = 0;
 		ft_memdel((void**)&tab_pipe);
 		tab_pipe = NULL;
 	}

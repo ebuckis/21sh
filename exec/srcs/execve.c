@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:03:20 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 15:37:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,8 @@ void		ft_execve(t_parse *p, int tab_pipe_i, char ***p_env)
 	struct stat		buf;
 	int				ret;
 
+	if (!p->arg[tab_pipe_i][0])
+		exit(0);
 	tab_com = manage_redir(p, tab_pipe_i, p_env);
 	if (check_builtin(tab_com))
 		run_builtin(p, tab_com, p_env, tab_pipe_i);
