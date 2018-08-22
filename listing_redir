@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/10 11:20:28 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/22 15:58:09 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/22 18:12:05 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -16,10 +16,10 @@ cas possible :
 - OK command >> file	redirige stdout sur file (open et ecrit a la fin)
 - OK command n> file	redirige fd n sur file
 - OK command >& file	redirige stdin et stdout sur file
-- command > file 2>&1	idem
-- command i>&j			redirige fd i vers fd j
-- command >& n			redirige stdin et stdout sur fd n
-- command n>&-			close fd n
+- OK command > file 2>&1	idem
+- OK command i>&j			redirige fd i vers fd j
+- OK command >&n			redirige stdin et stdout sur fd n
+- OK command n>&-			close fd n
 
 - OK command < file		redirige file sur stdin
 - command n< file		redirige file sur fd n
