@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   fork.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:04:12 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 15:07:59 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,6 +56,7 @@ void			ft_ret_display(t_parse *p, pid_t pid, int status)
 	if (WIFSIGNALED(status))
 	{
 		p->ret = WTERMSIG(status) + 128;
+		//ft retour signal
 		dprintf(2, "\e[31mvalue_termsig_signal = %d\n\e[39m",
 				WTERMSIG(status));
 	}

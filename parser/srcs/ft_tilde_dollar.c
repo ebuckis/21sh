@@ -6,29 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 10:13:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 14:24:59 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
-
-/*static char		*ft_home(char **env)
-{
-	int		i;
-	char	*home;
-
-	i = -1;
-	if (env)
-	{
-		while (env[++i])
-		{
-			if ((home = ft_strstr(env[i], "HOME=")))
-				return (ft_strdup(home + 5));
-		}
-	}
-	return (NULL);
-}*/
 
 static char		*ft_strjoin_free(char *line1, char *line2, int i, int j)
 {
@@ -41,29 +24,6 @@ static char		*ft_strjoin_free(char *line1, char *line2, int i, int j)
 		ft_memdel((void**)&line2);
 	return (tmp);
 }
-
-/*static char		*ft_getenv_value(char **env, char *key)
-{
-	int		i;
-	char	*p;
-	char	*tmp;
-
-	i = -1;
-	if (env)
-	{
-		while (env[++i])
-		{
-			tmp = ft_strjoin_free(key, "=", 1, 0);
-			if ((p = ft_strnstr(env[i], tmp, ft_strlen(tmp))))
-			{
-				ft_memdel((void**)&tmp);
-				return (ft_strdup(p + ft_strlen(key + 1)));
-			}
-			ft_memdel((void**)&tmp);
-		}
-	}
-	return (NULL);
-}*/
 
 static t_parse		*ft_tilde(t_parse *p, int i, char **env)
 {
@@ -85,62 +45,12 @@ static t_parse		*ft_tilde(t_parse *p, int i, char **env)
 	return (p);
 }
 
-static t_parse		*ft_dollar(t_parse *p, int i, int j, char **env)
-{
-	char	*var;
-	char	*key;
-	char	*tmp;
-	char	*arg;
-	char	*p1;
-	char	*p2;
-	char	*p3;
-
-	p1 = ft_strchr(&(p->arg[i][j + 1]), '{');
-	p2 = ft_strchr(&(p->arg[i][j + 1]), '}');
-	p3 = ft_strchr(&(p->arg[i][j + 1]), '$');
-	if (p1 && p2 && p2 > p1)
-		var = ft_strsub(p1, 1, p2 - p1 - 1);
-	else if (p3)
-		var = ft_strsub(&(p->arg[i][j + 1]), 0, p3 - &(p->arg[i][j + 1]));
-	else
-		var = ft_strdup(&(p->arg[i][j + 1]));
-	dprintf(2, "var = %s\n", var);
-	key = (ft_strequ(var, "?")) ? ft_itoa(p->ret) : ft_strdup(getenv(var));
-	dprintf(2, "key = %s\n", key);
-	if (j)
-		tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), key);
-	else
-		tmp = (key) ? ft_strdup(key) : ft_strdup("");
-	arg = (p1 && p2 && p2 > p1) ? ft_strjoin(tmp, &(p->arg[i][j + 1]) +
-		ft_strlen(var) + 2) : ft_strdup(tmp);
-	if (p1 && p2 && p2 > p1)
-		arg = ft_strjoin(tmp, &(p->arg[i][j + 1]) + ft_strlen(var) + 2);
-	else if (p3)
-		arg = ft_strjoin(tmp, &(p->arg[i][j + 1]) + ft_strlen(var));
-	else
-		arg = ft_strdup(tmp);
-	ft_memdel((void**)&(p->arg[i]));
-	ft_memdel((void**)&tmp);
-	dprintf(2, "arg = %s\n", arg);
-	ft_memdel((void**)&(p->arg[i]));
-	p->arg[i] = ft_strdup(arg);
-	ft_memdel((void**)&arg);
-	ft_memdel((void**)&(p->arg_id[i]));
-	p->arg_id[i] = ft_memalloc(ft_strlen(p->arg[i]) + 1);
-	ft_bzero((void*)p->arg_id[i], ft_strlen(p->arg[i]) + 1);
-	ft_memset((void*)p->arg_id[i], WORD, ft_strlen(p->arg[i]));
-	ft_memdel((void**)&var);
-	ft_memdel((void**)&key);
-	return (p);
-}
-
 t_parse		*ft_tilde_dollar(t_parse *p, char **env)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	dprintf(2, "-- entree --\n");
 	if (p->arg)
 	{
 		while (p->arg[++i])
@@ -160,6 +70,5 @@ t_parse		*ft_tilde_dollar(t_parse *p, char **env)
 			}
 		}
 	}
-	dprintf(2, "-- sortie --\n");
 	return (p);
 }

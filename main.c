@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/24 13:56:59 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 12:51:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
+/*   Updated: 2018/08/22 15:06:29 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -165,6 +165,6 @@ int				main(int argc, char *argv[], char *env[])
 		main2(string, my_env, &a);
 	}
 	ft_free_tab(&my_env);
-	sleep(3);
+//	sleep(3);
 	return (a);
 }
