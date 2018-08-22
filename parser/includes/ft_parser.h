@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 08:10:02 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/21 16:46:07 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 13:04:26 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,9 +23,9 @@
 # define DOUBLE_QUOTE	'2'
 # define BACKSLASH		'3'
 # define REDIR			'4'
-# define PIPE			'5'
-# define SEMICOLON		'6'
-# define HEREDOC		'7'
+# define HEREDOC		'5'
+# define PIPE			'6'
+# define SEMICOLON		'7'
 
 typedef struct	s_parse
 {

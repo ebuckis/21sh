@@ -6,32 +6,25 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/21 16:30:26 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 14:28:56 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-static void			display(char ***tab_pipe)
+static void			display(int *tab_pipe)
 {
 	int		i;
-	int		j;
 
 	i = -1;
-	while (tab_pipe[++i])
-	{
-		j = -1;
-		dprintf(2, "pipe %d : ", i);
-		while (tab_pipe[i][++j])
-			dprintf(2, "%s ", tab_pipe[i][j]);
-		dprintf(2, "%s ", tab_pipe[i][j]);
-		dprintf(2, "\n");
-	}
-	dprintf(2, "pipe %d : %p\n", i, tab_pipe[i]);
+	dprintf(2, "tab_pipe :\n");
+	while (tab_pipe[++i] >= 0)
+		dprintf(2, "tab_pipe[%d] = %d\n", i, tab_pipe[i]);
+	dprintf(2, "tab_pipe[%d] = %d\n", i, tab_pipe[i]);
 }
 
-static void			create_tab_pipe2(t_parse *p, int *i, int j,
+/*static void			create_tab_pipe2(t_parse *p, int *i, int j,
 		char ***tab_pipe)
 {
 	int		buf;
@@ -42,32 +35,24 @@ static void			create_tab_pipe2(t_parse *p, int *i, int j,
 		(*i)++;
 	tab_pipe[j] = (char**)malloc(sizeof(char*) * (*i - buf + 1));
 	*i = buf;
-}
+}*/
 
-static char			***create_tab_pipe(t_parse *p, int i, int nb_pipe,
-		char ***tab_pipe)
+static int			*create_tab_pipe(t_parse *p, int i, int nb_pipe,
+		int *tab_pipe)
 {
 	int		j;
-	int		k;
 
-	tab_pipe = (char***)malloc(sizeof(char**) * (nb_pipe + 2));
-	j = 0;
-	k = -1;
+	tab_pipe = (int*)malloc(sizeof(int) * (nb_pipe + 2));
+	tab_pipe[0] = i;
+	j = 1;
 	while (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 	{
-		if (!ft_strchr(p->arg_id[i], PIPE))
-		{
-			create_tab_pipe2(p, &i, j, tab_pipe);
-			while (p->arg[i] && !ft_strchr(p->arg_id[i], PIPE) &&
-				!ft_strchr(p->arg_id[i], SEMICOLON))
-				tab_pipe[j][++k] = ft_strdup(p->arg[i++]);
-			tab_pipe[j++][++k] = NULL;
-			k = -1;
-		}
+		if (ft_strchr(p->arg_id[i], PIPE))
+			tab_pipe[j++] = ++i;
 		else
 			i++;
 	}
-	tab_pipe[j] = NULL;
+	tab_pipe[j] = -1;
 	return (tab_pipe);
 }
 
@@ -75,7 +60,7 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 {
 	int		i;
 	int		nb_pipe;
-	char	***tab_pipe;
+	int 	*tab_pipe;
 
 	i = begin;
 	nb_pipe = 0;
@@ -97,10 +82,11 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 			i++;
 		}
 		dprintf(2, "nb_pipe = %d\n", nb_pipe);
+		dprintf(2, "begin = %d\n", begin);
 		tab_pipe = create_tab_pipe(p, begin, nb_pipe, tab_pipe);
 		display(tab_pipe);
 		ft_fork_shell(p, tab_pipe, p_env, nb_pipe);
-		ft_free_tab3(tab_pipe);
+		ft_memdel((void**)&tab_pipe);
 		tab_pipe = NULL;
 	}
 }

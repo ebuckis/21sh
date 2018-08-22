@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/21 16:03:46 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 13:36:33 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,7 +55,8 @@ int				ft_tab_size(char **arg, char **tab_ref)
 	return (i - doublon);
 }
 
-static int		ft_env3(t_parse *p, char **arg, char **env, int i)
+static int		ft_env3(t_parse *p, char **arg, char **env, int i,
+		int tab_pipe_i)
 {
 	pid_t	pid;
 	int		status;
@@ -64,12 +65,12 @@ static int		ft_env3(t_parse *p, char **arg, char **env, int i)
 	if (arg[i])
 	{
 		if (check_builtin(&arg[i]))
-			run_builtin(p, &arg[i], &env, 0);
+			run_builtin(p, &arg[i], &env, tab_pipe_i);
 		else
 		{
 			pid = fork();
 			if (pid == 0)
-				ft_execve(p, &arg[i], &env, 1);
+				ft_execve(p, i, &env);//, 1);
 			else if (pid > 0)
 			{
 				waitpid(pid, &status, WUNTRACED);
@@ -83,7 +84,7 @@ static int		ft_env3(t_parse *p, char **arg, char **env, int i)
 	return (0);
 }
 
-static int		ft_env2(t_parse *p, char **arg, char **env)
+static int		ft_env2(t_parse *p, char **arg, char **env, int tab_pipe_i)
 {
 	int		i;
 	int		option_i;
@@ -102,14 +103,14 @@ static int		ft_env2(t_parse *p, char **arg, char **env)
 		env2[i - option_i - 1] = ft_strdup(arg[i]);
 	env2[i - option_i - 1] = NULL;
 	env3 = (option_i) ? env2 : ft_mix_env(env, env2);
-	ret = ft_env3(p, arg, env3, i);
+	ret = ft_env3(p, arg, env3, i, tab_pipe_i);
 	if (!option_i)
 		ft_memdel((void**)&env3);
 	ft_free_tab(&env2);
 	return (ret);
 }
 
-int				ft_env(t_parse *p, char **arg, char **env)
+int				ft_env(t_parse *p, char **arg, char **env, int tab_pipe_i)
 {
 	int		ret;
 
@@ -117,6 +118,6 @@ int				ft_env(t_parse *p, char **arg, char **env)
 	if (!arg[1])
 		display_env(env);
 	else
-		return (ft_env2(p, arg, env));
+		return (ft_env2(p, arg, env, tab_pipe_i));
 	return (ret);
 }
