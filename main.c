@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:06:29 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/22 17:14:25 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,7 +98,7 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 
 	n = 0;
 	i = 0;
-	while (p->arg_id[i] && ft_strcmp(p->arg[i], "exit"))
+	while (p->arg_id[i] && (ft_strcmp(p->arg[i], "exit"))) // gestion pas exit pipe
 	{
 		begin = i;
 		dprintf(2, "----------\n");
@@ -128,7 +128,7 @@ void			main2(char *string, char **env, int *a)
 {
 	static int		ret = 0;
 	static int		child_pid = 0;
-	t_parse *p;
+	t_parse			*p;
 
 	if (string)
 	{

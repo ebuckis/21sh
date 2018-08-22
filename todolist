@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/22 09:27:25 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/22 17:17:32 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,9 +19,14 @@ kcabus :
 
 bpajot :
 - gestion des droits de fichier sur les redirections
-- gestion de tout le listing de redirections dont les fermetures
+- gestion de tout le listing de redirections dont les fermetures et les heredocs
 - gestion des $var et ~ OK
 - $? OK
+- $$ getpid
+- pas faire exit si pipe
+- wc | ls
+- message erreur si segfault ...
+- check env -i toujours ok
 - leaks OK ?
 - norminette en cours
 - commentaire
