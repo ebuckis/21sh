@@ -6,20 +6,21 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/22 17:17:32 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/23 11:19:15 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 kcabus :
-- prendre en compte le ctrl+z pour suspension du programme et reprendre correctement
+- prendre en compte le ctrl+z pour suspension du programme et reprendre correctement OK
 - modification du parser pour les != pattern de redirection OK a checker
 - gestion des erreurs dans parsin OK a verifier
-- heredoc << OK
+- heredoc << NOK transformer texte
+- si ctrl-c pendant edition, passer p->ret a 1
 
 bpajot :
 - gestion des droits de fichier sur les redirections
-- gestion de tout le listing de redirections dont les fermetures et les heredocs
+- gestion de tout le listing de redirections dont les fermetures et les heredocs OK
 - gestion des $var et ~ OK
 - $? OK
 - $$ getpid
