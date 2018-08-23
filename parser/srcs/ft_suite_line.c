@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 16:41:57 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 15:50:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,10 @@ int			ft_suite_line(t_parse *p, int i, char *prompt)
 		if (!(p->s = ft_strjoin_del(p->s, "\n")))
 			return (0);
 	}
-	if (!(tmp = ft_edition(prompt)))
+	tmp = ft_edition(prompt);
+	if (g_nav.err == SIG_CTRLD)
+		return (0);
+	if (!tmp)
 		return (1);
 	if (!(p->s = ft_strjoin_del(p->s, tmp)))
 		return (0);
