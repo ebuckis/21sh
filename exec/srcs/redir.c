@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 18:17:36 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 10:59:01 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ static char		*get_path_redir(t_parse *p, int *i, char **env)
 	return (path);
 }
 
-static int		ft_redir_in(t_parse *p, int *i, char **env)
+static void		ft_redir_in(t_parse *p, int *i, char **env)
 {
 	int		fd;
 	int		n;
@@ -49,14 +49,10 @@ static int		ft_redir_in(t_parse *p, int *i, char **env)
 		dup2(fd, n);
 	}
 	else
-	{
 		ft_putendl("redirection parse error");
-		return (-1);
-	}
-	return (fd);
 }
 
-static int		ft_redir_close(t_parse *p, int *i)
+static void		ft_redir_close(t_parse *p, int *i)
 {
 	int		fd;
 
@@ -72,14 +68,10 @@ static int		ft_redir_close(t_parse *p, int *i)
 		close(fd);
 	}
 	else
-	{
 		ft_putendl("redirection parse error");
-		return (-1);
-	}
-	return (fd);
 }
 
-static int		ft_redir_out(t_parse *p, int *i, char **env)
+static void		ft_redir_out(t_parse *p, int *i, char **env)
 {
 	int		n;
 	int		m;
@@ -133,36 +125,51 @@ static int		ft_redir_out(t_parse *p, int *i, char **env)
 		dup2(m, STDERR_FILENO);
 	}
 	else
-	{
 		ft_putendl("redirection parse error");
-		return (-1);
-	}
-	return (fd);
+}
+
+void			ft_redir_heredoc(t_parse *p, int *i, char **env)
+{
+	char		*home;
+	char		*tmp;
+	char		*path;
+	int			fd;
+
+	(*i)++;
+	home = ft_home(env);
+	tmp = ft_strjoin(home, "/");
+	path = ft_strjoin(tmp, ".heredoc");
+	fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	ft_putstr_fd(p->arg[*i], fd);
+	close(fd);
+	fd = open(path, O_RDONLY);
+	dup2(fd, STDIN_FILENO);
+	ft_strdel(&home);
+	ft_strdel(&tmp);
+	ft_strdel(&path);
 }
 
 void			ft_redir(t_parse *p, int *redir_lim, char **env,
 		int nb_redirec)
 {
 	int		i;
-	int		fd;
 	pid_t	pid;
 
 	if (nb_redirec)
 	{
 		i = redir_lim[1] - 1;
-		fd = -1;
 		while (p->arg[++i] && p->arg_id[i][0] < PIPE)
 		{
 			if (ft_strchr(p->arg[i], '-'))
-				fd = ft_redir_close(p, &i);
+				ft_redir_close(p, &i);
 			else if (ft_strchr(p->arg_id[i], HEREDOC))
-				;//???
+				ft_redir_heredoc(p, &i, env);
 			else
 			{
 				if (ft_strchr(p->arg[i], '>'))
-					fd = ft_redir_out(p, &i, env);
+					ft_redir_out(p, &i, env);
 				else if (ft_strchr(p->arg[i], '<'))
-					fd = ft_redir_in(p, &i, env);
+					ft_redir_in(p, &i, env);
 			}
 		}
 	}
