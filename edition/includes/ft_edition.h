@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 15:32:29 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 16:40:29 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,7 +68,6 @@ typedef struct		s_navig
 	int				to_small;
 	char			*tmp_char;
 	int				err;
-	
 	int				tmp_int;
 }					t_navig;
 
