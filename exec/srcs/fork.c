@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:07:59 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 12:10:24 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,44 +91,39 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 	int				j;
 	pid_t			*tab_pid;
 
-//	if (!nb_pipe && check_builtin(tab_pipe[0]))
-//		run_builtin(p, tab_pipe[0], p_env, 0);
-//	else
-//	{
-		pid = fork();
-		if (pid == 0)
+	pid = fork();
+	if (pid == 0)
+	{
+		i = 0;
+		//tab_pid = (pid_t*)malloc(sizeof(pid_t) * (nb_pipe + 1));
+		//tab_pid[nb_pipe] = 0;
+		while (nb_pipe-- > 0)
 		{
-			i = 0;
-			//tab_pid = (pid_t*)malloc(sizeof(pid_t) * (nb_pipe + 1));
-			//tab_pid[nb_pipe] = 0;
-			while (nb_pipe-- > 0)
-			{
 			//	tab_pid[i] = ft_fork_pipe(p, tab_pipe, p_env, i);
-				ft_fork_pipe(p, tab_pipe, p_env, i);
-				i++;
-			}
-			//j = -1;
-			//while (tab_pid[++j])
-				//dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
-			//pid2 = fork();
-			//if (pid2 == 0)
-			ft_execve(p, tab_pipe[i], p_env);
-			//else if (pid2 > 0)
-			//{
-			//	waitpid(pid2, &status, WUNTRACED);
-			//	j = -1;
-			//	while (tab_pid[++j])
-			//	{
-			//		dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
-			//		waitpid(tab_pid[j], NULL, WUNTRACED);
-			//	}
-			//	exit(status);
-			//}
+			ft_fork_pipe(p, tab_pipe, p_env, i);
+			i++;
 		}
-		else if (pid > 0)
-		{
-			waitpid(pid, &status, WUNTRACED);
-			ft_ret_display(p, pid, status);
-		}
-//	}
+		//j = -1;
+		//while (tab_pid[++j])
+		//dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
+		//pid2 = fork();
+		//if (pid2 == 0)
+		ft_execve(p, tab_pipe[i], p_env);
+		//else if (pid2 > 0)
+		//{
+		//	waitpid(pid2, &status, WUNTRACED);
+		//	j = -1;
+		//	while (tab_pid[++j])
+		//	{
+		//		dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
+		//		waitpid(tab_pid[j], NULL, WUNTRACED);
+		//	}
+		//	exit(status);
+		//}
+	}
+	else if (pid > 0)
+	{
+		waitpid(pid, &status, WUNTRACED);
+		ft_ret_display(p, pid, status);
+	}
 }
