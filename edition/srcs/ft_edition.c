@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 16:36:26 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 17:17:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 
 char		*ft_ctrl_s(t_navig *n)
 {
+	ft_strdel(&(n->s));
 	n->s = ft_strdup("exit");
 	if (!(n->err = ft_push_enter(n)))
 		return (NULL);
