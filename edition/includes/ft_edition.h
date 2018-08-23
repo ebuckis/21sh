@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 16:43:33 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 15:32:29 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,6 +31,7 @@
 # define KEY_CTRL_E			(buf[0] == 5 && !buf[1])//copier jusqu'au debut
 # define KEY_CTRL_W			(buf[0] == 23 && !buf[1])//copier jusqu'a la fin
 # define KEY_CTRL_T			(buf[0] == 20 && !buf[1])//coller
+# define SIG_CTRLD			-4
 
 # define CHAR_AJOUT 1
 # define CHAR_SUPPR 2
@@ -66,6 +67,8 @@ typedef struct		s_navig
 	int				y_first;
 	int				to_small;
 	char			*tmp_char;
+	int				err;
+	
 	int				tmp_int;
 }					t_navig;
 
