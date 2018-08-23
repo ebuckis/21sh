@@ -6,27 +6,32 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 16:04:06 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 14:25:04 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static char	*ft_recup_s(t_parse *p)
+static void	ft_replace_arg(t_parse *p, int j)
 {
-	int		start;
-	int		lg;
+	int		len;
+	char	*tmp;
 
-	lg = 0;
-	p->i += 3;
-	start = p->i;
-	while (p->ident[p->i] && p->ident[p->i] != -1)
+	if (!p->hdoc[j])
+		p->hdoc[j] = ft_strdup("");
+	len = ft_strlen(p->hdoc[j]);
+	ft_strdel(&(p->arg[p->i]));
+	p->arg[p->i] = ft_strdup(p->hdoc[j]);
+	tmp = ft_strnew(len);
+	tmp[len] = '\0';
+	while (len)
 	{
-		lg++;
-		p->i++;
+		len--;
+		tmp[len] = HEREDOC;
 	}
-	return (ft_strsub(p->str, start, lg));
+	ft_strdel(&(p->arg_id[p->i]));
+	p->arg_id[p->i] = tmp;
 }
 
 static int	ft_save_hdoc(t_parse *p, int j)
@@ -35,8 +40,8 @@ static int	ft_save_hdoc(t_parse *p, int j)
 	char	*line;
 	char	*tmp;
 
-	if (!(stop = ft_recup_s(p)))
-		return (0);
+	p->i++;
+	stop = p->arg[p->i];
 	while (101)
 	{
 		line = ft_edition("heredoc > ");
@@ -53,7 +58,8 @@ static int	ft_save_hdoc(t_parse *p, int j)
 		free(tmp);
 		p->hdoc[j] = line;
 	}
-	free(stop);
+	ft_replace_arg(p, j);
+	p->i++;
 	return (1);
 }
 
@@ -71,9 +77,10 @@ int			ft_heredoc(t_parse *p)
 	}
 	j = 0;
 	p->hdoc[p->nb_hdoc] = NULL;
-	while (p->str[p->i] && p->ident[p->i])
+	while (p->arg[p->i] && p->arg_id[p->i])
 	{
-		if (p->ident[p->i] == HEREDOC)
+		dprintf(2, "+++++++++++on est a arg[%d] : %s\n", p->i, p->arg[p->i]);
+		if (p->arg_id[p->i][0] == HEREDOC)
 		{
 			ft_save_hdoc(p, j);
 			j++;
