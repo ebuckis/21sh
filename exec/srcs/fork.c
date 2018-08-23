@@ -6,17 +6,18 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 12:10:24 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 14:53:03 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-static pid_t	ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
+static int		*ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 {
 	int		pid;
 	int		pipeline[2];
+	int		*pid_pipe;
 
 	pipe(pipeline);
 	pid = fork();
@@ -36,9 +37,15 @@ static pid_t	ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 	{
 		dup2(pipeline[0], STDIN_FILENO);
 		close(pipeline[1]);
-		return (pid);
+		if ((pid_pipe = (int*)malloc(sizeof(int) * 3)))
+		{
+			pid_pipe[0] = pid;
+			pid_pipe[1] = pipeline[0];
+			pid_pipe[2] = pipeline[1];
+		}
+		return (pid_pipe);
 	}
-	return (0);
+	return (NULL);
 }
 
 void			ft_ret_display(t_parse *p, pid_t pid, int status)
@@ -89,37 +96,59 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 	int				buf;
 	int				i;
 	int				j;
-	pid_t			*tab_pid;
+	int				k;
+	int				*pid_pipe;
+	t_pid_pipe		**pp;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		i = 0;
-		//tab_pid = (pid_t*)malloc(sizeof(pid_t) * (nb_pipe + 1));
-		//tab_pid[nb_pipe] = 0;
-		while (nb_pipe-- > 0)
+		i = -1;
+		pp = (t_pid_pipe**)malloc(sizeof(t_pid_pipe*) * (nb_pipe + 2));
+		while (++i < nb_pipe + 1)
 		{
-			//	tab_pid[i] = ft_fork_pipe(p, tab_pipe, p_env, i);
-			ft_fork_pipe(p, tab_pipe, p_env, i);
+			pp[i] = (t_pid_pipe*)malloc(sizeof(t_pid_pipe));
+			dprintf(2, "pp[%d] = %p\n", i, pp[i]);
+		}
+		i = 0;
+		pp[nb_pipe + 1] = NULL;
+		pp[0]->pipeline[0] = 0;
+		pp[nb_pipe]->pid = pid;
+		pp[nb_pipe]->pipeline[1] = 1;
+		k = nb_pipe;
+		while (k-- > 0)
+		{
+			pid_pipe = ft_fork_pipe(p, tab_pipe, p_env, i);
+			pp[i]->pid = pid_pipe[0];
+			pp[i + 1]->pipeline[0] = pid_pipe[1];
+			pp[i]->pipeline[1] = pid_pipe[2];
+			//ft_fork_pipe(p, tab_pipe, p_env, i);
 			i++;
 		}
-		//j = -1;
-		//while (tab_pid[++j])
-		//dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
-		//pid2 = fork();
-		//if (pid2 == 0)
-		ft_execve(p, tab_pipe[i], p_env);
-		//else if (pid2 > 0)
-		//{
-		//	waitpid(pid2, &status, WUNTRACED);
-		//	j = -1;
-		//	while (tab_pid[++j])
-		//	{
-		//		dprintf(2, "tab_pid[%d] = %d\n", j, tab_pid[j]);
-		//		waitpid(tab_pid[j], NULL, WUNTRACED);
-		//	}
-		//	exit(status);
-		//}
+		j = -1;
+		while (pp[++j])
+			dprintf(2, "pp[%d]: pid=%d pipe[0]=%d pipe[1]=%d\n",
+				j, pp[j]->pid, pp[j]->pipeline[0], pp[j]->pipeline[1]);
+		pid2 = fork();
+		if (pid2 == 0)
+			ft_execve(p, tab_pipe[i], p_env);
+		else if (pid2 > 0)
+		{
+			waitpid(pid2, &status, WUNTRACED);
+			j = nb_pipe + 1;
+			while (--j > 0)
+			{
+				dprintf(2, "pp[%d]->pid = %d waiting\n", nb_pipe - j,
+					pp[nb_pipe -j]->pid);
+				dprintf(2, "close nb_pipe=%d j=%d\n", nb_pipe, j);
+				close(pp[nb_pipe - j + 1]->pipeline[0]);
+				close(pp[nb_pipe - j]->pipeline[1]);
+				waitpid(pp[nb_pipe - j]->pid, NULL, WUNTRACED);
+				dprintf(2, "pp[%d]->pid = %d finish\n", nb_pipe - j,
+					pp[nb_pipe -j]->pid);
+			}
+			exit(status);
+		}
 	}
 	else if (pid > 0)
 	{
