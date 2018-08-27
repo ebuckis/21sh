@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   exec.h                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 12:50:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 11:58:44 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,5 +59,8 @@ int			ft_setenv(char **arg, char ***env);
 int			ft_unsetenv(char **arg, char ***env);
 void		manage_signal(void);
 void		ft_ret_display(t_parse *p, pid_t pid, int status);
+int			ft_redir_out(t_parse *p, int *i, char **env);
+int			ft_redir_in(t_parse *p, int *i, char **env);
+char		*get_path_redir(t_parse *p, int *i, char **env);
 
 #endif

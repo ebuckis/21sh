@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/26 13:47:35 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/27 11:55:05 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -43,7 +43,9 @@ N_SRCS =	cd.c					\
 			pipes.c					\
 			redir.c					\
 			setenv.c				\
-			unsetenv.c
+			unsetenv.c				\
+			ft_redir_out.c			\
+			ft_redir_in.c
 
 all : $(NAME)
 
