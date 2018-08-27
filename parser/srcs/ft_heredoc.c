@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 14:25:04 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 17:54:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,7 +79,7 @@ int			ft_heredoc(t_parse *p)
 	p->hdoc[p->nb_hdoc] = NULL;
 	while (p->arg[p->i] && p->arg_id[p->i])
 	{
-		dprintf(2, "+++++++++++on est a arg[%d] : %s\n", p->i, p->arg[p->i]);
+		//dprintf(2, "+++++++++++on est a arg[%d] : %s\n", p->i, p->arg[p->i]);
 		if (p->arg_id[p->i][0] == HEREDOC)
 		{
 			ft_save_hdoc(p, j);

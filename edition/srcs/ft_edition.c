@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 17:17:21 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 17:55:24 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,7 +69,7 @@ char		*ft_edition(char *prompt)
 {
 	char		*str;
 
-	dprintf(2, "((((((((((((ON ENTRE DANS EDITION))))))))))))\n");
+	//dprintf(2, "((((((((((((ON ENTRE DANS EDITION))))))))))))\n");
 	str = NULL;
 	if (!(g_nav.err = ft_init_term(&(g_nav.t))))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 13:47:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 17:52:50 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,7 +77,6 @@ t_parse		*ft_parser(char *line, pid_t child_pid, char **env, int ret)
 		p->arg = ft_strsplit(p->str, -1);
 		p->arg_id = ft_strsplit(p->ident, -1);
 		p->ret = ret;
-		dprintf(2, "child_pid in parse = %d\n", child_pid);
 		p->child_pid = child_pid;
 		ft_heredoc(p);
 		p = ft_tilde_dollar(p, env);

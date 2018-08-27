@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 16:03:11 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 17:57:23 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static wchar_t	*ft_strdup_wchar(char *str)
 	wstr[i] = '\0';
 	return (wstr);
 }
-
+/*
 static void		debug_display_struct(t_parse *p)
 {
 	int		i;
@@ -59,6 +59,7 @@ static void		debug_display_struct(t_parse *p)
 	ft_memdel((void**)&str);
 	ft_memdel((void**)&ident);
 }
+*/
 
 /*
 ** gestion valeur retour exit
@@ -68,8 +69,8 @@ static void		ft_exit(int *a, int n, char *arg)
 {
 	int		i;
 
-	dprintf(2, "----------\n");
-	dprintf(2, "command nb %d\n", n);
+	//dprintf(2, "----------\n");
+	//dprintf(2, "command nb %d\n", n);
 	i = 0;
 	while (arg && ((i == 0 && arg[i] == '-') || ft_isdigit(arg[i])))
 		i++;
@@ -82,8 +83,8 @@ static void		ft_exit(int *a, int n, char *arg)
 		ft_printf("21sh: exit: %s: numeric argument required\n", arg);
 		*a = 255;
 	}
-	dprintf(2, "exit value = %d\n", *a);
-	dprintf(2, "----------\n");
+	//dprintf(2, "exit value = %d\n", *a);
+	//dprintf(2, "----------\n");
 }
 
 /*
@@ -102,17 +103,17 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 		p->arg_id[i + 1][0] < SEMICOLON)))
 	{
 		begin = i;
-		dprintf(2, "----------\n");
-		dprintf(2, "command nb %d\n", n);
+		//dprintf(2, "----------\n");
+		//dprintf(2, "command nb %d\n", n);
 		while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 		{
-			dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
-			dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
+			//dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
+			//dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
 			i++;
 		}
 		i += (p->arg_id[i]) ? 1 : 0;
 		n++;
-		dprintf(2, "begin = %d\n", begin);
+		//dprintf(2, "begin = %d\n", begin);
 		ft_manage_pipe(p, begin, p_env);
 	}
 	if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
@@ -135,7 +136,7 @@ void			main2(char *string, char **env, int *a)
 	{
 		if ((p = ft_parser(string, child_pid, env, ret)))
 		{
-			debug_display_struct(p);
+			//debug_display_struct(p);
 			ft_manage_semicolon_exit(p, a, &env);
 			ret = p->ret;
 			child_pid = p->child_pid;
@@ -166,6 +167,5 @@ int				main(int argc, char *argv[], char *env[])
 		main2(string, my_env, &a);
 	}
 	ft_free_tab(&my_env);
-	//sleep(5);
 	return (a);
 }
