@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 13:26:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/26 16:30:03 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 16:03:30 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,14 +30,14 @@ int		ft_fg(t_parse *p)
 				dprintf(2, "\e[32mreturn_value_final = %d\n\e[39m", p->ret);
 			p->child_pid = 0;
 		}
-		if (WIFSIGNALED(status))
+		else if (WIFSIGNALED(status))
 		{
 			p->ret = WTERMSIG(status) + 128;
 			dprintf(2, "\e[31mvalue_termsig_signal = %d\n\e[39m",
 					WTERMSIG(status));
 			p->child_pid = 0;
 		}
-		if (WIFSTOPPED(status))
+		else if (WIFSTOPPED(status))
 		{
 			p->ret = WSTOPSIG(status) + 128;
 			dprintf(2, "\e[31mvalue_stop_signal = %d\n\e[39m",

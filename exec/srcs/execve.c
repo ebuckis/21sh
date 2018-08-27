@@ -6,14 +6,23 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 16:56:02 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 13:07:04 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
-void		ft_execve(t_parse *p, int tab_pipe_i, char ***p_env)
+static void		ft_execve_warning(char *path, char **tab_com)
+{
+	if (access(path, X_OK))
+		ft_printf("21sh: permission denied: %s\n", tab_com[0]);
+	else
+		ft_printf("21sh: not a regular file: %s\n", tab_com[0]);
+	exit(126);
+}
+
+void			ft_execve(t_parse *p, int tab_pipe_i, char ***p_env)
 {
 	char			*path;
 	char			**tab_com;
@@ -29,16 +38,10 @@ void		ft_execve(t_parse *p, int tab_pipe_i, char ***p_env)
 	{
 		path = check_bin(tab_com, *p_env);
 		if (path && !access(path, X_OK) && ((ret = stat(path, &buf)) == 0) &&
-			(buf.st_mode & S_IFREG))
+				(buf.st_mode & S_IFREG))
 			execve(path, tab_com, *p_env);
 		else if (path)
-		{
-			if (access(path, X_OK))
-				ft_printf("21sh: permission denied: %s\n", tab_com[0]);
-			else
-				ft_printf("21sh: not a regular file: %s\n", tab_com[0]);
-			exit(126);
-		}
+			ft_execve_warning(path, tab_com);
 		else
 			exit(127);
 	}
