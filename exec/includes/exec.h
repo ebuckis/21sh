@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/20 15:32:40 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 12:50:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 12:09:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,6 @@
 
 # include "../../parser/includes/ft_parser.h"
 # include "../../libft/includes/libft.h"
-//# include "../../edition/includes/ft_edition.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/stat.h>
@@ -24,13 +23,6 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <locale.h>
-
-
-typedef struct	s_pid_pipe
-{
-	pid_t		pid;
-	int			pipeline[2];
-}				t_pid_pipe;
 
 void		ft_manage_pipe(t_parse *p, int begin, char ***p_env);
 void		ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
