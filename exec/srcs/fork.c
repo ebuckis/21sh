@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 16:25:52 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/23 19:43:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ static int		*ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 	int		*pid_pipe;
 
 	pipe(pipeline);
+	dprintf(2, "pipe[0] = %d\npipe[1] = %d\n", pipeline[0], pipeline[1]);
 	pid = fork();
 	if (pid < 0)
 	{
@@ -96,7 +97,6 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 	int				buf;
 	int				i;
 	int				j;
-	int				k;
 	int				*pid_pipe;
 	t_pid_pipe		**pp;
 
@@ -114,18 +114,15 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 		pp[0]->pipeline[0] = 0;
 		pp[nb_pipe]->pid = pid;
 		pp[nb_pipe]->pipeline[1] = 1;
-		k = nb_pipe;
-		//i = 0;
-		i = nb_pipe - 1;
-		while (k-- > 0)
+		j = nb_pipe;
+		i = 0;
+		while (j-- > 0)
 		{
 			pid_pipe = ft_fork_pipe(p, tab_pipe, p_env, i);
 			pp[i]->pid = pid_pipe[0];
 			pp[i + 1]->pipeline[0] = pid_pipe[1];
 			pp[i]->pipeline[1] = pid_pipe[2];
-			//ft_fork_pipe(p, tab_pipe, p_env, i);
-			//i++;
-			i--;
+			i++;
 		}
 		j = -1;
 		while (pp[++j])
@@ -137,23 +134,15 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 		else if (pid2 > 0)
 		{
 			waitpid(pid2, &status, WUNTRACED);
-		//	close(pp[nb_pipe]->pipeline[0]);
-			//close(pp[nb_pipe - 1]->pipeline[1]);
-			j = nb_pipe + 1;
-			while (--j > 0)
+			j = nb_pipe;
+			while (--j >= 0)
 			{
-				dprintf(2, "pp[%d]->pid = %d waiting\n", nb_pipe - j,
-					pp[nb_pipe -j]->pid);
-				dprintf(2, "close nb_pipe=%d j=%d\n", nb_pipe, j);
-				dprintf(2, "pp[%d]->pipe[0]=%d\n", nb_pipe - j + 1,
-					pp[nb_pipe - j + 1]->pipeline[0]);
-				dprintf(2, "pp[%d]->pipe[1]=%d\n", nb_pipe - j,
-					pp[nb_pipe - j]->pipeline[1]);
-				waitpid(pp[nb_pipe - j]->pid, NULL, WUNTRACED);
-		//		close(pp[nb_pipe - j + 1]->pipeline[0]);
-		//		//close(pp[nb_pipe - j]->pipeline[1]);
-				dprintf(2, "pp[%d]->pid = %d finish\n", nb_pipe - j,
-					pp[nb_pipe -j]->pid);
+				dprintf(2, "pp[%d]->pid = %d waiting\n", j, pp[j]->pid);
+				if ((ft_strequ(p->arg[tab_pipe[j]], "yes")) ||
+					(ft_strequ(p->arg[tab_pipe[j]], "top")))
+					kill(pp[j]->pid, 9);
+				waitpid(pp[j]->pid, NULL, WUNTRACED);
+				dprintf(2, "pp[%d]->pid = %d finish\n", j, pp[j]->pid);
 			}
 			exit(status);
 		}
