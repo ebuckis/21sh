@@ -6,26 +6,33 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 15:50:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 09:03:52 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int			ft_suite_line(t_parse *p, int i, char *prompt)
+static int	ft_suite2(int i, t_parse *p)
 {
-	char	*tmp;
-
-	tmp = NULL;
 	if (i == 0)
 		p->i++;
 	if (i == 1)
 	{
 		i = 2;
 		if (!(p->s = ft_strjoin_del(p->s, "\n")))
-			return (0);
+			return (-1);
 	}
+	return (i);
+}
+
+int			ft_suite_line(t_parse *p, int i, char *prompt)
+{
+	char	*tmp;
+
+	tmp = NULL;
+	if ((i = ft_suite2(i, p)) == -1)
+		return (0);
 	tmp = ft_edition(prompt);
 	if (g_nav.err == SIG_CTRLD)
 		return (0);
@@ -41,7 +48,7 @@ int			ft_suite_line(t_parse *p, int i, char *prompt)
 		if (!p->str || !p->ident)
 			return (0);
 	}
-	free(tmp);
+	ft_strdel(&tmp);
 	return (1);
 }
 
