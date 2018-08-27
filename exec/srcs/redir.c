@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 14:55:49 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 17:48:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ static int		ft_relative_absolute(char *doc)
 		return (0);
 }
 
-char		*get_path_redir(t_parse *p, int *i, char **env)
+char			*get_path_redir(t_parse *p, int *i, char **env)
 {
 	char	*pwd;
 	char	*tmp;

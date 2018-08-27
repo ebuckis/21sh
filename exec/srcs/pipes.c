@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:31:17 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 17:47:09 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,35 +23,6 @@ static void			display(int *tab_pipe)
 		dprintf(2, "tab_pipe[%d] = %d\n", i, tab_pipe[i]);
 	dprintf(2, "tab_pipe[%d] = %d\n", i, tab_pipe[i]);
 }
-
-/*static void			create_tab_pipe2(t_parse *p, int *i, int j,
-		char ***tab_pipe)
-{
-	int		buf;
-
-	buf = *i;
-	while (p->arg[*i] && !ft_strchr(p->arg_id[*i], PIPE) &&
-		!ft_strchr(p->arg_id[*i], SEMICOLON))
-		(*i)++;
-	tab_pipe[j] = (char**)malloc(sizeof(char*) * (*i - buf + 1));
-	*i = buf;
-}*/
-
-/*static int			empty_pipe(t_parse *p, int *tab_pipe)
-{
-	int		i;
-
-	i = -1;
-	while (tab_pipe[++i] >= 0)
-	{
-		if (p->arg[tab_pipe[i]] == NULL || p->arg[tab_pipe[i]][0] == 0)
-		{
-			dprintf(2, "arg empty\n");
-			return (1);
-		}
-	}
-	return (0);
-}*/
 
 static int			*create_tab_pipe(t_parse *p, int i, int nb_pipe,
 		int *tab_pipe)
@@ -76,7 +47,7 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 {
 	int		i;
 	int		nb_pipe;
-	int 	*tab_pipe;
+	int		*tab_pipe;
 
 	i = begin;
 	nb_pipe = 0;
@@ -88,23 +59,14 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 			{
 				if (i == begin || ft_strchr(p->arg_id[i - 1], PIPE) ||
 					!p->arg[i + 1] || ft_strchr(p->arg_id[i + 1], SEMICOLON))
-				{
-					ft_putendl("parse error");
-					return ;
-				}
+					return (ft_putendl("parse error"));
 				else
 					nb_pipe++;
 			}
 			i++;
 		}
-		dprintf(2, "nb_pipe = %d\n", nb_pipe);
-		dprintf(2, "begin = %d\n", begin);
 		tab_pipe = create_tab_pipe(p, begin, nb_pipe, tab_pipe);
-		display(tab_pipe);
-		//if (!empty_pipe(p, tab_pipe))
-			ft_fork_shell(p, tab_pipe, p_env, nb_pipe);
-		//else
-		//	p->ret = 0;
+		ft_fork_shell(p, tab_pipe, p_env, nb_pipe);
 		ft_memdel((void**)&tab_pipe);
 		tab_pipe = NULL;
 	}
