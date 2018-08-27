@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 11:58:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 14:55:49 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 static int		ft_relative_absolute(char *doc)
 {
@@ -43,7 +43,6 @@ char		*get_path_redir(t_parse *p, int *i, char **env)
 	return (path);
 }
 
-
 static int		ft_redir_close(t_parse *p, int *i)
 {
 	int		fd;
@@ -64,7 +63,6 @@ static int		ft_redir_close(t_parse *p, int *i)
 	return (fd);
 }
 
-
 static int		ft_redir_heredoc(t_parse *p, int *i, char **env)
 {
 	char		*home;
@@ -76,7 +74,8 @@ static int		ft_redir_heredoc(t_parse *p, int *i, char **env)
 	home = ft_home(env);
 	tmp = ft_strjoin(home, "/");
 	path = ft_strjoin(tmp, ".heredoc");
-	if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
+	if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC,
+		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 	{
 		ft_putstr_fd(p->arg[*i], fd);
 		close(fd);
