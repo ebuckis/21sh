@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/23 12:04:28 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/27 11:45:38 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,15 +19,11 @@ kcabus :
 - si ctrl-c pendant edition, passer p->ret a 1
 
 bpajot :
-- gestion des droits de fichier sur les redirections OK
-- gestion de tout le listing de redirections dont les fermetures et les heredocs OK
-- gestion des $var et ~ OK
-- $? OK
-- $$ getpid
-- pas faire exit si pipe OK
-- wc | ls
+- wc | ls OK
+- yes | head OK salement
+- ls | xargs cat
+- cat 21sh
 - message erreur si segfault ...
-- check env -i toujours ok
 - leaks OK ?
 - norminette en cours
 - commentaire
