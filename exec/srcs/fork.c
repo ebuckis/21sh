@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 15:57:54 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 17:43:56 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,28 +46,13 @@ int				ft_ret_display(t_parse *p, pid_t pid, int status)
 	static pid_t	prev_pid = 0;
 
 	if (WIFEXITED(status))
-	{
 		p->ret = WEXITSTATUS(status);
-		if (p->ret)
-			dprintf(2, "\e[31mreturn_value_final = %d\n\e[39m", p->ret);
-		else
-			dprintf(2, "\e[32mreturn_value_final = %d\n\e[39m", p->ret);
-	}
 	else if (WIFSIGNALED(status))
-	{
 		p->ret = WTERMSIG(status) + 128;
-		//ft retour signal
-		dprintf(2, "\e[31mvalue_termsig_signal = %d\n\e[39m",
-				WTERMSIG(status));
-	}
 	else if (WIFSTOPPED(status))
 	{
 		p->ret = WSTOPSIG(status) + 128;
-		dprintf(2, "\e[31mvalue_stop_signal = %d\n\e[39m",
-				WSTOPSIG(status));
-		p->child_pid = pid ;
-		dprintf(2, "prev_pid = %d   p->child_pid = %d\n",
-				prev_pid, p->child_pid);
+		p->child_pid = pid;
 		if (prev_pid && prev_pid != p->child_pid)
 		{
 			kill(prev_pid, 2);
@@ -75,61 +60,69 @@ int				ft_ret_display(t_parse *p, pid_t pid, int status)
 		}
 		else if (!prev_pid)
 			prev_pid = p->child_pid;
-		dprintf(2, "prev_pid = %d   p->child_pid = %d\n", prev_pid,
-				p->child_pid);
 	}
 	return (p->ret);
+}
+
+static void		ft_fork_shell3(t_parse *p, int *tab_pipe, int *pid_tab,
+		int pid)
+{
+	int			i;
+	int			status;
+
+	waitpid(pid, &status, WUNTRACED);
+	i = -1;
+	while (pid_tab[++i])
+		;
+	while (--i >= 0)
+	{
+		if ((ft_strequ(p->arg[tab_pipe[i]], "yes")) ||
+				(ft_strequ(p->arg[tab_pipe[i]], "top")))
+			kill(pid_tab[i], 9);
+		waitpid(pid_tab[i], NULL, WUNTRACED);
+	}
+	exit(ft_ret_display(p, pid, status));
+}
+
+static void		ft_fork_shell2(t_parse *p, int *tab_pipe, char ***p_env,
+		int nb_pip)
+{
+	int			i;
+	int			*pid_tab;
+	pid_t		pid;
+	int			status;
+
+	i = -1;
+	if ((pid_tab = (int*)malloc(sizeof(int) * (nb_pip + 1))))
+	{
+		pid_tab[nb_pip] = 0;
+		i = nb_pip + 1;
+		while (--i > 0)
+			pid_tab[nb_pip - i] = ft_fork_pipe(p, tab_pipe, p_env, nb_pip - i);
+		if (nb_pip)
+		{
+			pid = fork();
+			if (pid == 0)
+				ft_execve(p, tab_pipe[nb_pip], p_env);
+			else if (pid > 0)
+				ft_fork_shell3(p, tab_pipe, pid_tab, pid);
+		}
+		else
+			ft_execve(p, tab_pipe[nb_pip], p_env);
+	}
+	else
+		exit(1);
 }
 
 void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 		int nb_pipe)
 {
 	pid_t			pid;
-	pid_t			pid2;
 	int				status;
-	int				i;
-	int				j;
-	int				*pid_tab;
 
 	pid = fork();
 	if (pid == 0)
-	{
-		i = -1;
-		if ((pid_tab = (int*)malloc(sizeof(int) * (nb_pipe + 2))))
-		{
-			pid_tab[nb_pipe + 1] = 0;
-			j = nb_pipe;
-			i = 0;
-			while (j-- > 0)
-			{
-				pid_tab[i] = ft_fork_pipe(p, tab_pipe, p_env, i);
-				i++;
-			}
-			if (nb_pipe)
-			{
-				pid2 = fork();
-				if (pid2 == 0)
-					ft_execve(p, tab_pipe[nb_pipe], p_env);
-				else if (pid2 > 0)
-				{
-					waitpid(pid2, &status, WUNTRACED);
-					j = nb_pipe;
-					while (--j >= 0)
-					{
-						if ((ft_strequ(p->arg[tab_pipe[j]], "yes")) ||
-								(ft_strequ(p->arg[tab_pipe[j]], "top")))
-							kill(pid_tab[j], 9);
-						waitpid(pid_tab[j], NULL, WUNTRACED);
-					}
-					exit(ft_ret_display(p, pid2, status));
-				}
-			}
-			else
-				ft_execve(p, tab_pipe[nb_pipe], p_env);
-		}
-		else
-			exit(1);
-	}
+		ft_fork_shell2(p, tab_pipe, p_env, nb_pipe);
 	else if (pid > 0)
 	{
 		waitpid(pid, &status, WUNTRACED);
