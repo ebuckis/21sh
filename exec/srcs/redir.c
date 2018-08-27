@@ -3,25 +3,39 @@
 /*                                                              /             */
 /*   redir.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 13:18:39 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/27 11:43:50 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/exec.h"
 
+static int		ft_relative_absolute(char *doc)
+{
+	if (doc[0] == '/')
+		return (1);
+	else
+		return (0);
+}
+
 static char		*get_path_redir(t_parse *p, int *i, char **env)
 {
 	char	*pwd;
 	char	*tmp;
 	char	*path;
+	int		nb;
 
+	(*i)++;
+	nb = ft_relative_absolute(p->arg[*i]);
+	if (nb == -1)
+		return (NULL);
+	else if (nb == 1)
+		return (ft_strdup(p->arg[*i]));
 	pwd = ft_getpwd(env, 0);
 	tmp = ft_strjoin(pwd, "/");
-	(*i)++;
 	path = ft_strjoin(tmp, p->arg[*i]);
 	dprintf(2, "path : %s\n", path);
 	ft_strdel(&pwd);
@@ -98,7 +112,7 @@ static int		ft_redir_out(t_parse *p, int *i, char **env)
 	if (!ft_strcmp(p->arg[*i], ">"))
 	{
 		path = get_path_redir(p, i, env);
-		if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644)) >= 0)
+		if ((fd = open(path, O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 		{
 			dprintf(2, "> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
@@ -107,7 +121,7 @@ static int		ft_redir_out(t_parse *p, int *i, char **env)
 	else if (!ft_strcmp(p->arg[*i], ">>"))
 	{
 		path = get_path_redir(p, i, env);
-		if ((fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644)) >= 0)
+		if ((fd = open(path, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 		{
 			dprintf(2, ">> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
@@ -116,7 +130,7 @@ static int		ft_redir_out(t_parse *p, int *i, char **env)
 	else if (!ft_strcmp(p->arg[*i], ">&"))
 	{
 		path = get_path_redir(p, i, env);
-		if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644)) >= 0)
+		if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 		{
 			dprintf(2, "&> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
@@ -127,7 +141,7 @@ static int		ft_redir_out(t_parse *p, int *i, char **env)
 			)) && !pt[1])
 	{
 		path = get_path_redir(p, i, env);
-		if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644)) >= 0)
+		if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 		{
 			dprintf(2, "n> fd : %d\n", fd);
 			dup2(fd, n);
@@ -169,7 +183,7 @@ static int		ft_redir_heredoc(t_parse *p, int *i, char **env)
 	home = ft_home(env);
 	tmp = ft_strjoin(home, "/");
 	path = ft_strjoin(tmp, ".heredoc");
-	if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644)) >= 0)
+	if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 	{
 		ft_putstr_fd(p->arg[*i], fd);
 		close(fd);
