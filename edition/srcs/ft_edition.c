@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 17:55:24 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 15:32:59 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,8 +39,9 @@ char		*ft_lance_edit(t_navig *n)
 {
 	char		buf[5];
 
-	if (!(n->err = ft_move_to_xy(n->x_start, n->y_start)))
-		return (NULL);
+//	if (!(n->err = ft_move_to_xy(n->x_start, n->y_start)))
+//		return (NULL);
+	ft_x_change(n, MOVE_RIGHT);
 	while (1)
 	{
 		while (ft_verif_term_size(n) < 0)
@@ -69,7 +70,6 @@ char		*ft_edition(char *prompt)
 {
 	char		*str;
 
-	//dprintf(2, "((((((((((((ON ENTRE DANS EDITION))))))))))))\n");
 	str = NULL;
 	if (!(g_nav.err = ft_init_term(&(g_nav.t))))
 		return (NULL);

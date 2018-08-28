@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:00:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 15:23:09 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 15:47:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -108,7 +108,7 @@ int				ft_maj_win(t_navig *n)
 		return (ft_to_small(n, n->tmp_char));
 	if (n->to_small == 1 && !ft_win_line(n))
 		return (0);
-	else if (x_stmp < n->x_size)
+	else if (x_stmp < n->x_size && n->tmp_int >= n->x_size)
 	{
 		tmp = ((n->y - n->y_first) *
 			(((n->x_size) / x_stmp) + 1) + (n->x / x_stmp)) - 1;
