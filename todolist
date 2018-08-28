@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/27 11:45:38 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/28 16:52:38 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,16 +14,13 @@
 kcabus :
 - prendre en compte le ctrl+z pour suspension du programme et reprendre correctement OK
 - modification du parser pour les != pattern de redirection OK a checker
-- gestion des erreurs dans parsin OK a verifier
-- heredoc << NOK transformer texte
-- si ctrl-c pendant edition, passer p->ret a 1
 
 bpajot :
 - wc | ls OK
 - yes | head OK salement
 - ls | xargs cat
 - cat 21sh
-- message erreur si segfault ...
+- message erreur si segfault ... ou autre
 - leaks OK ?
 - norminette en cours
 - commentaire
@@ -31,11 +28,10 @@ bpajot :
 - enlever sleep 3 pour debug leaks
 
 other :
-- gestion des signaux pendant edition ou execution + Ctrl_D EOF
-- se faire une vraie gestion d'erreurs avec des retours coherents ?
-- segfault avec echo $$ --> getpid
-- wc | ls
-- affichage d'un message lors d'un segfault (voir bash)
+- gestion de <&
+- cd a peaufiner
+- arg derriere redir a gerer ?
+- effacer .heredoc
 _______________________________________________________________________________
 nota-bene :
 - le prompt du bash est masqué par le 2> /dev/null
