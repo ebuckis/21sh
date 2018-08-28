@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:53:11 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 15:46:08 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 10:49:30 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,19 +23,13 @@ static int		ft_simple_double_out(t_parse *p, int *i, char **env, int nb)
 	{
 		if ((fd = open(path, O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
-		{
-			dprintf(2, "> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
-		}
 	}
 	else if (nb == 2)
 	{
 		if ((fd = open(path, O_WRONLY | O_CREAT | O_APPEND,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
-		{
-			dprintf(2, ">> fd : %d\n", fd);
 			dup2(fd, STDOUT_FILENO);
-		}
 	}
 	ft_strdel(&path);
 	return (fd);
@@ -50,7 +44,6 @@ static int		ft_redir_and(t_parse *p, int *i, char **env)
 	if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC,
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 	{
-		dprintf(2, "&> fd : %d\n", fd);
 		dup2(fd, STDOUT_FILENO);
 		dup2(fd, STDERR_FILENO);
 	}
@@ -66,10 +59,7 @@ static int		ft_fd_redir(t_parse *p, int *i, char **env, int n)
 	path = get_path_redir(p, i, env);
 	if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC,
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
-	{
-		dprintf(2, "n> fd : %d\n", fd);
 		dup2(fd, n);
-	}
 	ft_strdel(&path);
 	return (fd);
 }
@@ -93,10 +83,7 @@ static int		ft_redir_out2(t_parse *p, int *i, char **env)
 	else if ((n = ft_atoi(p->arg[*i])) >= 0
 		&& (pt = ft_strstr(&(p->arg[*i][1]), ">&")) && pt[2]
 		&& (m = ft_atoi(&(pt[2]))) >= 0)
-	{
-		dprintf(2, "n>&m : %d>&%d\n", n, m);
 		dup2(m, n);
-	}
 	else
 		return (-2);
 	return (fd);
@@ -114,7 +101,6 @@ int				ft_redir_out(t_parse *p, int *i, char **env)
 	else if ((pt = ft_strstr(p->arg[*i], ">&")) && pt[2]
 		&& (m = ft_atoi(&(pt[2]))) >= 0)
 	{
-		dprintf(2, ">&m : >&%d\n", m);
 		dup2(m, STDOUT_FILENO);
 		dup2(m, STDERR_FILENO);
 	}

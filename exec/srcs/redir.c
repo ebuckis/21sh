@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 17:48:21 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 10:52:58 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,6 @@ char			*get_path_redir(t_parse *p, int *i, char **env)
 	pwd = ft_getpwd(env, 0);
 	tmp = ft_strjoin(pwd, "/");
 	path = ft_strjoin(tmp, p->arg[*i]);
-	dprintf(2, "path : %s\n", path);
 	ft_strdel(&pwd);
 	ft_strdel(&tmp);
 	return (path);
@@ -50,14 +49,10 @@ static int		ft_redir_close(t_parse *p, int *i)
 	if (!ft_strcmp(p->arg[*i], ">&-") || !ft_strcmp(p->arg[*i], "1>&-"))
 	{
 		fd = 1;
-		dprintf(2, ">&- fd : %d\n", fd);
 		close(fd);
 	}
 	else if ((fd = ft_atoi(p->arg[*i])) >= 0 && ft_strstr(p->arg[*i], ">&-"))
-	{
-		dprintf(2, "n>&- fd : %d\n", fd);
 		close(fd);
-	}
 	else
 		ft_putendl("redirection parse error");
 	return (fd);

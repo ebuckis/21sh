@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:55:19 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 14:53:26 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 10:48:55 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,10 +20,7 @@ static int		ft_get_redir_fd1(t_parse *p, int *i, char **env)
 
 	path = get_path_redir(p, i, env);
 	if ((fd = open(path, O_RDONLY)) >= 0)
-	{
-		dprintf(2, "< fd : %d\n", fd);
 		dup2(fd, STDIN_FILENO);
-	}
 	ft_strdel(&path);
 	return (fd);
 }
@@ -35,10 +32,7 @@ static int		ft_get_redir_fd2(t_parse *p, int *i, char **env, int n)
 
 	path = get_path_redir(p, i, env);
 	if ((fd = open(path, O_RDONLY)) >= 0)
-	{
-		dprintf(2, "n< fd : %d\n", fd);
 		dup2(fd, n);
-	}
 	ft_strdel(&path);
 	return (fd);
 }

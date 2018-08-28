@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 17:57:23 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 15:04:26 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -126,7 +126,7 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 ** en boucle, edition, parsing puis execution
 */
 
-void			main2(char *string, char **env, int *a)
+static void		main2(char *string, char ***p_env, int *a)
 {
 	static int		ret = 0;
 	static int		child_pid = 0;
@@ -134,10 +134,10 @@ void			main2(char *string, char **env, int *a)
 
 	if (string)
 	{
-		if ((p = ft_parser(string, child_pid, env, ret)))
+		if ((p = ft_parser(string, child_pid, *p_env, ret)))
 		{
 			//debug_display_struct(p);
-			ft_manage_semicolon_exit(p, a, &env);
+			ft_manage_semicolon_exit(p, a, p_env);
 			ret = p->ret;
 			child_pid = p->child_pid;
 		}
@@ -164,7 +164,7 @@ int				main(int argc, char *argv[], char *env[])
 	{
 		string = (!begin++) ? ft_strdup("toilet -f bigascii12  21 sh | lolcat")
 			: ft_edition("21sh $> ");
-		main2(string, my_env, &a);
+		main2(string, &my_env, &a);
 	}
 	ft_free_tab(&my_env);
 	return (a);

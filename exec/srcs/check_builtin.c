@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 16:03:35 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 13:37:25 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,17 @@ int		check_builtin(char **tab_com)
 }
 
 void	run_builtin(t_parse *p, char **tab_com, char ***p_env,
+		int tab_pipe_i)
+{
+	if (ft_strequ(tab_com[0], "cd"))
+		p->ret = ft_cd(tab_com, p_env);
+	else if (ft_strequ(tab_com[0], "setenv"))
+		p->ret = ft_setenv(tab_com, p_env);
+	else if (ft_strequ(tab_com[0], "unsetenv"))
+		p->ret = ft_unsetenv(tab_com, p_env);
+}
+
+void	run_builtin_fork(t_parse *p, char **tab_com, char ***p_env,
 		int tab_pipe_i)
 {
 	if (ft_strequ(tab_com[0], "echo"))
