@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 14:11:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:47:57 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 10:43:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,6 @@ static void		ft_end_dollar(t_parse *p, t_doll *d, int i, int j)
 {
 	ft_strdel(&(p->arg[i]));
 	ft_strdel(&(d->tmp));
-	dprintf(2, "arg = %s\n", d->arg);
 	ft_strdel(&(p->arg[i]));
 	p->arg[i] = ft_strdup(d->arg);
 	ft_strdel(&(d->arg));
@@ -47,10 +46,8 @@ t_parse			*ft_dollar(t_parse *p, int i, int j, char **env)
 	d.p2 = ft_strchr(&(p->arg[i][j + 1]), '}');
 	d.p3 = ft_strchr(&(p->arg[i][j + 1]), '$');
 	ft_getvalue_var(p, &d, i, j);
-//dprintf(2, "var = %s\n", d.var);
 	d.key = (ft_strequ(d.var, "?")) ?
 		ft_itoa(p->ret) : ft_strdup(getenv(d.var));
-//dprintf(2, "key = %s\n", d.key);
 	if (j)
 		d.tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), d.key);
 	else
