@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 16:40:29 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 15:23:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -107,5 +107,6 @@ t_hist				*ft_close_hist(int i, t_hist *list);
 int					ft_ring_the_bell(void);
 void				ft_del_end_to_i(t_navig *n);
 void				ft_signal_size(int s);
+void				ft_delta_line(t_navig *n, int nb);
 
 #endif

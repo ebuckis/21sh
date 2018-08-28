@@ -54,7 +54,8 @@ N_SRCS =	ft_edition.c			\
 			ft_gestion_signal.c		\
 			ft_init_term.c			\
 			ft_del_end_to_i.c		\
-			ft_ring_the_bell.c
+			ft_ring_the_bell.c		\
+			ft_delta_line.c
 
 all : $(NAME)
 

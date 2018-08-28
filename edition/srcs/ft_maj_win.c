@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:00:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 19:00:10 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 15:23:09 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,7 @@ static int		ft_del_all(t_navig *n, int nb, char *ret)
 	ft_recup_pos(&(n->x_start), &(n->y_start));
 	ft_putstr(n->s);
 	ft_recup_pos(&(n->x), &(n->y));
+	ft_delta_line(n, nb);
 	if ((nb - 1) % n->x_size == 0)
 	{
 		if (n->y == n->y_size - 1)
@@ -51,7 +52,9 @@ static int		ft_del_all(t_navig *n, int nb, char *ret)
 			n->y_first--;
 			n->y_start--;
 		}
-		ft_move_to_xy(0, n->y + 1);
+		n->y++;
+		n->x = 0;
+		ft_move_to_xy(0, n->y);
 	}
 	ft_recup_pos(&(n->x_len), &(n->y_len));
 	ft_goto_i_by_end(n);
@@ -107,8 +110,8 @@ int				ft_maj_win(t_navig *n)
 		return (0);
 	else if (x_stmp < n->x_size)
 	{
-		tmp = (n->y - n->y_first) *
-			(((n->x_size) / x_stmp) + 1) + (n->x / x_stmp);
+		tmp = ((n->y - n->y_first) *
+			(((n->x_size) / x_stmp) + 1) + (n->x / x_stmp)) - 1;
 		ft_move_to_xy(0, n->y - tmp);
 	}
 	else if (x_stmp > n->x_size)
