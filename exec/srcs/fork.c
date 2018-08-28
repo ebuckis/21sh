@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 15:06:23 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/28 15:34:33 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -119,11 +119,15 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 {
 	pid_t			pid;
 	int				status;
+	char			**tab_com;
 
 	if (!nb_pipe && (ft_strequ(p->arg[tab_pipe[0]], "cd") ||
 		(ft_strequ(p->arg[tab_pipe[0]], "setenv") ||
 		ft_strequ(p->arg[tab_pipe[0]], "unsetenv"))))
-		run_builtin(p, &(p->arg[tab_pipe[0]]), p_env, 0);
+	{
+		tab_com = manage_redir(p, tab_pipe[0], p_env);
+		run_builtin(p, tab_com, p_env, 0);
+	}
 	else
 	{
 		pid = fork();
