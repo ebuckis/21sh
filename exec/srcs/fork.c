@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 15:34:33 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 13:17:31 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,29 +39,6 @@ static int		ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 		return (pid);
 	}
 	return (0);
-}
-
-int				ft_ret_display(t_parse *p, pid_t pid, int status)
-{
-	static pid_t	prev_pid = 0;
-
-	if (WIFEXITED(status))
-		p->ret = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
-		p->ret = WTERMSIG(status) + 128;
-	else if (WIFSTOPPED(status))
-	{
-		p->ret = WSTOPSIG(status) + 128;
-		p->child_pid = pid;
-		if (prev_pid && prev_pid != p->child_pid)
-		{
-			kill(prev_pid, 2);
-			prev_pid = p->child_pid;
-		}
-		else if (!prev_pid)
-			prev_pid = p->child_pid;
-	}
-	return (p->ret);
 }
 
 static void		ft_fork_shell3(t_parse *p, int *tab_pipe, int *pid_tab,
@@ -122,8 +99,8 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 	char			**tab_com;
 
 	if (!nb_pipe && (ft_strequ(p->arg[tab_pipe[0]], "cd") ||
-		(ft_strequ(p->arg[tab_pipe[0]], "setenv") ||
-		ft_strequ(p->arg[tab_pipe[0]], "unsetenv"))))
+		ft_strequ(p->arg[tab_pipe[0]], "setenv") ||
+		ft_strequ(p->arg[tab_pipe[0]], "unsetenv")))
 	{
 		tab_com = manage_redir(p, tab_pipe[0], p_env);
 		run_builtin(p, tab_com, p_env, 0);

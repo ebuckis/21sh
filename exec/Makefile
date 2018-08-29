@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/27 11:55:05 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/29 12:03:35 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -37,15 +37,16 @@ N_SRCS =	cd.c					\
 			execve.c				\
 			fg.c					\
 			fork.c					\
+			ft_redir_in.c			\
+			ft_redir_out.c			\
 			getenv.c				\
 			manage_redir.c			\
 			manage_signal.c			\
 			pipes.c					\
 			redir.c					\
+			ret_display.c			\
 			setenv.c				\
-			unsetenv.c				\
-			ft_redir_out.c			\
-			ft_redir_in.c
+			unsetenv.c
 
 all : $(NAME)
 

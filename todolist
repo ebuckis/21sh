@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/28 16:52:38 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/29 11:35:31 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -16,8 +16,7 @@ kcabus :
 - modification du parser pour les != pattern de redirection OK a checker
 
 bpajot :
-- wc | ls OK
-- yes | head OK salement
+- wc | ls OK - yes | head OK salement
 - ls | xargs cat
 - cat 21sh
 - message erreur si segfault ... ou autre
