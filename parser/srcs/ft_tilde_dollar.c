@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 15:48:16 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:30:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ static char		*ft_strjoin_free(char *line1, char *line2, int i, int j)
 	return (tmp);
 }
 
-static t_parse	*ft_tilde(t_parse *p, int i, char **env)
+static t_parse	*ft_tilde(t_parse *p, int i)
 {
 	char	*home;
 	char	*tmp;
@@ -56,7 +56,7 @@ t_parse			*ft_tilde_dollar(t_parse *p, char **env)
 		while (p->arg[++i])
 		{
 			if (p->arg[i][0] == '~' && p->arg_id[i][0] == WORD)
-				ft_tilde(p, i, env);
+				ft_tilde(p, i);
 			if (ft_strchr(p->arg[i], '$'))
 			{
 				j = -1;
@@ -65,7 +65,7 @@ t_parse			*ft_tilde_dollar(t_parse *p, char **env)
 					if (p->arg[i][j] == '$' && p->arg[i][j + 1] &&
 						(p->arg_id[i][j] == WORD || p->arg_id[i][j] ==
 						DOUBLE_QUOTE))
-						p = ft_dollar(p, i, j, env);
+						p = ft_dollar(p, i, j);
 				}
 			}
 		}

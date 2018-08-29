@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 15:24:01 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:15:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 int				ft_doublon(char *line, char **arg, int j)
 {
@@ -59,7 +59,6 @@ static int		ft_env3(t_parse *p, char **arg, char **env, int i)
 {
 	pid_t	pid;
 	int		status;
-	char	*bin;
 
 	if (arg[i % 100])
 	{

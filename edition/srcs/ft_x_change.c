@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 18:02:56 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:30:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,8 +68,6 @@ static void		ft_del_x(t_navig *n)
 
 static void		ft_add_x(t_navig *n)
 {
-	char *ret;
-
 	if (n->x_len < n->x_size - 1)
 		n->x_len++;
 	else if (n->y_len < n->y_size - 1)

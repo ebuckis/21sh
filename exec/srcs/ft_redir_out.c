@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:53:11 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 14:59:23 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:31:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,13 +19,14 @@ static int		ft_simple_double_out(t_parse *p, int *i, char **env, int nb)
 	int		fd;
 
 	path = get_path_redir(p, i, env);
+	fd = 0;
 	if (nb == 1)
 	{
 		if ((fd = open(path, O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
 			dup2(fd, STDOUT_FILENO);
 	}
-	else if (nb == 2)
+	else
 	{
 		if ((fd = open(path, O_WRONLY | O_CREAT | O_APPEND,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
@@ -71,6 +72,7 @@ static int		ft_redir_out2(t_parse *p, int *i, char **env)
 	int		n;
 	char	*pt;
 
+	fd = 0;
 	if (!ft_strcmp(p->arg[*i], ">"))
 		fd = ft_simple_double_out(p, i, env, 1);
 	else if (!ft_strcmp(p->arg[*i], ">>"))
@@ -80,10 +82,12 @@ static int		ft_redir_out2(t_parse *p, int *i, char **env)
 	else if ((n = ft_atoi(p->arg[*i])) >= 0
 		&& (pt = ft_strchr(p->arg[*i], '>')) && !pt[1])
 		fd = ft_fd_redir(p, i, env, n);
-	else if ((n = ft_atoi(p->arg[*i])) >= 0
-		&& (pt = ft_strstr(&(p->arg[*i][1]), ">&")) && pt[2]
-		&& (m = ft_atoi(&(pt[2]))) >= 0)
+	else if ((pt = ft_strstr(&(p->arg[*i][1]), ">&")) && pt[2])
+	{
+		n = ft_atoi(p->arg[*i]);
+		m = ft_atoi(&(pt[2]));
 		dup2(m, n);
+	}
 	else
 		return (-2);
 	return (fd);

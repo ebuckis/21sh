@@ -3,20 +3,18 @@
 /*                                                              /             */
 /*   fg.c                                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/26 13:26:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 14:21:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:15:59 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 int		ft_fg(t_parse *p)
 {
-	int		status;
-
 	if (p->child_pid)
 	{
 		kill(p->child_pid, 19);

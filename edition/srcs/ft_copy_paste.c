@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 08:27:26 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 16:49:14 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:17:18 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ static int		ft_cutstr_end(t_navig *n, char **copy, int nb)
 {
 	int		i;
 
-	if (n->i != ft_strlen(n->s))
+	if (n->i != (int)ft_strlen(n->s))
 	{
 		ft_strdel(copy);
 		i = n->i;

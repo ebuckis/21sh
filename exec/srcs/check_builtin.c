@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   check_builtin.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 13:37:25 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:13:37 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 int		check_builtin(char **tab_com)
 {
@@ -24,8 +24,7 @@ int		check_builtin(char **tab_com)
 		return (0);
 }
 
-void	run_builtin(t_parse *p, char **tab_com, char ***p_env,
-		int tab_pipe_i)
+void	run_builtin(t_parse *p, char **tab_com, char ***p_env)
 {
 	if (ft_strequ(tab_com[0], "cd"))
 		p->ret = ft_cd(tab_com, p_env);

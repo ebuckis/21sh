@@ -6,12 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 14:24:17 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:16:35 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 static int		ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 {
@@ -67,7 +67,6 @@ static void		ft_fork_shell2(t_parse *p, int *tab_pipe, char ***p_env,
 	int			i;
 	int			*pid_tab;
 	pid_t		pid;
-	int			status;
 
 	i = -1;
 	if ((pid_tab = (int*)malloc(sizeof(int) * (nb_pip + 1))))
@@ -103,7 +102,7 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 		ft_strequ(p->arg[tab_pipe[0]], "unsetenv")))
 	{
 		tab_com = manage_redir(p, tab_pipe[0], p_env);
-		run_builtin(p, tab_com, p_env, 0);
+		run_builtin(p, tab_com, p_env);
 	}
 	else
 	{
