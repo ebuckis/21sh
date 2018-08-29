@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:54:14 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,6 +66,7 @@ char			**manage_redir(t_parse *p, int begin, char ***p_env)
 	int		*redir_lim;
 	int		nb_redir;
 
+	commande = NULL;
 	if (!(redir_lim = (int*)malloc(sizeof(int) * 2)))
 		return (NULL);
 	i = begin - 1;

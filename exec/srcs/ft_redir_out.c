@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:53:11 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:31:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:52:23 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,7 +95,6 @@ static int		ft_redir_out2(t_parse *p, int *i, char **env)
 
 int				ft_redir_out(t_parse *p, int *i, char **env)
 {
-	int		n;
 	int		m;
 	int		fd;
 	char	*pt;

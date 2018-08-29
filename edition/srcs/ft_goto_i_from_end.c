@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_del_end_to_i.c                                .::    .:/ .      .::   */
+/*   ft_goto_i_from_end.c                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/25 19:04:13 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:00:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/08/29 18:08:03 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/08/29 18:08:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-void		ft_del_end_to_i(t_navig *n)
+void		ft_goto_i_from_end(t_navig *n)
 {
-	char	buf[5];
-	int		i;
+	int		j;
+	int		i_bis;
 
-	ft_bzero(buf, 5);
-	buf[0] = 127;
-	i = n->i;
-	ft_move_to_xy(n->x_len, n->y_len);
-	n->x = n->x_len;
-	n->y = n->y_len;
-	n->i = ft_strlen(n->s);
-	while (n->i != i)
-		ft_key_code(n, buf);
+	i_bis = n->i;
+	j = ft_strlen(n->s);
+	while (j > i_bis)
+	{
+		ft_x_change(n, MOVE_LEFT);
+		n->i++;
+		j--;
+	}
+	ft_move_to_xy(n->x, n->y);
+	n->i = i_bis;
 }

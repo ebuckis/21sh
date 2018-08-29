@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/23 14:37:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:13:24 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,17 +39,11 @@ static int	ft_get_hdoc(t_parse *p)
 	p->j = tmp;
 	ft_end_while(p, HEREDOC);
 	ft_end_while(p, HEREDOC);
-//	p->len += 1;
-//	p->str = ft_realloc(p->str, p->len);
-//	p->ident = ft_realloc(p->ident, p->len);
 	ft_add_space(p);
 	while (ft_is_white(p->s[p->i]))
 		p->i++;
 	if (!p->s[p->i] || ft_is_redirection(p->s[p->i]))
 		return (-1);
-//	while (p->s[p->i] && !ft_is_redirection(p->s[p->i])
-//		&& !ft_is_white(p->s[p->i]))
-//		ft_end_while(p, HEREDOC);
 	p->nb_hdoc++;
 	return (1);
 }

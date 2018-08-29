@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:11:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,6 +51,7 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 
 	i = begin;
 	nb_pipe = 0;
+	tab_pipe = NULL;
 	if (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
 	{
 		while (p->arg[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
@@ -68,6 +69,5 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 		tab_pipe = create_tab_pipe(p, begin, nb_pipe, tab_pipe);
 		ft_fork_shell(p, tab_pipe, p_env, nb_pipe);
 		ft_memdel((void**)&tab_pipe);
-		tab_pipe = NULL;
 	}
 }
