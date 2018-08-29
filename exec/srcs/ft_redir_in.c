@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:55:19 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 10:48:55 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 15:22:58 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,7 @@ int				ft_redir_in(t_parse *p, int *i, char **env)
 {
 	int		fd;
 	int		n;
+	int		m;
 	char	*pt;
 	char	*path;
 
@@ -50,6 +51,11 @@ int				ft_redir_in(t_parse *p, int *i, char **env)
 		fd = ft_get_redir_fd1(p, i, env);
 	else if ((n = ft_atoi(p->arg[*i])) >= 0 && pt && !pt[1])
 		fd = ft_get_redir_fd2(p, i, env, n);
+	else if ((n = ft_atoi(p->arg[*i])) >= 0 &&
+		(pt = ft_strstr(&(p->arg[*i][1]), "<&")) && pt[2] &&
+		(m = ft_atoi(&(pt[2])))
+		>= 0)
+		dup2(m, n);
 	else
 	{
 		ft_putendl("redirection parse error");

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:53:11 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 10:49:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 14:59:23 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -97,7 +97,7 @@ int				ft_redir_out(t_parse *p, int *i, char **env)
 	char	*pt;
 
 	if ((fd = ft_redir_out2(p, i, env)) != -2)
-		(void)fd;
+		;
 	else if ((pt = ft_strstr(p->arg[*i], ">&")) && pt[2]
 		&& (m = ft_atoi(&(pt[2]))) >= 0)
 	{

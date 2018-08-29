@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/29 11:35:31 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/29 15:20:45 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,7 +19,7 @@ bpajot :
 - wc | ls OK - yes | head OK salement
 - ls | xargs cat
 - cat 21sh
-- message erreur si segfault ... ou autre
+- message erreur si segfault ... ou autre OK
 - leaks OK ?
 - norminette en cours
 - commentaire
@@ -27,7 +27,7 @@ bpajot :
 - enlever sleep 3 pour debug leaks
 
 other :
-- gestion de <&
+- gestion de <& semble OK
 - cd a peaufiner
 - arg derriere redir a gerer ?
 - effacer .heredoc

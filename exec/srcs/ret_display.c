@@ -6,7 +6,7 @@
 /*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/29 11:37:28 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 13:25:37 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 15:23:27 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 static void		ft_ret_display_signal2(int signal)
 {
 	if (signal == 8)
-			ft_printf("Floating point exception: ");
+		ft_printf("Floating point exception: ");
 	else if (signal == 9)
 		ft_printf("Killed: ");
 	else if (signal == 10)
