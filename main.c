@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 16:37:17 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:21:05 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ static void		debug_display_struct(t_parse *p)
 ** gestion valeur retour exit
 */
 
-static void		ft_exit(int *a, int n, char *arg)
+static void		ft_exit(int *a, char *arg)
 {
 	int		i;
 
@@ -90,7 +90,7 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 		ft_manage_pipe(p, begin, p_env);
 	}
 	if (p->arg_id[i] && ft_strequ(p->arg[i], "exit"))
-		ft_exit(a, n, p->arg[i + 1]);
+		ft_exit(a, p->arg[i + 1]);
 }
 
 /*
@@ -123,7 +123,6 @@ static void		main2(char *string, char ***p_env, int *a, int debug)
 int				main(int argc, char *argv[], char *env[])
 {
 	char	*string;
-	t_parse *p;
 	int		a;
 	int		begin;
 	char	**my_env;

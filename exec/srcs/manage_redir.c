@@ -6,21 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:54:14 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:21:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-static void		display(char **tabl)
-{
-	int		i;
-
-	i = -1;
-	while (tabl[++i])
-		dprintf(2, "%s\n", tabl[i]);
-}
 
 static char		**create_commande(t_parse *p, int begin, int sep)
 {

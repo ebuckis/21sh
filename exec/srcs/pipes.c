@@ -6,23 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:11:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:21:42 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-static void			display(int *tab_pipe)
-{
-	int		i;
-
-	i = -1;
-	dprintf(2, "tab_pipe :\n");
-	while (tab_pipe[++i] >= 0)
-		dprintf(2, "tab_pipe[%d] = %d\n", i, tab_pipe[i]);
-	dprintf(2, "tab_pipe[%d] = %d\n", i, tab_pipe[i]);
-}
 
 static int			*create_tab_pipe(t_parse *p, int i, int nb_pipe,
 		int *tab_pipe)
