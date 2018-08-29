@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/11/24 08:13:59 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/20 14:48:34 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/29 16:36:34 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -43,6 +43,7 @@ N_SRCS =	ft_memset.c					\
 			ft_memcmp.c					\
 			ft_strlen.c					\
 			ft_strdup.c					\
+			ft_strdup_wchar.c			\
 			ft_strcpy.c					\
 			ft_strncpy.c				\
 			ft_strcat.c					\

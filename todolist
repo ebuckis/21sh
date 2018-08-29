@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/29 15:37:13 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/29 16:39:25 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,10 +24,8 @@ bpajot :
 - norminette en cours
 - commentaire
 - enlever debug affichage
-- enlever sleep 3 pour debug leaks
 
 other :
-- gestion de <& semble OK
 - arg derriere redir a gerer ?
 - effacer .heredoc
 _______________________________________________________________________________

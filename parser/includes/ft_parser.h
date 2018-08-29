@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 08:57:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 08:57:10 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 16:28:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
 # include "../../libft/includes/libft.h"
 # include "../../edition/includes/ft_edition.h"
 
-# define SPACE -1
+# define SPACE			-1
 # define WORD			'0'
 # define SINGLE_QUOTE	'1'
 # define DOUBLE_QUOTE	'2'

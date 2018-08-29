@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 16:20:42 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 16:37:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,47 +19,28 @@
 ** a supprimer a la fin
 */
 
-static wchar_t	*ft_strdup_wchar(char *str)
-{
-	wchar_t	*wstr;
-	int		i;
-
-	i = 0;
-	wstr = (wchar_t *)malloc(sizeof(*wstr) * (ft_strlen(str) + 1));
-	if (wstr == NULL)
-		return (NULL);
-	while (str[i])
-	{
-		wstr[i] = (str[i] == -1) ? L'·' : str[i];
-		i++;
-	}
-	wstr[i] = '\0';
-	return (wstr);
-}
-/*
 static void		debug_display_struct(t_parse *p)
 {
 	int		i;
 	wchar_t *str;
 	wchar_t *ident;
 
-	dprintf(2, "----------\n");
-	dprintf(2, "p->s :\t\t%s\n", p->s);
+	ft_printf("----------\n");
+	ft_printf("p->s :\t\t%s\n", p->s);
 	str = ft_strdup_wchar(p->str);
 	ident = ft_strdup_wchar(p->ident);
-	dprintf(2, "p->str:\t\t%S\n", str);
-	dprintf(2, "p->ident:\t%S\n", ident);
+	ft_printf("p->str:\t\t%S\n", str);
+	ft_printf("p->ident:\t%S\n", ident);
 	i = -1;
 	while (p->arg[++i])
 	{
-		dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
-		dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
+		ft_printf("arg[%d]:\t\t%s\n", i, p->arg[i]);
+		ft_printf("arg_id[%d]:\t%s\n", i, p->arg_id[i]);
 	}
-	dprintf(2, "----------\n");
+	ft_printf("----------\n");
 	ft_memdel((void**)&str);
 	ft_memdel((void**)&ident);
 }
-*/
 
 /*
 ** gestion valeur retour exit
@@ -69,8 +50,6 @@ static void		ft_exit(int *a, int n, char *arg)
 {
 	int		i;
 
-	//dprintf(2, "----------\n");
-	//dprintf(2, "command nb %d\n", n);
 	i = 0;
 	while (arg && ((i == 0 && arg[i] == '-') || ft_isdigit(arg[i])))
 		i++;
@@ -83,8 +62,7 @@ static void		ft_exit(int *a, int n, char *arg)
 		ft_printf("21sh: exit: %s: numeric argument required\n", arg);
 		*a = 255;
 	}
-	//dprintf(2, "exit value = %d\n", *a);
-	//dprintf(2, "----------\n");
+	ft_printf("exit\n");
 }
 
 /*
@@ -99,24 +77,19 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 
 	n = 0;
 	i = 0;
-	while (p->arg_id[i] && (ft_strcmp(p->arg[i], "exit") || (p->arg[i + 1] &&
-		p->arg_id[i + 1][0] < SEMICOLON)))
+	while (p->arg_id[i])
 	{
+		if (ft_strequ(p->arg[i], "exit") && (!p->arg[i + 1] ||
+			p->arg_id[i + 1][0] < PIPE))
+			break ;
 		begin = i;
-		//dprintf(2, "----------\n");
-		//dprintf(2, "command nb %d\n", n);
 		while (p->arg_id[i] && !ft_strchr(p->arg_id[i], SEMICOLON))
-		{
-			//dprintf(2, "arg[%d]:\t\t%s\n", i, p->arg[i]);
-			//dprintf(2, "arg_id[%d]:\t%s\n", i, p->arg_id[i]);
 			i++;
-		}
 		i += (p->arg_id[i]) ? 1 : 0;
 		n++;
-		//dprintf(2, "begin = %d\n", begin);
 		ft_manage_pipe(p, begin, p_env);
 	}
-	if (p->arg_id[i] && !ft_strcmp(p->arg[i], "exit"))
+	if (p->arg_id[i] && ft_strequ(p->arg[i], "exit"))
 		ft_exit(a, n, p->arg[i + 1]);
 }
 
@@ -126,7 +99,7 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 ** en boucle, edition, parsing puis execution
 */
 
-static void		main2(char *string, char ***p_env, int *a)
+static void		main2(char *string, char ***p_env, int *a, int debug)
 {
 	static int		ret = 0;
 	static int		child_pid = 0;
@@ -136,7 +109,8 @@ static void		main2(char *string, char ***p_env, int *a)
 	{
 		if ((p = ft_parser(string, child_pid, *p_env, ret)))
 		{
-			//debug_display_struct(p);
+			if (debug)
+				debug_display_struct(p);
 			ft_manage_semicolon_exit(p, a, p_env);
 			ret = p->ret;
 			child_pid = p->child_pid;
@@ -164,7 +138,10 @@ int				main(int argc, char *argv[], char *env[])
 	{
 		string = (!begin++) ? ft_strdup("toilet -f bigascii12  21 sh | lolcat")
 			: ft_edition("21sh $> ");
-		main2(string, &my_env, &a);
+		if (argc == 2 && ft_strstr(argv[1], "debug"))
+			main2(string, &my_env, &a, 1);
+		else
+			main2(string, &my_env, &a, 0);
 	}
 	ft_free_tab(&my_env);
 	return (a);

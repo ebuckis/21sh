@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/07/10 12::56 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/08/29 15:50:52 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -60,7 +60,7 @@ N_SRCS =	ft_edition.c			\
 all : $(NAME)
 
 $(NAME):	$(OBJ)
-			@ar rc $(NAME) $(OBJ) 
+			@ar rc $(NAME) $(OBJ)
 			@printf "\033[33m edition OK ! \n\033[0m"
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
