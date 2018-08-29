@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:30:21 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:28:08 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ static t_parse	*ft_tilde(t_parse *p, int i)
 	return (p);
 }
 
-t_parse			*ft_tilde_dollar(t_parse *p, char **env)
+t_parse			*ft_tilde_dollar(t_parse *p)
 {
 	int		i;
 	int		j;

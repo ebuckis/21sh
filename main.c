@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:21:05 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:29:50 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -107,7 +107,7 @@ static void		main2(char *string, char ***p_env, int *a, int debug)
 
 	if (string)
 	{
-		if ((p = ft_parser(string, child_pid, *p_env, ret)))
+		if ((p = ft_parser(string, child_pid, ret)))
 		{
 			if (debug)
 				debug_display_struct(p);
