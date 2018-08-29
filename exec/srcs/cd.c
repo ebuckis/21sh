@@ -6,7 +6,7 @@
 /*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 10:50:52 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 15:30:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 15:37:02 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,10 @@
 
 static int		ft_cd3(char ***p_env, char *pwd, char *oldpwd)
 {
+	char	buf[1000];
+
 	chdir(pwd);
-	ft_setpwd(*p_env, 0, pwd);
+	ft_setpwd(*p_env, 0, getcwd(buf, 1000));
 	ft_setpwd(*p_env, 1, oldpwd);
 	return (0);
 }
