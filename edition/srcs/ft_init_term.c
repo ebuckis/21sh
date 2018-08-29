@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 13:56:51 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/22 16:42:11 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 14:06:31 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ static void		ft_exit_term(void)
 {
 	ft_close_parse();
 	ft_putendl("Sorry, terminal name is not found, bye.");
-	exit(1);//a definir
+	exit(1);
 }
 
 int				ft_init_term(struct termios *t)
