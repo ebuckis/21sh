@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 15:32:59 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 14:06:50 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,8 +39,6 @@ char		*ft_lance_edit(t_navig *n)
 {
 	char		buf[5];
 
-//	if (!(n->err = ft_move_to_xy(n->x_start, n->y_start)))
-//		return (NULL);
 	ft_x_change(n, MOVE_RIGHT);
 	while (1)
 	{
@@ -49,7 +47,6 @@ char		*ft_lance_edit(t_navig *n)
 				return (NULL);
 		ft_bzero(buf, 5);
 		read(0, buf, 4);
-		//dprintf(2, "|%d|_|%d|_|%d|_|%d|\n", buf[0], buf[1], buf[2], buf[3]);
 		if (buf[0] == 10 && !buf[1])
 		{
 			n->err = ft_push_enter(n);
