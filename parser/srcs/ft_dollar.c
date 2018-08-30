@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 14:11:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 12:06:32 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 19:16:39 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,17 +23,10 @@ static char		*get_value(char **env, char *key)
 	while (env[++i])
 	{
 		tmp = ft_strjoin(key, "=");
-		p = ft_strstr(env[i], tmp);
-		ft_memdel((void**)&tmp);
-		if (ft_strequ(key, "PWD"))
+		if (ft_strnequ(env[i], tmp, ft_strlen(tmp)))
 		{
-			if (p && !(ft_strstr(env[i], "OLDPWD")))
-				return (ft_strdup(p + ft_strlen(key) + 1));
-		}
-		else
-		{
-			if (p)
-				return (ft_strdup(p + ft_strlen(key) + 1));
+			ft_memdel((void**)&tmp);
+			return (ft_strdup(env[i] + ft_strlen(key) + 1));
 		}
 		ft_memdel((void**)&tmp);
 	}
@@ -59,8 +52,10 @@ static void		ft_getvalue_var(t_parse *p, t_doll *d, int i, int j)
 {
 	if (d->p1 && d->p2 && d->p2 > d->p1)
 		d->var = ft_strsub(d->p1, 1, d->p2 - d->p1 - 1);
-	else if (d->p3)
+	else if (d->p3 && &(p->arg[i][j + 1]) != d->p3)
 		d->var = ft_strsub(&(p->arg[i][j + 1]), 0, d->p3 - &(p->arg[i][j + 1]));
+	else if (d->p3 && &(p->arg[i][j + 1]) == d->p3)
+		d->var = ft_strdup("$");
 	else
 		d->var = ft_strdup(&(p->arg[i][j + 1]));
 }
@@ -73,8 +68,11 @@ t_parse			*ft_dollar(t_parse *p, int i, int j, char ***p_env)
 	d.p2 = ft_strchr(&(p->arg[i][j + 1]), '}');
 	d.p3 = ft_strchr(&(p->arg[i][j + 1]), '$');
 	ft_getvalue_var(p, &d, i, j);
-	d.key = (ft_strequ(d.var, "?")) ?
-		ft_itoa(p->ret) : ft_strdup(get_value(*p_env, d.var));
+	if (ft_strequ(d.var, "$"))
+		d.key = ft_itoa(getpid());
+	else
+		d.key = (ft_strequ(d.var, "?")) ?
+			ft_itoa(p->ret) : ft_strdup(get_value(*p_env, d.var));
 	if (j)
 		d.tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), d.key);
 	else
