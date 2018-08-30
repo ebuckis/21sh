@@ -6,12 +6,24 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:12:52 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 16:55:59 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
+
+static int	ft_replace_ctrld(t_parse *p, char **line)
+{
+	ft_strdel(line);
+	ft_strdel(&(p->arg[p->i]));
+	p->arg[p->i] = ft_strnew(0);
+	p->arg[p->i][0] = '\0';
+	ft_strdel(&(p->arg_id[p->i]));
+	p->arg_id[p->i] = ft_strnew(0);
+	p->arg_id[p->i][0] = '\0';
+	return (1);
+}
 
 static void	ft_replace_arg(t_parse *p, int j)
 {
@@ -45,21 +57,21 @@ static int	ft_save_hdoc(t_parse *p, int j)
 	while (101)
 	{
 		line = ft_edition("heredoc > ");
+		if (g_nav.err == SIG_CTRLD)
+			return (ft_replace_ctrld(p, &line));
 		if (line && ft_strcmp(stop, line) == 0)
 		{
-			free(line);
+			ft_strdel(&line);
 			break ;
 		}
-		tmp = ft_strjoin(line, "\n");
-		free(line);
+		tmp = ft_strjoin_del(line, "\n");
 		line = ft_strjoin(p->hdoc[j], tmp);
 		if (p->hdoc[j])
 			free(p->hdoc[j]);
-		free(tmp);
+		ft_strdel(&tmp);
 		p->hdoc[j] = line;
 	}
 	ft_replace_arg(p, j);
-	p->i++;
 	return (1);
 }
 
@@ -84,8 +96,7 @@ int			ft_heredoc(t_parse *p)
 			ft_save_hdoc(p, j);
 			j++;
 		}
-		else
-			p->i++;
+		p->i++;
 	}
 	return (1);
 }
