@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 15:32:33 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 15:36:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,7 +58,6 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 	y_add = (calc / (n->x_size));
 	y_add -= (calc % n->x_size == 0) ? 1 : 0;
 	y_old = n->y_first;
-	dprintf(2, "__________________________\n	calc : %d\n	y_add : %d\n	x_size : %d\n	y_size : %d\n y_old : %d\ _________________________\n", calc, y_add, n->x_size, n->y_size, y_old);
 	ft_re_print_s(n, &y_add, calc);
 	if (y_old + y_add >= n->y_size)
 	{
