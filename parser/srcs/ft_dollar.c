@@ -6,12 +6,39 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 14:11:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:18:28 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 12:06:32 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
+
+static char		*get_value(char **env, char *key)
+{
+	int		i;
+	char	*p;
+	char	*tmp;
+
+	i = -1;
+	while (env[++i])
+	{
+		tmp = ft_strjoin(key, "=");
+		p = ft_strstr(env[i], tmp);
+		ft_memdel((void**)&tmp);
+		if (ft_strequ(key, "PWD"))
+		{
+			if (p && !(ft_strstr(env[i], "OLDPWD")))
+				return (ft_strdup(p + ft_strlen(key) + 1));
+		}
+		else
+		{
+			if (p)
+				return (ft_strdup(p + ft_strlen(key) + 1));
+		}
+		ft_memdel((void**)&tmp);
+	}
+	return (NULL);
+}
 
 static void		ft_end_dollar(t_parse *p, t_doll *d, int i)
 {
@@ -38,7 +65,7 @@ static void		ft_getvalue_var(t_parse *p, t_doll *d, int i, int j)
 		d->var = ft_strdup(&(p->arg[i][j + 1]));
 }
 
-t_parse			*ft_dollar(t_parse *p, int i, int j)
+t_parse			*ft_dollar(t_parse *p, int i, int j, char ***p_env)
 {
 	t_doll	d;
 
@@ -47,7 +74,7 @@ t_parse			*ft_dollar(t_parse *p, int i, int j)
 	d.p3 = ft_strchr(&(p->arg[i][j + 1]), '$');
 	ft_getvalue_var(p, &d, i, j);
 	d.key = (ft_strequ(d.var, "?")) ?
-		ft_itoa(p->ret) : ft_strdup(getenv(d.var));
+		ft_itoa(p->ret) : ft_strdup(get_value(*p_env, d.var));
 	if (j)
 		d.tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), d.key);
 	else
