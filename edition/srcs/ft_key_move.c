@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/16 15:12:20 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 15:32:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ static int		ft_re_print_s(t_navig *n, int *y_add, int calc)
 	n->i = ft_strlen(n->s);
 	ft_recup_pos(&(n->x), &(n->y));
 	ft_recup_pos(&(n->x_len), &(n->y_len));
-	if ((calc - 1) % n->x_size == 0)
+	if (calc % n->x_size == 0)
 	{
 		if (n->y == n->y_size - 1)
 		{
@@ -54,14 +54,16 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 	if (!(ret = tgetstr("cd", NULL)))
 		return (0);
 	tputs(ret, 1, ft_putcharint);
-	calc = ft_strlen(n->prompt) + ft_strlen(n->s) + 1;
-	y_add = 1 + (calc / (n->x_size + 1));
+	calc = ft_strlen(n->prompt) + ft_strlen(n->s);
+	y_add = (calc / (n->x_size));
+	y_add -= (calc % n->x_size == 0) ? 1 : 0;
 	y_old = n->y_first;
+	dprintf(2, "__________________________\n	calc : %d\n	y_add : %d\n	x_size : %d\n	y_size : %d\n y_old : %d\ _________________________\n", calc, y_add, n->x_size, n->y_size, y_old);
 	ft_re_print_s(n, &y_add, calc);
-	if (y_old + y_add > n->y_size)
+	if (y_old + y_add >= n->y_size)
 	{
-		n->y_first -= (y_old + y_add - n->y_size);
-		n->y_start -= (y_old + y_add - n->y_size);
+		n->y_first -= (y_old + y_add - n->y_size + 1);
+		n->y_start -= (y_old + y_add - n->y_size + 1);
 	}
 	return (1);
 }

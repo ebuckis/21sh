@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:30:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 15:06:53 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,9 @@
 
 static void		ft_move_right_x(t_navig *n)
 {
-	if (n->y == n->y_size - 1 && n->x >= n->x_size - 1)
+	if (n->y >= n->y_len && n->x >= n->x_len)
+		return ;
+	if (n->y < n->y_size - 1 && n->x >= n->x_size - 1)
 	{
 		n->x = 0;
 		n->y++;

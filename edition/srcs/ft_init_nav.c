@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:48:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 13:53:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 15:23:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,16 +16,42 @@
 int			ft_init_nav(t_navig *n, char *p)
 {
 	int		x_tmp;
+	char	*ret;
 
+	if (!(ft_get_size(&(n->x_size), &(n->y_size))))
+		return (0);
 	ft_recup_pos(&x_tmp, &(n->y_first));
 	ft_recup_pos(&x_tmp, &(n->y_first));
 	ft_putstr(p);
 	n->to_small = 0;
-	n->prompt = p;
-	if (!(ft_get_size(&(n->x_size), &(n->y_size))))
+	if (!p)
 		return (0);
+	n->prompt = p;
+	//sleep(1);
+	dprintf(2, "+++++++++\n	x_start : %d\n	y_start : %d\n	y_first : %d\n	x_size : %d\n	y_size : %d\n++++++++++++++++++++++\n", n->x_start, n->y_start, n->y_first, n->x_size, n->y_size);
 	ft_recup_pos(&(n->x_start), &(n->y_start));
+	if (ft_strlen(p) % n->x_size == 0)
+	{
+		dprintf(2, "test\n");
+		n->x_start = 0;
+		if (n->y_first == n->y_size - 1)
+		{
+			if (!(ret = tgetstr("sf", NULL)))
+				return (0);
+			tputs(ret, 1, ft_putcharint);
+			n->y_first--;
+			n->y_start = n->y_size - 1;
+		}
+		else
+			n->y_start++;
+		dprintf(2, "test\n");
+	}
+	else if (ft_strlen(p) / n->x_size != 0)
+		n->y_first--;
+	dprintf(2, "+++++++++\n	x_start : %d\n	y_start : %d\n	y_first : %d\n	x_size : %d\n++++++++++++++++++++++\n", n->x_start, n->y_start, n->y_first, n->x_size);
 	ft_recup_pos(&(n->x), &(n->y));
+	n->x = n->x_start;
+	n->y = n->y_start;
 	n->i = 0;
 	n->x_len = n->x_start;
 	n->y_len = n->y_start;

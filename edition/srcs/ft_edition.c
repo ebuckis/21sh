@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 14:06:50 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 14:35:30 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,9 +39,11 @@ char		*ft_lance_edit(t_navig *n)
 {
 	char		buf[5];
 
-	ft_x_change(n, MOVE_RIGHT);
+	dprintf(2, "++++1+++++\n	x_start : %d\n	y_start : %d\n	y_first : %d\n	x_size : %d\n	y_size : %d\n	x : %d\n	y : %d\n	x_len : %d\n	y_len : %d\n	i : %d\n	s : |%s|\n	++++++++++++++++++++++\n", n->x_start, n->y_start, n->y_first, n->x_size, n->y_size, n->x, n->y, n->x_len, n->y_len, n->i, n->s);
+//	ft_x_change(n, MOVE_RIGHT);
 	while (1)
 	{
+	dprintf(2, "++++1+++++\n	x_start : %d\n	y_start : %d\n	y_first : %d\n	x_size : %d\n	y_size : %d\n	x : %d\n	y : %d\n	x_len : %d\n	y_len : %d\n	i : %d\n	s : |%s|\n	++++++++++++++++++++++\n", n->x_start, n->y_start, n->y_first, n->x_size, n->y_size, n->x, n->y, n->x_len, n->y_len, n->i, n->s);
 		while (ft_verif_term_size(n) < 0)
 			if (!(n->err = ft_maj_win(n)))
 				return (NULL);
