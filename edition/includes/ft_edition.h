@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:08:35 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 10:57:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,13 +25,21 @@
 # define KEY_CODE_HOME		(buf[2] == 72)
 # define KEY_CTRL_D			(buf[0] == 4 && !buf[1])
 # define KEY_CODE_DEL		(buf[0] == 127 && !buf[1])
-# define IS_PRINTABLE		(buf[0] > 31 && buf[0] < 127 && !buf[1])
-# define KEY_CTRL_U			(buf[0] == 21 && !buf[1])//couper jusqu'au debut
-# define KEY_CTRL_K			(buf[0] == 11 && !buf[1])//couper jusqu'a la fin
-# define KEY_CTRL_E			(buf[0] == 5 && !buf[1])//copier jusqu'au debut
-# define KEY_CTRL_W			(buf[0] == 23 && !buf[1])//copier jusqu'a la fin
-# define KEY_CTRL_T			(buf[0] == 20 && !buf[1])//coller
 # define SIG_CTRLD			-4
+# define IS_PRINTABLE		(buf[0] > 31 && buf[0] < 127 && !buf[1])
+# define KEY_CTRL_U			(buf[0] == 21 && !buf[1])
+# define KEY_CTRL_K			(buf[0] == 11 && !buf[1])
+# define KEY_CTRL_E			(buf[0] == 5 && !buf[1])
+# define KEY_CTRL_W			(buf[0] == 23 && !buf[1])
+# define KEY_CTRL_T			(buf[0] == 20 && !buf[1])
+
+/*
+** CTRL + U couper jusqu'au debut
+** CTRL + K couper jusqu'a la fin
+** CTRL + E copier jusqu'au debut
+** CTRL + W copier jusqu'a la fin
+** CTRL + T coller
+*/
 
 # define CHAR_AJOUT 1
 # define CHAR_SUPPR 2
