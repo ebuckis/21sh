@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 11:07:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 17:24:28 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,8 @@ static void		ft_fork_shell3(t_parse *p, int *tab_pipe, int *pid_tab,
 	while (--i >= 0)
 	{
 		if ((ft_strequ(p->arg[tab_pipe[i]], "yes")) ||
-				(ft_strequ(p->arg[tab_pipe[i]], "top")))
+				(ft_strequ(p->arg[tab_pipe[i]], "top")) ||
+				(ft_strequ(p->arg[tab_pipe[i]], "base64")))
 			kill(pid_tab[i], 9);
 		waitpid(pid_tab[i], NULL, WUNTRACED);
 	}
