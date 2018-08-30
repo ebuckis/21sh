@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 13:47:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,4 +54,7 @@ void			manage_signal(void)
 	signal(SIGINT, ft_signal_ctrl_c);
 	signal(SIGTSTP, ft_signal_stop);
 	signal(SIGCONT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGURG, SIG_IGN);
 }
