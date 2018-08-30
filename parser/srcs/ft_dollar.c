@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 14:11:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 10:43:38 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:18:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static void		ft_end_dollar(t_parse *p, t_doll *d, int i, int j)
+static void		ft_end_dollar(t_parse *p, t_doll *d, int i)
 {
 	ft_strdel(&(p->arg[i]));
 	ft_strdel(&(d->tmp));
@@ -38,7 +38,7 @@ static void		ft_getvalue_var(t_parse *p, t_doll *d, int i, int j)
 		d->var = ft_strdup(&(p->arg[i][j + 1]));
 }
 
-t_parse			*ft_dollar(t_parse *p, int i, int j, char **env)
+t_parse			*ft_dollar(t_parse *p, int i, int j)
 {
 	t_doll	d;
 
@@ -60,6 +60,6 @@ t_parse			*ft_dollar(t_parse *p, int i, int j, char **env)
 		d.arg = ft_strjoin(d.tmp, &(p->arg[i][j + 1]) + ft_strlen(d.var));
 	else
 		d.arg = ft_strdup(d.tmp);
-	ft_end_dollar(p, &d, i, j);
+	ft_end_dollar(p, &d, i);
 	return (p);
 }

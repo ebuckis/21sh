@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:04:13 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 08:56:08 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:00:43 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,8 +28,3 @@ void		ft_del_end_to_i(t_navig *n)
 	while (n->i != i)
 		ft_key_code(n, buf);
 }
-
-/*
-**	dprintf(2, "______________\n	i : %d\n	x : %d\n	y : %d\n	x_len : %d\n	y_len : %d\n______________\n", n->i, n->x, n->y, n->x_len, n->y_len);
-** pb quand on del char sur du multi line voir ft_del char && ft_x_change(CHAR_SUPPR)
-*/

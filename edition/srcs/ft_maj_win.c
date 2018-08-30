@@ -6,28 +6,27 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:00:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 15:47:21 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:12:13 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-static void		ft_goto_i_by_end(t_navig *n)
+static int		ft_win_some_line(t_navig *n, char *ret)
 {
-	int		j;
-	int		i_bis;
-
-	i_bis = n->i;
-	j = ft_strlen(n->s);
-	while (j > i_bis)
+	if (n->y == n->y_size - 1)
 	{
-		ft_x_change(n, MOVE_LEFT);
-		n->i++;
-		j--;
+		if (!(ret = tgetstr("sf", NULL)))
+			return (0);
+		tputs(ret, 1, ft_putcharint);
+		n->y_first--;
+		n->y_start--;
 	}
-	ft_move_to_xy(n->x, n->y);
-	n->i = i_bis;
+	n->y++;
+	n->x = 0;
+	ft_move_to_xy(0, n->y);
+	return (1);
 }
 
 static int		ft_del_all(t_navig *n, int nb, char *ret)
@@ -43,21 +42,10 @@ static int		ft_del_all(t_navig *n, int nb, char *ret)
 	ft_recup_pos(&(n->x), &(n->y));
 	ft_delta_line(n, nb);
 	if ((nb - 1) % n->x_size == 0)
-	{
-		if (n->y == n->y_size - 1)
-		{
-			if (!(ret = tgetstr("sf", NULL)))
-				return (0);
-			tputs(ret, 1, ft_putcharint);
-			n->y_first--;
-			n->y_start--;
-		}
-		n->y++;
-		n->x = 0;
-		ft_move_to_xy(0, n->y);
-	}
+		if (!(ft_win_some_line(n, ret)))
+			return (0);
 	ft_recup_pos(&(n->x_len), &(n->y_len));
-	ft_goto_i_by_end(n);
+	ft_goto_i_from_end(n);
 	return (1);
 }
 

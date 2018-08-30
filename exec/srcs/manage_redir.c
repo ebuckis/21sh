@@ -3,24 +3,15 @@
 /*                                                              /             */
 /*   manage_redir.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 16:57:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:21:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
-
-static void		display(char **tabl)
-{
-	int		i;
-
-	i = -1;
-	while (tabl[++i])
-		dprintf(2, "%s\n", tabl[i]);
-}
+#include "exec.h"
 
 static char		**create_commande(t_parse *p, int begin, int sep)
 {
@@ -66,6 +57,7 @@ char			**manage_redir(t_parse *p, int begin, char ***p_env)
 	int		*redir_lim;
 	int		nb_redir;
 
+	commande = NULL;
 	if (!(redir_lim = (int*)malloc(sizeof(int) * 2)))
 		return (NULL);
 	i = begin - 1;

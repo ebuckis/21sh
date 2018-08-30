@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   getenv.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/31 09:21:41 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/23 12:34:32 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 char		**ft_getenv(int argc, char *argv[], char *env[])
 {

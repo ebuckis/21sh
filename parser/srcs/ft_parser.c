@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 17:52:50 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:30:01 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,6 @@
 
 static void	ft_print_parse_err(t_parse *p)
 {
-	char	c;
-
 	if (p->s[p->i])
 		ft_printf("parse error near : `%c'\n", p->s[p->i]);
 	else
@@ -58,7 +56,7 @@ static int	ft_str_parser(t_parse *p)
 **				- sinon on copie betement
 */
 
-t_parse		*ft_parser(char *line, pid_t child_pid, char **env, int ret)
+t_parse		*ft_parser(char *line, pid_t child_pid, int ret)
 {
 	t_parse	*p;
 	int		n;
@@ -79,7 +77,7 @@ t_parse		*ft_parser(char *line, pid_t child_pid, char **env, int ret)
 		p->ret = ret;
 		p->child_pid = child_pid;
 		ft_heredoc(p);
-		p = ft_tilde_dollar(p, env);
+		p = ft_tilde_dollar(p);
 		if (!p->arg && !p->arg_id)
 			return (NULL);
 	}

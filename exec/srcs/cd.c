@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   cd.c                                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <bpajot@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 10:50:52 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 15:37:02 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 static int		ft_cd3(char ***p_env, char *pwd, char *oldpwd)
 {

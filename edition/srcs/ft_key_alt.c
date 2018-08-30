@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/10 11:30:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/20 07:32:28 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:19:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,11 +49,11 @@ int		ft_alt_left(t_navig *n)
 
 int		ft_alt_right(t_navig *n)
 {
-	if (n->i < ft_strlen(n->s))
+	if (n->i < (int)ft_strlen(n->s))
 	{
-		while (n->i < ft_strlen(n->s) && n->s[n->i] != ' ')
+		while (n->i < (int)ft_strlen(n->s) && n->s[n->i] != ' ')
 			ft_x_change(n, MOVE_RIGHT);
-		while (n->i < ft_strlen(n->s) && n->s[n->i] == ' ')
+		while (n->i < (int)ft_strlen(n->s) && n->s[n->i] == ' ')
 			ft_x_change(n, MOVE_RIGHT);
 	}
 	return (1);

@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   ret_display.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/29 11:37:28 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 15:23:27 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:59:01 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "exec.h"
 
 static void		ft_ret_display_signal2(int signal)
 {
@@ -35,8 +35,7 @@ static void		ft_ret_display_signal2(int signal)
 		ft_printf("Stopped: ");
 }
 
-static void		ft_ret_display_signal(t_parse *p, pid_t pid, int status,
-		int stop)
+static void		ft_ret_display_signal(pid_t pid, int status, int stop)
 {
 	int		signal;
 
@@ -73,12 +72,12 @@ int				ft_ret_display(t_parse *p, pid_t pid, int status)
 	else if (WIFSIGNALED(status))
 	{
 		p->ret = WTERMSIG(status) + 128;
-		ft_ret_display_signal(p, pid, status, 0);
+		ft_ret_display_signal(pid, status, 0);
 	}
 	else if (WIFSTOPPED(status))
 	{
 		p->ret = WSTOPSIG(status) + 128;
-		ft_ret_display_signal(p, pid, status, 1);
+		ft_ret_display_signal(pid, status, 1);
 		p->child_pid = pid;
 		if (prev_pid && prev_pid != p->child_pid)
 		{

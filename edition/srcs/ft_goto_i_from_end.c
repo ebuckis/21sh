@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   fg.c                                             .::    .:/ .      .::   */
+/*   ft_goto_i_from_end.c                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/26 13:26:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:15:59 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/08/29 18:08:03 by kcabus       #+#   ##    ##    #+#       */
+/*   Updated: 2018/08/29 18:08:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "ft_edition.h"
 
-int		ft_fg(t_parse *p)
+void		ft_goto_i_from_end(t_navig *n)
 {
-	if (p->child_pid)
+	int		j;
+	int		i_bis;
+
+	i_bis = n->i;
+	j = ft_strlen(n->s);
+	while (j > i_bis)
 	{
-		kill(p->child_pid, 19);
-		return (0);
+		ft_x_change(n, MOVE_LEFT);
+		n->i++;
+		j--;
 	}
-	else
-		return (1);
+	ft_move_to_xy(n->x, n->y);
+	n->i = i_bis;
 }

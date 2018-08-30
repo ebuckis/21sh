@@ -6,18 +6,30 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/27 09:03:52 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:54:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
+static int	ft_realloc_i(t_parse *p, int i)
+{
+	p->len += i;
+	p->str = ft_realloc(p->str, p->len);
+	p->ident = ft_realloc(p->ident, p->len);
+	if (!p->str || !p->ident)
+		return (0);
+	if (!p->str || !p->ident)
+		return (0);
+	return (1);
+}
+
 static int	ft_suite2(int i, t_parse *p)
 {
 	if (i == 0)
 		p->i++;
-	if (i == 1)
+	else if (i == 1)
 	{
 		i = 2;
 		if (!(p->s = ft_strjoin_del(p->s, "\n")))
@@ -37,15 +49,16 @@ int			ft_suite_line(t_parse *p, int i, char *prompt)
 	if (g_nav.err == SIG_CTRLD)
 		return (0);
 	if (!tmp)
+	{
+		if (!(ft_realloc_i(p, i)))
+			return (0);
 		return (1);
+	}
 	if (!(p->s = ft_strjoin_del(p->s, tmp)))
 		return (0);
 	if (ft_strlen(tmp) != 0 || i != 0)
 	{
-		p->len += i + ft_strlen(tmp);
-		p->str = ft_realloc(p->str, p->len);
-		p->ident = ft_realloc(p->ident, p->len);
-		if (!p->str || !p->ident)
+		if (!(ft_realloc_i(p, i + ft_strlen(tmp))))
 			return (0);
 	}
 	ft_strdel(&tmp);

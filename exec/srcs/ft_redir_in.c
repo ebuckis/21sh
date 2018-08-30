@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:55:19 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 15:22:58 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:20:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,6 @@ int				ft_redir_in(t_parse *p, int *i, char **env)
 	int		n;
 	int		m;
 	char	*pt;
-	char	*path;
 
 	fd = 0;
 	pt = ft_strchr(p->arg[*i], '<');

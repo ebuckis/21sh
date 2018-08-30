@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 10:52:58 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 17:57:51 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -87,7 +87,6 @@ void			ft_redir(t_parse *p, int *redir_lim, char **env,
 		int nb_redirec)
 {
 	int		i;
-	pid_t	pid;
 	int		fd;
 
 	fd = 0;

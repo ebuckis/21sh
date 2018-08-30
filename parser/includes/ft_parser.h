@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 08:57:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 16:28:52 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/29 18:29:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,14 +61,14 @@ typedef struct	s_doll
 ** arg : split de str
 ** arg_id : split de ident
 */
-t_parse			*ft_parser(char *line, pid_t child_pid, char **env, int ret);
+t_parse			*ft_parser(char *line, pid_t child_pid, int ret);
 int				ft_antislash(t_parse *p);
 t_parse			*ft_init_parse(char *line);
 int				ft_is_separator(t_parse *p);
 int				ft_is_white(char c);
 int				ft_parse_dquote(t_parse *p);
 int				ft_parse_quote(t_parse *p);
-t_parse			*ft_tilde_dollar(t_parse *p, char **env);
+t_parse			*ft_tilde_dollar(t_parse *p);
 int				ft_suite_line(t_parse *p, int i, char *prompt);
 void			ft_end_while(t_parse *p, char c);
 int				ft_separator(t_parse *p);
@@ -85,6 +85,6 @@ void			ft_free_tab3(char ***t);
 */
 void			ft_add_space(t_parse *p);
 int				ft_heredoc(t_parse *p);
-t_parse			*ft_dollar(t_parse *p, int i, int j, char **env);
+t_parse			*ft_dollar(t_parse *p, int i, int j);
 
 #endif
