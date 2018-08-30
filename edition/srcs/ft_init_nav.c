@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:48:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 15:41:14 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 16:57:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,6 @@ static int	ft_no_new_name(t_navig *n, char *p)
 	ft_recup_pos(&(n->x_start), &(n->y_start));
 	if (ft_strlen(p) % n->x_size == 0)
 	{
-		dprintf(2, "test\n");
 		n->x_start = 0;
 		if (n->y_first == n->y_size - 1)
 		{
@@ -32,7 +31,6 @@ static int	ft_no_new_name(t_navig *n, char *p)
 		}
 		else
 			n->y_start++;
-		dprintf(2, "test\n");
 	}
 	else if (ft_strlen(p) / n->x_size != 0)
 		n->y_first--;
