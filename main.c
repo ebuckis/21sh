@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:29:50 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/08/30 10:57:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,6 @@
 /*
 ** transforme les *char en *wchar_t et remplace les -1 non imprimables par le
 ** caractere speciale '·' pour l'afficghae du debug
-** a supprimer a la fin
 */
 
 static void		debug_display_struct(t_parse *p)
@@ -43,7 +42,7 @@ static void		debug_display_struct(t_parse *p)
 }
 
 /*
-** gestion valeur retour exit
+** gestion valeur retour exit que si pas pipe
 */
 
 static void		ft_exit(int *a, char *arg)
@@ -66,7 +65,7 @@ static void		ft_exit(int *a, char *arg)
 }
 
 /*
-** gestion exit ou ;
+** gestion exit ou ; en boucle
 */
 
 static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
@@ -94,7 +93,7 @@ static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)
 }
 
 /*
-** affichage auteurs
+** affichage auteurs via manage_signal
 ** affichage titre 21sh
 ** en boucle, edition, parsing puis execution
 */
