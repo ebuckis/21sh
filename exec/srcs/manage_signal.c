@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 13:47:17 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:25:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,6 +46,12 @@ static void		ft_signal_stop(int s)
 		ft_init_nav(&g_nav, "21sh $> ");
 	}
 }
+
+/*
+** manage_signal :
+** affiche les auterus au debut du main
+** ignore certains signaux et intercepte Ctrl-C et Ctrl-Z
+*/
 
 void			manage_signal(void)
 {

@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/29 11:37:28 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:59:01 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:18:22 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** affichage des signaux qui interrompe un processus
+*/
 
 static void		ft_ret_display_signal2(int signal)
 {
@@ -34,6 +38,10 @@ static void		ft_ret_display_signal2(int signal)
 	else if (signal == 17 || signal == 18)
 		ft_printf("Stopped: ");
 }
+
+/*
+** affichage des signaux qui interrompe un processus
+*/
 
 static void		ft_ret_display_signal(pid_t pid, int status, int stop)
 {
@@ -62,6 +70,10 @@ static void		ft_ret_display_signal(pid_t pid, int status, int stop)
 		ft_printf("Signal = %d\n", signal);
 	}
 }
+
+/*
+** gestion des signaux de retour des processus pour les mettre dans p->ret
+*/
 
 int				ft_ret_display(t_parse *p, pid_t pid, int status)
 {

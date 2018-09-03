@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:55:19 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:20:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:09:01 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** ft_get_redir_fd1 : gere la redirection "< file"
+*/
 
 static int		ft_get_redir_fd1(t_parse *p, int *i, char **env)
 {
@@ -25,6 +29,10 @@ static int		ft_get_redir_fd1(t_parse *p, int *i, char **env)
 	return (fd);
 }
 
+/*
+** ft_get_redir_fd2 : gere la redirection "n< file"
+*/
+
 static int		ft_get_redir_fd2(t_parse *p, int *i, char **env, int n)
 {
 	int		fd;
@@ -36,6 +44,13 @@ static int		ft_get_redir_fd2(t_parse *p, int *i, char **env, int n)
 	ft_strdel(&path);
 	return (fd);
 }
+
+/*
+** ft_redir_in : gere les differentes redirections d'entree <
+** gestion de la redirection "n<m"
+** gestion des cas/pattern d'erreurs
+** ou permission denied si fd = - 1 impossible open file
+*/
 
 int				ft_redir_in(t_parse *p, int *i, char **env)
 {

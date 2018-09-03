@@ -6,12 +6,20 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 12:17:53 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:47:04 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** ft_fork_pipe : cree le pipeline et fork
+** dans le fils, duplique la sortie standard sur le cote ecriture du pipe
+** dans le pere, duplique l'entree standard  sur le cote lecture  du pipe
+** retourne le pid fils
+** on fait appel a cette fonction autant de fois qu'il y a de pipe
+*/
 
 static int		ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 {
@@ -41,6 +49,14 @@ static int		ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 	return (0);
 }
 
+/*
+** ft_fork_shell3 : verifie que tous les pids des processus pipe soit finit
+** dans l'ordre inverse de creation avant de rendre la main pour le wait final.
+** si un processus infini (yes. top, base64 ...) se retrouve devant un process
+** deja fini, alors on le kill car il ne peut plus avoir d'impact sur lui
+** malgre le pipe
+*/
+
 static void		ft_fork_shell3(t_parse *p, int *tab_pipe, int *pid_tab,
 		int pid)
 {
@@ -61,6 +77,11 @@ static void		ft_fork_shell3(t_parse *p, int *tab_pipe, int *pid_tab,
 	}
 	exit(ft_ret_display(p, pid, status));
 }
+
+/*
+** ft_fork_shell2 : lance les forks de pipe et enregistre
+** les pids correspondants
+*/
 
 static void		ft_fork_shell2(t_parse *p, int *tab_pipe, char ***p_env,
 		int nb_pip)
@@ -91,6 +112,15 @@ static void		ft_fork_shell2(t_parse *p, int *tab_pipe, char ***p_env,
 	else
 		exit(1);
 }
+
+/*
+** ft_fork_shell : gestion des forks et wait
+** si zero pipe et builtin cd, unsetenv ou setenv, pas de fork pour modifier
+** env
+** sinon au moins un fork pour lancer un processus hors du shell
+** et un fork supplementaire par pipe present
+** on wait le dernier processus lance
+*/
 
 void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 		int nb_pipe)

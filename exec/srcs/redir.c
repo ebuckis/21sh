@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 11:07:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:16:21 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,10 @@ static int		ft_relative_absolute(char *doc)
 	else
 		return (0);
 }
+
+/*
+** recuperer le path complet d'un fichier
+*/
 
 char			*get_path_redir(t_parse *p, int *i, char **env)
 {
@@ -42,6 +46,10 @@ char			*get_path_redir(t_parse *p, int *i, char **env)
 	return (path);
 }
 
+/*
+** gestion des closes
+*/
+
 static int		ft_redir_close(t_parse *p, int *i)
 {
 	int		fd;
@@ -57,6 +65,10 @@ static int		ft_redir_close(t_parse *p, int *i)
 		ft_putendl("redirection parse error");
 	return (fd);
 }
+
+/*
+** gestion des heredoc
+*/
 
 static int		ft_redir_heredoc(t_parse *p, int *i, char **env)
 {
@@ -82,6 +94,10 @@ static int		ft_redir_heredoc(t_parse *p, int *i, char **env)
 	ft_strdel(&path);
 	return (fd);
 }
+
+/*
+** gestion des redirs in, out, close, heredoc
+*/
 
 void			ft_redir(t_parse *p, int *redir_lim, char **env,
 		int nb_redirec)

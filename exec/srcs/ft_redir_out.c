@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:53:11 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:52:23 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:09:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** ft_simple_double_out: gere les redirections de sortie "> file" et ">> file"
+*/
 
 static int		ft_simple_double_out(t_parse *p, int *i, char **env, int nb)
 {
@@ -36,6 +40,10 @@ static int		ft_simple_double_out(t_parse *p, int *i, char **env, int nb)
 	return (fd);
 }
 
+/*
+** ft_fd_redir_and : gere la redirection de sortie "&> file"
+*/
+
 static int		ft_redir_and(t_parse *p, int *i, char **env)
 {
 	char	*path;
@@ -52,6 +60,10 @@ static int		ft_redir_and(t_parse *p, int *i, char **env)
 	return (fd);
 }
 
+/*
+** ft_fd_redir : gere la redirection de sortiei "n> file"
+*/
+
 static int		ft_fd_redir(t_parse *p, int *i, char **env, int n)
 {
 	char	*path;
@@ -64,6 +76,11 @@ static int		ft_fd_redir(t_parse *p, int *i, char **env, int n)
 	ft_strdel(&path);
 	return (fd);
 }
+
+/*
+** ft_redir_outi2 : gere les differentes redirections de sortie >, >>, >&
+** gestion de la redirection "n>&m"
+*/
 
 static int		ft_redir_out2(t_parse *p, int *i, char **env)
 {
@@ -92,6 +109,13 @@ static int		ft_redir_out2(t_parse *p, int *i, char **env)
 		return (-2);
 	return (fd);
 }
+
+/*
+** ft_redir_out : gere les differentes redirections de sortie >
+** gestion de la redirection ">&m"
+** gestion des cas/pattern d'erreurs
+** ou permission denied si fd = - 1 impossible open file
+*/
 
 int				ft_redir_out(t_parse *p, int *i, char **env)
 {

@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 10:38:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:07:58 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** creation du tableau commande sans les redirs
+*/
 
 static char		**create_commande(t_parse *p, int begin, int sep)
 {
@@ -25,6 +29,10 @@ static char		**create_commande(t_parse *p, int begin, int sep)
 	commande[i] = NULL;
 	return (commande);
 }
+
+/*
+** compte le nombre de redirection et check les erreurs
+*/
 
 static int		manage_redir2(t_parse *p, int *i, int *redir_lim,
 		int *nb_redir)
@@ -49,6 +57,11 @@ static int		manage_redir2(t_parse *p, int *i, int *redir_lim,
 	}
 	return (0);
 }
+
+/*
+** gestion des redirection dans une commande puis creation du tableau commande
+** sans les redirs
+*/
 
 char			**manage_redir(t_parse *p, int begin, char ***p_env)
 {

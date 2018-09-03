@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/31 09:21:41 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 13:24:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:05:16 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** retourne l'env au lancement d'un programme
+*/
 
 char		**ft_getenv(int argc, char *argv[], char *env[])
 {
@@ -34,6 +38,10 @@ char		**ft_getenv(int argc, char *argv[], char *env[])
 	return (myenv);
 }
 
+/*
+** retourne la variable HOME
+*/
+
 char		*ft_home(char **env)
 {
 	int		i;
@@ -50,6 +58,10 @@ char		*ft_home(char **env)
 	}
 	return (NULL);
 }
+
+/*
+** retourne la variable PWD ou OLDPWD
+*/
 
 char		*ft_getpwd(char **env, int old)
 {
@@ -76,6 +88,10 @@ char		*ft_getpwd(char **env, int old)
 	}
 	return (NULL);
 }
+
+/*
+** set la variable PWD ou OLDPWD
+*/
 
 void		ft_setpwd(char **env, int old, char *pwd)
 {

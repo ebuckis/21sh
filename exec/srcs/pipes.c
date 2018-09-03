@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:21:42 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:25:58 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** cree un tableau avec les indices de debut de commande entre chaque pipe
+*/
 
 static int			*create_tab_pipe(t_parse *p, int i, int nb_pipe,
 		int *tab_pipe)
@@ -31,6 +35,12 @@ static int			*create_tab_pipe(t_parse *p, int i, int nb_pipe,
 	tab_pipe[j] = -1;
 	return (tab_pipe);
 }
+
+/*
+** cree un tableau avec les indices de debut de pipe puis appel fork_shell
+** s'arrete si il y a un ";", erreur si 2 pipes colles ou pipe au ddbut ou a
+** la fin sans argument
+*/
 
 void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 {

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/06 15:06:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:25:32 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,6 +75,10 @@ static int	ft_tab_size2(char **arg)
 	return (0);
 }
 
+/*
+** cree un nouveau tableau env2 avec la var en moins
+*/
+
 static char	**ft_unsetenv2(char **arg, char **env, int nb_double)
 {
 	char	**env2;
@@ -99,6 +103,10 @@ static char	**ft_unsetenv2(char **arg, char **env, int nb_double)
 	env2[j] = NULL;
 	return (env2);
 }
+
+/*
+** builtin unsetenv : supprimer une variable d'env
+*/
 
 int			ft_unsetenv(char **arg, char ***env)
 {

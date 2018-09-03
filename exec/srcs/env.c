@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:15:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:09:18 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** check si doublons : est ce que line est present dans le tbaleau env
+*/
 
 int				ft_doublon(char *line, char **arg, int j)
 {
@@ -42,6 +46,11 @@ int				ft_doublon(char *line, char **arg, int j)
 	return (0);
 }
 
+/*
+** return la taille du tableau qui sera la fusuon de env et env2 sans les
+** doublons
+*/
+
 int				ft_tab_size(char **arg, char **tab_ref)
 {
 	int		i;
@@ -54,6 +63,12 @@ int				ft_tab_size(char **arg, char **tab_ref)
 					ft_doublon(arg[i], arg, i))) ? 1 : 0;
 	return (i - doublon);
 }
+
+/*
+** lance la commande secondaire dans l'env modifie
+** i % 100 : n ieme argument ou la 2nd commande debute
+** i / 100 : n ieme arg ou la commande env debut
+*/
 
 static int		ft_env3(t_parse *p, char **arg, char **env, int i)
 {
@@ -82,6 +97,13 @@ static int		ft_env3(t_parse *p, char **arg, char **env, int i)
 	return (0);
 }
 
+/*
+** check si option i, puis si il y a des couples KEY=VALUE
+** cree un 2eme tableau env2 avec les nouveeaux couples
+** si -i, remplace env par env2
+** sinon mix env et env2 en verifiant qu'il n'y est pas de doublons
+*/
+
 static int		ft_env2(t_parse *p, char **arg, char **env, int tab_pipe_i)
 {
 	int		i;
@@ -107,6 +129,11 @@ static int		ft_env2(t_parse *p, char **arg, char **env, int tab_pipe_i)
 	ft_free_tab(&env2);
 	return (ret);
 }
+
+/*
+** built-in env : lance une commande avec un env modifie ou affiche env
+** si pas d'argument. option -i : lance une commande abvec un env vide
+*/
 
 int				ft_env(t_parse *p, char **arg, char **env, int tab_pipe_i)
 {

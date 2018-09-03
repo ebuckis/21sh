@@ -6,12 +6,17 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:32:44 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 12:20:11 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:15:56 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** built-in echo : gere l'option -n (sans \n a la fin)
+** affiche les arguments separes par des espaces
+*/
 
 int		ft_echo(char **arg)
 {

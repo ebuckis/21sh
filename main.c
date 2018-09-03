@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 13:53:53 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 13:56:18 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,7 +65,7 @@ static void		ft_exit(int *a, char *arg)
 }
 
 /*
-** gestion exit ou ; en boucle
+** gestion exit ou ; en boucle + tilde et dollar
 */
 
 static void		ft_manage_semicolon_exit(t_parse *p, int *a, char ***p_env)

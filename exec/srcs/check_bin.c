@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 14:24:58 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:11:05 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+**  recupere les differents chemin de la variable PATH de l'env
+*/
 
 static char	**ft_path(char **env)
 {
@@ -32,6 +36,10 @@ static char	**ft_path(char **env)
 	return (NULL);
 }
 
+/*
+** on check si le binaire existe avec stat
+*/
+
 char		*check_bin3(char *bin, int warning)
 {
 	struct stat buf;
@@ -46,6 +54,11 @@ char		*check_bin3(char *bin, int warning)
 	}
 	return (NULL);
 }
+
+/*
+** cas ou on check si le binaire est present dans les dossiers
+** de la var PATH de l'env
+*/
 
 char		*check_bin2(char *tab0, char **env)
 {
@@ -74,11 +87,16 @@ char		*check_bin2(char *tab0, char **env)
 	return (NULL);
 }
 
-char		*check_bin(char **tab_pipe_i, char **env)
+/*
+** check_bin : verif si le 1er arg de tab_commande est un binaire du path
+** on check si chemin absolu du binaire si commence par / ou ./
+*/
+
+char		*check_bin(char **tab_com, char **env)
 {
-	if (tab_pipe_i[0][0] == '/' || (tab_pipe_i[0][0] == '.' &&
-		tab_pipe_i[0][1] == '/'))
-		return (check_bin3(tab_pipe_i[0], 1));
+	if (tab_com[0][0] == '/' || (tab_com[0][0] == '.' &&
+		tab_com[0][1] == '/'))
+		return (check_bin3(tab_com[0], 1));
 	else
-		return (check_bin2(tab_pipe_i[0], env));
+		return (check_bin2(tab_com[0], env));
 }

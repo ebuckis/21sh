@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/05 16:51:13 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:21:51 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,10 @@ int			display_env(char **env)
 		ft_putendl(env[i]);
 	return (0);
 }
+
+/*
+** construction de env2 avec KEY=VALUE
+*/
 
 int			ft_setenv2(char **arg, char ***env)
 {
@@ -40,6 +44,10 @@ int			ft_setenv2(char **arg, char ***env)
 	*env = tmp2;
 	return (0);
 }
+
+/*
+** mix env et env2 sans les doublons
+*/
 
 char		**ft_mix_env(char **env, char **env2)
 {
@@ -69,6 +77,11 @@ char		**ft_mix_env(char **env, char **env2)
 	arg[i] = NULL;
 	return (arg);
 }
+
+/*
+** built-in setenv : ajoute une variable d'env sous le format KEY VALUE
+** gestion des cas d'erreurs
+*/
 
 int			ft_setenv(char **arg, char ***env)
 {

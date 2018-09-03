@@ -6,12 +6,16 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 12:18:06 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:12:54 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** on check si le 1er arg de tab_commande est un builtin
+*/
 
 int		check_builtin(char **tab_com)
 {
@@ -24,6 +28,11 @@ int		check_builtin(char **tab_com)
 		return (0);
 }
 
+/*
+** lance le builtin sans fork si pas de pipe seulement pour cd, setenv
+** et unsetenv qui modifie l'env
+*/
+
 void	run_builtin(t_parse *p, char **tab_com, char ***p_env)
 {
 	if (ft_strequ(tab_com[0], "cd"))
@@ -34,6 +43,10 @@ void	run_builtin(t_parse *p, char **tab_com, char ***p_env)
 		p->ret = ft_unsetenv(tab_com, p_env);
 	ft_free_tab(&tab_com);
 }
+
+/*
+** lance le builtin apres fork et exit une fois le builtin fini
+*/
 
 void	run_builtin_fork(t_parse *p, char **tab_com, char ***p_env,
 		int tab_pipe_i)

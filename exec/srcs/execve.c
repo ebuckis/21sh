@@ -6,12 +6,17 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 10:32:20 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:08:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** ft_execve warning : check si on les droits d'exec sur le binaire et que
+** c'est bien un regular file
+*/
 
 static void		ft_execve_warning(char *path, char **tab_com)
 {
@@ -22,6 +27,11 @@ static void		ft_execve_warning(char *path, char **tab_com)
 	ft_free_tab(&tab_com);
 	exit(126);
 }
+
+/*
+** ft_execve : check si il y a des redir puis si c'est un buitlin ou un
+** binaire sinon retourne le code 127, command not found;
+*/
 
 void			ft_execve(t_parse *p, int tab_pipe_i, char ***p_env)
 {

@@ -6,12 +6,17 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 10:50:52 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:12:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:02:02 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+/*
+** chdir change le current working directory puis on met a jour PWD et OLDPWD
+** dans les variables d'env
+*/
 
 static int		ft_cd3(char ***p_env, char *pwd, char *oldpwd)
 {
@@ -22,6 +27,10 @@ static int		ft_cd3(char ***p_env, char *pwd, char *oldpwd)
 	ft_setpwd(*p_env, 1, oldpwd);
 	return (0);
 }
+
+/*
+** gestion du cd -, des paths absolus et relatifs et des erreurs
+*/
 
 static int		ft_cd2(char ***p_env, char *pwd, char *oldpwd, char **arg)
 {
@@ -50,6 +59,10 @@ static int		ft_cd2(char ***p_env, char *pwd, char *oldpwd, char **arg)
 	}
 	return (ret);
 }
+
+/*
+** built-in cd, on recupere les 3 variables d'env PWD, OLDPWD, HOME
+*/
 
 int				ft_cd(char **arg, char ***p_env)
 {
