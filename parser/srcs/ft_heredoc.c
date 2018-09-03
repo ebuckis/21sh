@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 11:10:25 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:48:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,10 @@ static int	ft_replace_ctrld(t_parse *p, char **line)
 	p->arg_id[p->i][0] = '\0';
 	return (1);
 }
+
+/*
+** dans le cas d'un ctrl d, on remplace les argument par une chaine vide
+*/
 
 static void	ft_replace_arg(t_parse *p, int j)
 {
@@ -45,6 +49,10 @@ static void	ft_replace_arg(t_parse *p, int j)
 	ft_strdel(&(p->arg_id[p->i]));
 	p->arg_id[p->i] = tmp;
 }
+
+/*
+** permet de remplacer les arguments par les entrees
+*/
 
 static int	ft_save_hdoc(t_parse *p, int j)
 {
@@ -75,6 +83,12 @@ static int	ft_save_hdoc(t_parse *p, int j)
 	return (1);
 }
 
+/*
+** boucle jusqu'a ce aur line == stop
+** quand c'est le cas on remplace l'argument qui stop le heredoc
+** par les char* rentrés join par des '\n'
+*/
+
 int			ft_heredoc(t_parse *p)
 {
 	int		j;
@@ -100,3 +114,7 @@ int			ft_heredoc(t_parse *p)
 	}
 	return (1);
 }
+
+/*
+** gestion des heredoc, creation d'un tableau dans la struct p
+*/

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:54:27 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:44:10 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,11 @@ static int	ft_realloc_i(t_parse *p, int i)
 		return (0);
 	return (1);
 }
+
+/*
+** permet de reallouer de la memoire sur les 2 char *
+** qui fonctionnent ensemble
+*/
 
 static int	ft_suite2(int i, t_parse *p)
 {

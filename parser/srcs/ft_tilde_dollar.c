@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 11:21:14 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:50:59 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,10 @@ char			*ft_strjoin_free(char *line1, char *line2, int i, int j)
 		ft_memdel((void**)&line2);
 	return (tmp);
 }
+
+/*
+** remplacement de la string
+*/
 
 static t_parse	*ft_tilde(t_parse *p, int i)
 {
@@ -71,3 +75,8 @@ t_parse			*ft_tilde_dollar(t_parse *p, int i, char ***p_env)
 	}
 	return (p);
 }
+
+/*
+** on boucle sur les arguments afin de remplacer un ~ ou encore un $
+** par les variables associees
+*/

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:21:39 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/14 11:40:13 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:43:06 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,8 +45,6 @@ int			ft_parse_dquote(t_parse *p)
 ** Gestion des "..."
 ** s'il est seul on boucle dans ft_suite
 ** gestion particuliere si on a un backslash
-**
-** /!\ peut etre a modifier
 **
 ** on ressort dès qu'on a un autre "
 ** 96 = `
