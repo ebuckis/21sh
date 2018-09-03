@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 11:07:48 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 10:32:20 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@ static void		ft_execve_warning(char *path, char **tab_com)
 		ft_printf("21sh: permission denied: %s\n", tab_com[0]);
 	else
 		ft_printf("21sh: not a regular file: %s\n", tab_com[0]);
+	ft_free_tab(&tab_com);
 	exit(126);
 }
 
@@ -43,6 +44,10 @@ void			ft_execve(t_parse *p, int tab_pipe_i, char ***p_env)
 		else if (path)
 			ft_execve_warning(path, tab_com);
 		else
+		{
+			ft_free_tab(&tab_com);
 			exit(127);
+		}
 	}
+	ft_free_tab(&tab_com);
 }

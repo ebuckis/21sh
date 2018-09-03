@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:21:27 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 10:38:51 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,5 +72,6 @@ char			**manage_redir(t_parse *p, int begin, char ***p_env)
 		ft_redir(p, redir_lim, *p_env, nb_redir);
 		commande = create_commande(p, redir_lim[0], redir_lim[1]);
 	}
+	ft_memdel((void**)&redir_lim);
 	return (commande);
 }
