@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 14:11:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 19:16:39 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 11:54:09 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,13 +72,11 @@ t_parse			*ft_dollar(t_parse *p, int i, int j, char ***p_env)
 		d.key = ft_itoa(getpid());
 	else
 		d.key = (ft_strequ(d.var, "?")) ?
-			ft_itoa(p->ret) : ft_strdup(get_value(*p_env, d.var));
+			ft_itoa(p->ret) : get_value(*p_env, d.var);
 	if (j)
-		d.tmp = ft_strjoin(ft_strsub(p->arg[i], 0, j), d.key);
+		d.tmp = ft_strjoin_free(ft_strsub(p->arg[i], 0, j), d.key, 1, 0);
 	else
 		d.tmp = (d.key) ? ft_strdup(d.key) : ft_strdup("");
-	d.arg = (d.p1 && d.p2 && d.p2 > d.p1) ? ft_strjoin(d.tmp,
-		&(p->arg[i][j + 1]) + ft_strlen(d.var) + 2) : ft_strdup(d.tmp);
 	if (d.p1 && d.p2 && d.p2 > d.p1)
 		d.arg = ft_strjoin(d.tmp, &(p->arg[i][j + 1]) + ft_strlen(d.var) + 2);
 	else if (d.p3)
