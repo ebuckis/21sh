@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 14:23:26 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:56:46 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,9 +76,11 @@ char		*ft_lance_edit(t_navig *n)
 
 /*
 ** while principal
-** on verifie si la taille du terminal est valide par rapport a la taille de la ligne
+** on verifie si la taille du terminal est valide
+** par rapport a la taille de la ligne
 ** -> sinon on boucle 'resize me'
-** on lit sur l'entree standard et on effectue les actions suvant les touches recues
+** on lit sur l'entree standard et on effectue
+** les actions suvant les touches recues
 */
 
 char		*ft_edition(char *prompt)

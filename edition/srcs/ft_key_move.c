@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:16:25 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:57:24 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,7 +71,7 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 ** permet de tout reafficher
 ** on del toute la ligne, et on reprint
 ** les differents calculs permettent de calculer la diff de ligne
-** si par exemple on se trouve tout en bas 
+** si par exemple on se trouve tout en bas
 ** et que l'hist tiens sur plusieurs lignes
 */
 
