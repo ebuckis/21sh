@@ -6,7 +6,7 @@
 #    By: bpajot <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/08/22 09:27:21 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/09/01 16:00:26 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/03 10:14:56 by bpajot      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -15,13 +15,12 @@ kcabus :
 
 bpajot :
 - wc | ls OK - yes | head OK salement
-- ls | xargs cat
-- cat 21sh
-- message erreur si segfault ... ou autre OK
+- ls | xargs cat OK
+- cat 21sh OK
+- message erreur si segfault ou autre signal  OK
 - leaks OK ?
-- norminette en cours
-- commentaire
-- enlever debug affichage
+- norminette en cours OK
+- debug affichage via arg "debug" si bespom
 
 other :
 - arg derriere redir a gerer ?
