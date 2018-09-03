@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/14 12:03:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 12:07:11 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 11:21:14 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-static char		*ft_strjoin_free(char *line1, char *line2, int i, int j)
+char			*ft_strjoin_free(char *line1, char *line2, int i, int j)
 {
 	char *tmp;
 
