@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:48:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 16:57:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 13:26:03 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-static int	ft_no_new_name(t_navig *n, char *p)
+int	ft_no_new_name(t_navig *n, char *p)
 {
 	char	*ret;
 
