@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 15:06:26 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/01 14:52:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 13:53:53 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -143,6 +143,5 @@ int				main(int argc, char *argv[], char *env[])
 			main2(string, &my_env, &a, 0);
 	}
 	ft_free_tab(&my_env);
-	sleep(5);
 	return (a);
 }
