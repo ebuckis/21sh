@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:00:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 13:26:44 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 13:29:42 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-static int				ft_win_some_line(t_navig *n, char *ret)
+static int		ft_win_some_line(t_navig *n, char *ret)
 {
 	if (n->y == n->y_size - 1)
 	{
