@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/13 14:45:56 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 14:45:57 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:12:01 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,6 +39,10 @@ static char	*ft_supprchar(char *s, int i)
 	return (s);
 }
 
+/*
+** suupression du char dans la string
+*/
+
 int			ft_del_char(t_navig *n)
 {
 	if (n->i != 0)
@@ -51,3 +55,11 @@ int			ft_del_char(t_navig *n)
 	}
 	return (1);
 }
+
+/*
+** on regarde si on est pas au debut
+** 1 - on del dans s
+** 2 - on modifie les positions en x-y
+** 3 - on va en x-y calculés
+** 4 - on met a jour la ligne affichée
+*/

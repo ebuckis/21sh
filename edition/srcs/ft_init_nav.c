@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:48:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 13:30:14 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:43:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,6 +39,10 @@ int			ft_no_new_name(t_navig *n, char *p)
 	return (1);
 }
 
+/*
+** prise en compte des valeurs initiales pour bien commencer cette superbe edition
+*/
+
 int			ft_init_nav(t_navig *n, char *p)
 {
 	int		x_tmp;
@@ -68,5 +72,6 @@ int			ft_init_nav(t_navig *n, char *p)
 }
 
 /*
-** rajouter de la couleur pour le prompt ?
+** init de la structure nav (variable globale)
+** cas particulier quand le prompt depasse la taille du terminal
 */

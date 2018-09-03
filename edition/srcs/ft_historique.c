@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:03:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 19:03:30 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:40:45 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,10 @@ static t_hist	*ft_init_hist(void)
 	return (h);
 }
 
+/*
+** fonction d'initialisation de la stucture d'historique
+*/
+
 static t_hist	*ft_new_hist(char *s, t_hist *m_prev, t_hist *m_next)
 {
 	t_hist		*h;
@@ -40,14 +44,16 @@ static t_hist	*ft_new_hist(char *s, t_hist *m_prev, t_hist *m_next)
 	return (h);
 }
 
+/*
+** creation d'un nouveau maillon sur liste doublement chainee
+*/
+
 int				ft_add_hist(char *s)
 {
 	t_hist	*h;
 
 	h = ft_close_hist(1, NULL);
-	if (!h)
-		return (0);
-	if (!s)
+	if (!h || !s)
 		return (0);
 	if (!h->next)
 	{
@@ -61,6 +67,13 @@ int				ft_add_hist(char *s)
 	}
 	return (1);
 }
+
+/*
+** permet d'add une ligne
+** on le recupere et on verifie qu'il exite et qu'on a qqch a save
+** si c'est le 1er hist on le save direct
+** sinon on verifie qu'il n'est pas identique au predecent
+*/
 
 int				ft_open_hist(void)
 {
@@ -77,3 +90,9 @@ int				ft_open_hist(void)
 		ft_give_hist(0, h);
 	return (1);
 }
+
+/*
+** premier appel -> creation de l'historique
+** donc si ft_close_hist de connait pas h on l'initialise et on le save
+** sinon on le redonne a give_hist
+*/

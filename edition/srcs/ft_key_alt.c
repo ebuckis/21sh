@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/10 11:30:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:19:55 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:00:54 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,11 @@ int		ft_alt_down(t_navig *n)
 	return (1);
 }
 
+/*
+** on change le y current si les conditions sont OK
+** et on move
+*/
+
 int		ft_alt_up(t_navig *n)
 {
 	if (n->y > n->y_start + 1 || (n->y > n->y_start && n->x >= n->x_start))
@@ -34,6 +39,11 @@ int		ft_alt_up(t_navig *n)
 	}
 	return (1);
 }
+
+/*
+** on change le y current si les conditions sont OK
+** et on move
+*/
 
 int		ft_alt_left(t_navig *n)
 {
@@ -47,6 +57,11 @@ int		ft_alt_left(t_navig *n)
 	return (1);
 }
 
+/*
+** on effectue des move_left jusqu'a ce que on arrive au debut du mot suivant
+** ou au debut
+*/
+
 int		ft_alt_right(t_navig *n)
 {
 	if (n->i < (int)ft_strlen(n->s))
@@ -58,6 +73,11 @@ int		ft_alt_right(t_navig *n)
 	}
 	return (1);
 }
+
+/*
+** on effectue des move_right jusqu'a ce que on arrive au debut du mot suivant
+** ou a la fin
+*/
 
 int		ft_key_alt(t_navig *n, char *buf)
 {
@@ -73,3 +93,8 @@ int		ft_key_alt(t_navig *n, char *buf)
 		ft_alt_right(n);
 	return (1);
 }
+
+/*
+** on verife si on a un 5eme char, si oui bye
+** sinon on effectue les fonction associées
+*/

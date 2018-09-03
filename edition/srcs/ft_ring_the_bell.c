@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/18 12:05:01 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 12:08:19 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:36:49 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,3 +22,7 @@ int		ft_ring_the_bell(void)
 	tputs(ret, 1, ft_putcharint);
 	return (1);
 }
+
+/*
+** besoin d'explication ??
+*/

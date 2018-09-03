@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 15:36:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:16:25 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,6 +67,14 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 	return (1);
 }
 
+/*
+** permet de tout reafficher
+** on del toute la ligne, et on reprint
+** les differents calculs permettent de calculer la diff de ligne
+** si par exemple on se trouve tout en bas 
+** et que l'hist tiens sur plusieurs lignes
+*/
+
 static void		ft_down_hist(t_navig *n)
 {
 	char	*str;
@@ -87,6 +95,13 @@ static void		ft_down_hist(t_navig *n)
 	}
 }
 
+/*
+** on a un retour -> maj de l'affichage
+** sinon si on est dans l'historique mais que on a un retour null
+** on se trouve sur la current string, donc on free la save
+** et on fait une maj avec la current string
+*/
+
 static void		ft_up_hist(t_navig *n)
 {
 	char	*str;
@@ -101,6 +116,13 @@ static void		ft_up_hist(t_navig *n)
 		n->id_hist++;
 	}
 }
+
+/*
+** on catch le hist precedent
+** on place la curent string dans une save uniquement si on est tout en bas
+** d'ou l'utilité du id_hist
+** et on met a jour l'affichage avec maj_struct_nav
+*/
 
 int				ft_key_move(t_navig *n, char *buf)
 {
@@ -128,5 +150,5 @@ int				ft_key_move(t_navig *n, char *buf)
 }
 
 /*
-** comment
+** appel aux fonctions, les defines parlent d'eux memes
 */

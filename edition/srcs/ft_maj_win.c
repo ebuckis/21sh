@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:00:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 13:29:42 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:29:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,10 @@ static int		ft_win_some_line(t_navig *n, char *ret)
 	return (1);
 }
 
+/*
+** cas particulier si on se trouve tout en bas
+*/
+
 static int		ft_del_all(t_navig *n, int nb, char *ret)
 {
 	ft_get_size(&(n->x_size), &(n->y_size));
@@ -49,6 +53,10 @@ static int		ft_del_all(t_navig *n, int nb, char *ret)
 	ft_goto_i_from_end(n);
 	return (1);
 }
+
+/*
+** re-put de la line et repositionnement du curseur
+*/
 
 static int		ft_to_small(t_navig *n, char *ret)
 {
@@ -71,6 +79,11 @@ static int		ft_to_small(t_navig *n, char *ret)
 	ft_putstr("resize me");
 	return (1);
 }
+
+/*
+** la fonction permet de suprimer ce qu'il y a l'ecran
+** puis affiche 'resize me'
+*/
 
 static int		ft_win_line(t_navig *n)
 {

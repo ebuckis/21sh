@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 16:32:16 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 19:03:50 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 13:57:34 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,7 +42,7 @@ t_hist				*ft_close_hist(int i, t_hist *list)
 }
 
 /*
-** ft_close enregistre l'historique
+** ft_close enregistre l'historique quand i == 0
 ** redonne l'hist
 ** et free l'hist
 */

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/03 15:55:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/10 15:30:57 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:30:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,3 +24,7 @@ int		ft_move_up(t_navig *n)
 	ft_move_to_xy(n->x, n->y);
 	return (1);
 }
+
+/*
+** permet de remonter d'une ligne
+*/

@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/19 16:17:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 15:37:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:23:26 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_edition.h"
 
-char		*ft_ctrl_s(t_navig *n)
+static char	*ft_ctrl_d(t_navig *n)
 {
 	ft_strdel(&(n->s));
 	n->s = ft_strdup("exit");
@@ -22,6 +22,12 @@ char		*ft_ctrl_s(t_navig *n)
 	n->err = SIG_CTRLD;
 	return (n->s);
 }
+
+/*
+** free la current line
+** et envoie exit au programme
+** avec un code d'erreur approprié
+*/
 
 static int	ft_whilesuite(t_navig *n, char *buf)
 {
@@ -34,6 +40,11 @@ static int	ft_whilesuite(t_navig *n, char *buf)
 		ft_copy_paste(n, buf, 0);
 	return (1);
 }
+
+/*
+** fait appel aux fonctions associees aux fleches
+** ou aux 'sigaux' de copie/coller
+*/
 
 char		*ft_lance_edit(t_navig *n)
 {
@@ -53,7 +64,7 @@ char		*ft_lance_edit(t_navig *n)
 			break ;
 		}
 		else if (KEY_CTRL_D && !ft_strlen(n->s))
-			return (ft_ctrl_s(n));
+			return (ft_ctrl_d(n));
 		else if (!(n->err = ft_whilesuite(n, buf)))
 			return (NULL);
 	}
@@ -62,6 +73,13 @@ char		*ft_lance_edit(t_navig *n)
 	ft_strdel(&(n->s_save));
 	return (n->s);
 }
+
+/*
+** while principal
+** on verifie si la taille du terminal est valide par rapport a la taille de la ligne
+** -> sinon on boucle 'resize me'
+** on lit sur l'entree standard et on effectue les actions suvant les touches recues
+*/
 
 char		*ft_edition(char *prompt)
 {
@@ -79,8 +97,7 @@ char		*ft_edition(char *prompt)
 }
 
 /*
-** int tcgetattr(int fd, struct termios *termios_p);
-** int tcsetattr(int fd, int optional_actions,
-**					const struct termios *termios_p);
-** penser a close a la fin du programme
+** initialisation du terminal
+** intialistation de la structure de navigation
+** remise en mode 'normal' du terminal
 */

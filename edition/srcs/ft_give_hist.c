@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 16:27:53 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/13 14:45:02 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:28:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,3 +27,11 @@ char	*ft_give_hist(int i, t_hist *list)
 		return (NULL);
 	return (h->str);
 }
+
+/*
+** i == 0 -> save de l'hist
+** i == 1 && il y a un maillon apres -> next
+** i == -1 && il y a un maillon avant -> prev
+** sinon on NULL
+** et on revoie le char * correspondant a l'historique demandé
+*/

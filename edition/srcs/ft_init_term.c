@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 13:56:51 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 15:37:56 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:52:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,11 @@ static void		ft_exit_term(void)
 	ft_putendl("Sorry, terminal name is not found, bye.");
 	exit(1);
 }
+
+/*
+** on free ce qui a été aloué
+** et bye bye <3
+*/
 
 int				ft_init_term(struct termios *t)
 {
@@ -41,3 +46,9 @@ int				ft_init_term(struct termios *t)
 		return (0);
 	return (1);
 }
+
+/*
+** on prend les infos via la variable d'environnement TERM
+** si on l'a pas -> voir plus haut
+** mise en mode Canonique du terminal
+*/

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 19:04:13 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:00:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:12:54 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,3 +28,7 @@ void		ft_del_end_to_i(t_navig *n)
 	while (n->i != i)
 		ft_key_code(n, buf);
 }
+
+/*
+** permet de supprimer les char depuis la fin jusqu'a i
+*/

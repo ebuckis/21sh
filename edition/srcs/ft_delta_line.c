@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/28 15:22:06 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/28 15:23:32 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:13:54 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,3 +28,7 @@ void		ft_delta_line(t_navig *n, int nb)
 		n->y_start -= diff;
 	}
 }
+
+/*
+** calcule de delta sur y genere par le resize
+*/

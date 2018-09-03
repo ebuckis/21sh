@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:50:50 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 13:52:47 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:36:32 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,3 +29,7 @@ void	ft_recup_pos(int *x, int *y)
 		i++;
 	*x = ft_atoi(pos + i + 1) - 1;
 }
+
+/*
+** permet de recuperer la position on x et y du curseur sur le terminal
+*/

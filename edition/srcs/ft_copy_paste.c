@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/24 08:27:26 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 17:17:18 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:04:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,11 @@ static int		ft_cutstr_home(t_navig *n, char **copy, int nb)
 	return (1);
 }
 
+/*
+** on remplit copy
+** on del jusqu'au debut depuis la pos de i
+*/
+
 static int		ft_cutstr_end(t_navig *n, char **copy, int nb)
 {
 	int		i;
@@ -64,6 +69,13 @@ static int		ft_cutstr_end(t_navig *n, char **copy, int nb)
 	return (1);
 }
 
+/*
+** on remplit copy
+** on va a la fin
+** on boucle sur s pour del jusqu'a la position de i
+** si on est deja a la fin -> bell
+*/
+
 static int		ft_small_verif(t_navig *n, char *copy)
 {
 	int		np;
@@ -78,6 +90,10 @@ static int		ft_small_verif(t_navig *n, char *copy)
 	else
 		return (1);
 }
+
+/*
+** verif pour voir si ca rentre !
+*/
 
 static int		ft_paste(t_navig *n, char *copy)
 {
@@ -102,6 +118,11 @@ static int		ft_paste(t_navig *n, char *copy)
 	}
 	return (1);
 }
+
+/*
+** on boucle sur s pour print tous les caracteres
+** bell si ca ne rentre pas ou si copy != NULL
+*/
 
 int				ft_copy_paste(t_navig *n, char *buf, int fr)
 {

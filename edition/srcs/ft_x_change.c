@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:54:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 15:06:53 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:40:52 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,10 @@ static void		ft_move_right_x(t_navig *n)
 	n->i++;
 }
 
+/*
+** Mise a jour de la position actuelle
+*/
+
 static void		ft_move_left_x(t_navig *n)
 {
 	if (n->y > n->y_start && n->x > 0)
@@ -52,6 +56,10 @@ static void		ft_move_left_x(t_navig *n)
 	n->i--;
 }
 
+/*
+** Mise a jour de la position actuelle
+*/
+
 static void		ft_del_x(t_navig *n)
 {
 	if (n->y_len > n->y_start && n->x_len > 0)
@@ -67,6 +75,10 @@ static void		ft_del_x(t_navig *n)
 		return ;
 	ft_move_left_x(n);
 }
+
+/*
+** calcul des nouvelles positions max pour une suppr de char
+*/
 
 static void		ft_add_x(t_navig *n)
 {
@@ -90,6 +102,11 @@ static void		ft_add_x(t_navig *n)
 	ft_move_right_x(n);
 }
 
+/*
+** calcul des nouvelles positions max pour un ajout de char
+** avec toutes les contraintes liees a l'edition de ligne
+*/
+
 void			ft_x_change(t_navig *n, int i)
 {
 	if (i == CHAR_AJOUT)
@@ -101,3 +118,7 @@ void			ft_x_change(t_navig *n, int i)
 	else if (i == MOVE_LEFT)
 		ft_move_left_x(n);
 }
+
+/*
+** assignation des fonctions
+*/

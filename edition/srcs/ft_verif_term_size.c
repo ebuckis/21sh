@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 18:26:22 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/25 19:01:08 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:37:45 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,3 +24,8 @@ int		ft_verif_term_size(t_navig *n)
 		return (-1);
 	return (1);
 }
+
+/*
+** permet de verifier la taille du terminal par rapport a la longueur de s
+** et de celle du prompt
+*/

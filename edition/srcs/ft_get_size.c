@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:49:22 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/22 15:49:53 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:25:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,3 +23,7 @@ int					ft_get_size(int *x, int *y)
 	*x = w.ws_col;
 	return (1);
 }
+
+/*
+** permet d'obtenir la taile de la window
+*/

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/29 18:08:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/29 18:08:16 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 14:30:12 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,3 +29,7 @@ void		ft_goto_i_from_end(t_navig *n)
 	ft_move_to_xy(n->x, n->y);
 	n->i = i_bis;
 }
+
+/*
+** on va jusqu'a la fin et on se repositionne sur i
+*/

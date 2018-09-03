@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/25 16:34:29 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/18 12:08:01 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:32:42 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,6 +40,10 @@ static char	*ft_addchar(char *s, char c, int i)
 	return (s);
 }
 
+/*
+** ajout d'un char dans la current string
+*/
+
 int			ft_new_char(t_navig *n, char *buf)
 {
 	if (ft_verif_term_size(n) > 0)
@@ -57,3 +61,7 @@ int			ft_new_char(t_navig *n, char *buf)
 	}
 	return (1);
 }
+
+/*
+** ajout d'un new char, verif si la taille du terminal le permet
+*/

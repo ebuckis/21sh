@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/13 13:31:30 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/19 17:47:52 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/03 15:02:51 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,3 +39,8 @@ int		ft_key_code(t_navig *n, char *buf)
 		return (0);
 	return (1);
 }
+
+/*
+** appel vers les fonctions adequates
+** on move a la fin pour etre sur d'etre au bon endroit
+*/
