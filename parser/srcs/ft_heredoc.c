@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:58:39 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/05 13:11:25 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,12 +66,9 @@ static int	ft_save_hdoc(t_parse *p, int j)
 	{
 		line = ft_edition("heredoc > ");
 		if (g_nav.err == SIG_CTRLD)
-			return (ft_replace_ctrld(p, &line));
-		if (line && ft_strcmp(stop, line) == 0)
-		{
-			ft_strdel(&line);
 			break ;
-		}
+		if (line && ft_strcmp(stop, line) == 0)
+			break ;
 		tmp = ft_strjoin_del(line, "\n");
 		line = ft_strjoin(p->hdoc[j], tmp);
 		if (p->hdoc[j])
@@ -79,6 +76,7 @@ static int	ft_save_hdoc(t_parse *p, int j)
 		ft_strdel(&tmp);
 		p->hdoc[j] = line;
 	}
+	ft_strdel(&line);
 	ft_replace_arg(p, j);
 	return (1);
 }

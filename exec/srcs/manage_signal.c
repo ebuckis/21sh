@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/05 12:23:48 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/05 13:25:49 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ static void		ft_signal_ctrl_c(int s)
 	if (g_nav.statut)
 		ft_go_to_end(&g_nav);
 	ft_putendl("");
-	if (!(*ft_save_struct(NULL)))
+	if (g_nav.statut)
 	{
 		ft_strdel(&(g_nav.s));
 		ft_strdel(&(g_nav.s_save));
