@@ -6,20 +6,26 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:15:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/20 13:06:59 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/05 14:07:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int			ft_is_redirection(char c)
+static int	ft_is_sep(char c)
 {
 	if (c == ';')
 		return (1);
 	else if (c == '|')
 		return (1);
-	else if (c == '&')
+	else
+		return (0);
+}
+
+static int			ft_is_red(char c)
+{
+	if (c == '&')
 		return (1);
 	else if (c == '<')
 		return (1);
@@ -27,6 +33,13 @@ int			ft_is_redirection(char c)
 		return (1);
 	else
 		return (0);
+}
+
+int			ft_is_redirection(char c)
+{
+	if (ft_is_red(c) || ft_is_sep(c))
+		return (1);
+	return (0);
 }
 
 int			ft_is_separator(t_parse *p)
@@ -38,14 +51,16 @@ int			ft_is_separator(t_parse *p)
 	{
 		while (ft_isdigit(p->s[i]))
 			i++;
-		if (ft_is_redirection(p->s[i]))
+		if (ft_is_red(p->s[i]))
+			return (1);
+		else if (p->i == i && ft_is_sep(p->s[i]))
 			return (1);
 		else
 			return (0);
 	}
 	else
 	{
-		if (ft_is_redirection(p->s[p->i]))
+		if (ft_is_red(p->s[p->i]) || ft_is_sep(p->s[p->i]))
 			return (1);
 		else
 			return (0);
