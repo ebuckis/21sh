@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 14:40:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 13:24:02 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/04 11:56:13 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,6 +77,7 @@ typedef struct		s_navig
 	char			*tmp_char;
 	int				err;
 	int				tmp_int;
+	int				statut;
 }					t_navig;
 
 typedef struct		s_hist
