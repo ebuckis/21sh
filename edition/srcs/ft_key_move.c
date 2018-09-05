@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/22 15:58:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:57:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/05 13:33:45 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ static int		ft_maj_stuct_nav(t_navig *n, char *str)
 	int		y_add;
 	int		y_old;
 
-	free(n->s);
+	ft_strdel(&(n->s));
 	n->s = ft_strdup(str);
 	ft_move_to_xy(n->x_start, n->y_start);
 	if (!(ret = tgetstr("cd", NULL)))
