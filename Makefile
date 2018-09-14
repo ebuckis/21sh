@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/09/14 12:06:25 by kcabus      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/14 13:39:16 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -46,11 +46,10 @@ LIB_A =		-L $(LIB_PATH) -lft			\
 
 all : $(NAME)
 
-$(NAME):	$(OBJ)
-			printf "Compilation OK\n"
+$(NAME):	$(OBJ) compile
 			@gcc $(WFLAGS) $(OBJ) $(INC) $(LIB_A) -o $(NAME)
 
-$(OBJ_PATH)%.o:	$(SRC_PATH)%.c
+$(OBJ_PATH)%.o:	$(SRC_PATH)%.c 
 			@mkdir -p $(OBJ_PATH)
 			@gcc -c $(WFLAGS) $(INC) -o $@ $<
 	

@@ -6,28 +6,12 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/05 13:11:25 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/14 12:00:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
-
-static int	ft_replace_ctrld(t_parse *p, char **line)
-{
-	ft_strdel(line);
-	ft_strdel(&(p->arg[p->i]));
-	p->arg[p->i] = ft_strnew(0);
-	p->arg[p->i][0] = '\0';
-	ft_strdel(&(p->arg_id[p->i]));
-	p->arg_id[p->i] = ft_strnew(0);
-	p->arg_id[p->i][0] = '\0';
-	return (1);
-}
-
-/*
-** dans le cas d'un ctrl d, on remplace les argument par une chaine vide
-*/
 
 static void	ft_replace_arg(t_parse *p, int j)
 {

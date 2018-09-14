@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/22 14:11:36 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 11:54:09 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/14 12:01:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,6 @@
 static char		*get_value(char **env, char *key)
 {
 	int		i;
-	char	*p;
 	char	*tmp;
 
 	i = -1;
