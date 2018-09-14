@@ -6,12 +6,12 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/29 15:51:44 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/14 12:06:25 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re compile
 
 NAME = 21sh
 
@@ -24,6 +24,7 @@ LIB_PATH	=	./libft/
 EDIT_PATH	=	./edition/
 PARSE_PATH	=	./parser/
 EXEC_PATH	=	./exec/
+
 
 SRC = $(addprefix $(SRC_PATH),$(N_SRCS))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
@@ -46,16 +47,19 @@ LIB_A =		-L $(LIB_PATH) -lft			\
 all : $(NAME)
 
 $(NAME):	$(OBJ)
-			@make -C $(LIB_PATH)
-			@make -C $(PARSE_PATH)
-			@make -C $(EDIT_PATH)
-			@make -C $(EXEC_PATH)
+			printf "Compilation OK\n"
 			@gcc $(WFLAGS) $(OBJ) $(INC) $(LIB_A) -o $(NAME)
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 			@mkdir -p $(OBJ_PATH)
-			@gcc -c $(FLAGS) $(INC) -o $@ $<
+			@gcc -c $(WFLAGS) $(INC) -o $@ $<
 	
+compile :
+			@make -C $(LIB_PATH)
+			@make -C $(PARSE_PATH)
+			@make -C $(EDIT_PATH)
+			@make -C $(EXEC_PATH)
+
 clean :
 			@make -C $(LIB_PATH) clean
 			@make -C $(PARSE_PATH) clean

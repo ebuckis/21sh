@@ -6,7 +6,7 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/06 14:53:11 by kcabus       #+#   ##    ##    #+#        #
-#    Updated: 2018/09/03 11:31:24 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/14 11:57:56 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -52,7 +52,7 @@ $(NAME):	$(OBJ)
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@gcc -c $(FLAGS) $(INC) -o $@ $<
+				@gcc -c $(WFLAGS) $(INC) -o $@ $<
 				@printf "\033[44m \033[0m"
 	
 clean :
