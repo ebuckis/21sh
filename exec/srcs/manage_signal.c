@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/05 13:25:49 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 19:44:18 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static void		ft_signal_ctrl_c(int s)
 	{
 		ft_strdel(&(g_nav.s));
 		ft_strdel(&(g_nav.s_save));
-		ft_init_nav(&g_nav, "21sh $> ");
+		ft_init_nav(&g_nav, g_nav.prompt);
 	}
 }
 
@@ -47,9 +47,9 @@ static void		ft_signal_ctrl_c(int s)
 static void		ft_signal_stop(int s)
 {
 	(void)s;
-	ft_putendl("");
-	if (!(*ft_save_struct(NULL)))
+	if (!g_nav.statut)
 	{
+		ft_putendl("");
 		ft_strdel(&(g_nav.s));
 		ft_strdel(&(g_nav.s_save));
 		ft_init_nav(&g_nav, "21sh $> ");
