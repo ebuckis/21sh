@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:15:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/26 17:46:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/26 18:23:11 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,6 +83,7 @@ int 	ft_is_separator(t_parse *p)
 	if (p->s[p->i + j] == '<' && p->s[p->i + 1] && p->s[p->i + 1] == '<')
 	{
 		p->tmp_id = HEREDOC;
+		p->nb_hdoc++;
 		return (2);
 	}
 	else if (p->s[p->i + j] == ';')

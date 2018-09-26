@@ -6,22 +6,22 @@
 #    By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/07/10 11:20:28 by bpajot       #+#   ##    ##    #+#        #
-#    Updated: 2018/08/23 11:15:32 by bpajot      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/26 11:00:04 by kcabus      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 cas possible :
-- OK command > file		redirige stdout sur file (open et si existe deja, ecrit au debut)
-- OK command >> file	redirige stdout sur file (open et ecrit a la fin)
+- OK command > file		redirige stdout sur file (open et si existe deja, ecrit au debut) X
+- OK command >> file	redirige stdout sur file (open et ecrit a la fin) X
 - OK command n> file	redirige fd n sur file
-- OK command >& file	redirige stdin et stdout sur file
+- OK command >& file	redirige stdin et stdout sur file X
 - OK command > file 2>&1	idem
-- OK command i>&j			redirige fd i vers fd j
-- OK command >&n			redirige stdin et stdout sur fd n
+- OK command i>&j			redirige fd i vers fd j 
+- OK command >&n			redirige stdin et stdout sur fd n X
 - OK command n>&-			close fd n
 
-- OK command < file		redirige file sur stdin
+- OK command < file		redirige file sur stdin X
 - OK command n< file		redirige file sur fd n
 
 - OK commande << heredoc
