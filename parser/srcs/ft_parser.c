@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/08/30 12:06:52 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/26 18:09:17 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,8 @@ static void	ft_print_parse_err(t_parse *p)
 
 static int	ft_str_parser(t_parse *p)
 {
+	int		tmp;
+
 	while (p->s[p->i])
 	{
 		if (p->s[p->i] == '\\')
@@ -31,8 +33,8 @@ static int	ft_str_parser(t_parse *p)
 			p->err = ft_parse_dquote(p);
 		else if (p->s[p->i] == '\'')
 			p->err = ft_parse_quote(p);
-		else if (ft_is_separator(p))
-			p->err = ft_separator(p);
+		else if ((tmp = ft_is_separator(p)))
+			p->err = ft_separator(p, tmp);
 		else if (ft_is_white(p->s[p->i]))
 		{
 			ft_add_space(p);

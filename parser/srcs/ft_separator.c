@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 18:06:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/26 18:08:41 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ static void	ft_win_line(t_parse *p)
 /*
 ** on gagne quelques lignes
 */
-
+/*
 static int	ft_get_hdoc(t_parse *p)
 {
 	int		tmp;
@@ -72,12 +72,12 @@ static int	ft_suite_sep(t_parse *p)
 		ft_end_while(p, REDIR);
 	return (1);
 }
-
+*/
 /*
 ** Petit parsing pour les redirections
 ** Peut poser des problemes, sans dout a revoir
 */
-
+/*
 int			ft_separator(t_parse *p)
 {
 	ft_win_line(p);
@@ -103,63 +103,32 @@ int			ft_separator(t_parse *p)
 	ft_add_space(p);
 	return (1);
 }
-
+*/
 /*
 ** On realloue de la memoire pour ajouter des espaces au cas ou
 ** la redirection ne soit par marquée par des espaces
 */
-int ft_truc()
-{
-	j = 0;
-	if ([i + j] == '>')
-	{	
-		if (![i + j + 1])
-		{
-			return (j);
-		}
-		j++;
-		if ([i + j] == '>' && nb == 0)//eviter la recursive
-		{
-			return (j);
-		}
-		else if ([i + j] == '&')
-		{
-			if (![i + j + 1])
-			{
-				return (j);
-			}
-			j++;
-			if ([i + j] == '-')
-			{
-				return (j);
-			}
-			else if ([i + j] == ft_isdigit())
-			{
-				while(ft_isdigit()))
-					j++;
-			}
-			else if ()
-		}
-		else if ([i + j] == ft_isdigit())
-		{
-			while(ft_isdigit()))
-				j++;
-		}
 
-	}
-	else if ([i + j] == '<')
+int			ft_separator(t_parse *p, int tmp)
+{
+	int		j;
+
+	j = 0;
+	if (tmp == -1)
+		return (tmp);
+	ft_win_line(p);
+	while (j < tmp)
 	{
-		if (![i + j + 1])
-		{
-			return (j);
-		}
+		ft_end_while(p, p->tmp_id);
 		j++;
-		if ([i + j] == '<')
-		{
-			return (j);
-		}
-		else if ()
-		
 	}
-}
+	j = p->i - 1;
+	while (ft_is_white(p->s[p->i]))
+		p->i++;
+	if ((ft_is_red(p->s[j]) || p->s[j] == '|') && (ft_is_redirection(p->s[p->i]) || !p->s[p->i]))
+		return (-1);
+	ft_add_space(p);
+	return (1);
+	
+
 }

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 08:57:09 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 11:21:36 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/26 15:52:44 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,6 +42,7 @@ typedef struct	s_parse
 	pid_t		child_pid;
 	int			nb_hdoc;
 	char		**hdoc;
+	int			tmp_id;
 }				t_parse;
 
 typedef struct	s_doll
@@ -66,12 +67,13 @@ int				ft_antislash(t_parse *p);
 t_parse			*ft_init_parse(char *line);
 int				ft_is_separator(t_parse *p);
 int				ft_is_white(char c);
+int				ft_is_red(char c);
 int				ft_parse_dquote(t_parse *p);
 int				ft_parse_quote(t_parse *p);
 t_parse			*ft_tilde_dollar(t_parse *p, int i, char ***p_env);
 int				ft_suite_line(t_parse *p, int i, char *prompt);
 void			ft_end_while(t_parse *p, char c);
-int				ft_separator(t_parse *p);
+int				ft_separator(t_parse *p, int tmp);
 int				ft_is_redirection(char c);
 t_parse			**ft_save_struct(t_parse *parsing);
 char			*ft_strjoin_free(char *line1, char *line2, int i, int j);
