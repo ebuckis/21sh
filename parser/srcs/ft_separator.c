@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/05 14:02:32 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 18:06:37 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -108,3 +108,58 @@ int			ft_separator(t_parse *p)
 ** On realloue de la memoire pour ajouter des espaces au cas ou
 ** la redirection ne soit par marquée par des espaces
 */
+int ft_truc()
+{
+	j = 0;
+	if ([i + j] == '>')
+	{	
+		if (![i + j + 1])
+		{
+			return (j);
+		}
+		j++;
+		if ([i + j] == '>' && nb == 0)//eviter la recursive
+		{
+			return (j);
+		}
+		else if ([i + j] == '&')
+		{
+			if (![i + j + 1])
+			{
+				return (j);
+			}
+			j++;
+			if ([i + j] == '-')
+			{
+				return (j);
+			}
+			else if ([i + j] == ft_isdigit())
+			{
+				while(ft_isdigit()))
+					j++;
+			}
+			else if ()
+		}
+		else if ([i + j] == ft_isdigit())
+		{
+			while(ft_isdigit()))
+				j++;
+		}
+
+	}
+	else if ([i + j] == '<')
+	{
+		if (![i + j + 1])
+		{
+			return (j);
+		}
+		j++;
+		if ([i + j] == '<')
+		{
+			return (j);
+		}
+		else if ()
+		
+	}
+}
+}
