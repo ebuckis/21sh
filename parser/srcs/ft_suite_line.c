@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 13:54:21 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:44:10 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 19:31:15 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,7 +71,7 @@ int			ft_suite_line(t_parse *p, int i, char *prompt)
 }
 
 /*
-** Permet de lire de nouveau sur l'entrée stantdard
+** Permet de lire de nouveau sur l'entrée standard
 ** Reallocation de memoire nécessaire
 */
 
