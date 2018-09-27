@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 14:25:03 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 15:19:46 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,7 +83,7 @@ static int		ft_env3(t_parse *p, char **arg, char **env, int i)
 		{
 			pid = fork();
 			if (pid == 0)
-				ft_execve(p, i % 100, &env);
+				ft_execve(p, i % 100 + i / 100, &env);
 			else if (pid > 0)
 			{
 				waitpid(pid, &status, WUNTRACED);
@@ -127,7 +127,6 @@ static int		ft_env2(t_parse *p, char **arg, char **env, int tab_pipe_i)
 	if (!option_i)
 		ft_free_tab(&env3);
 	ft_free_tab(&env2);
-	printf("test1\n");
 	return (ret);
 }
 
