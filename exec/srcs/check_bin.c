@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 14:24:58 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 15:51:35 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 16:48:44 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,9 +94,13 @@ char		*check_bin2(char *tab0, char **env)
 
 char		*check_bin(char **tab_com, char **env)
 {
-	if (tab_com[0][0] == '/' || (tab_com[0][0] == '.' &&
-		tab_com[0][1] == '/'))
-		return (check_bin3(tab_com[0], 1));
-	else
-		return (check_bin2(tab_com[0], env));
+	if (tab_com)
+	{
+		if (tab_com[0][0] == '/' || (tab_com[0][0] == '.' &&
+					tab_com[0][1] == '/'))
+			return (check_bin3(tab_com[0], 1));
+		else
+			return (check_bin2(tab_com[0], env));
+	}
+	return (NULL);
 }
