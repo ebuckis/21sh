@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:53:11 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:09:38 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 13:31:44 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,11 +68,22 @@ static int		ft_fd_redir(t_parse *p, int *i, char **env, int n)
 {
 	char	*path;
 	int		fd;
+	char	*pt;
 
-	path = get_path_redir(p, i, env);
-	if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC,
-		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
-		dup2(fd, n);
+	if ((pt = ft_strstr(p->arg[*i], ">>")) && !pt[2])
+	{
+		path = get_path_redir(p, i, env);
+		if ((fd = open(path, O_WRONLY | O_CREAT | O_APPEND,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
+			dup2(fd, n);
+	}
+	else
+	{
+		path = get_path_redir(p, i, env);
+		if ((fd = open(path, O_WRONLY | O_CREAT | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0)
+			dup2(fd, n);
+	}
 	ft_strdel(&path);
 	return (fd);
 }
@@ -125,6 +136,9 @@ int				ft_redir_out(t_parse *p, int *i, char **env)
 
 	if ((fd = ft_redir_out2(p, i, env)) != -2)
 		;
+	else if ((m = ft_atoi(p->arg[*i])) >= 0
+		&& (pt = ft_strstr(p->arg[*i], ">>")) && !pt[2])
+		fd = ft_fd_redir(p, i, env, m);
 	else if ((pt = ft_strstr(p->arg[*i], ">&")) && pt[2]
 		&& (m = ft_atoi(&(pt[2]))) >= 0)
 	{
