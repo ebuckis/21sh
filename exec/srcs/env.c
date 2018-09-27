@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:50:45 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:09:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 14:25:03 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -125,8 +125,9 @@ static int		ft_env2(t_parse *p, char **arg, char **env, int tab_pipe_i)
 	env3 = (option_i) ? env2 : ft_mix_env(env, env2);
 	ret = ft_env3(p, arg, env3, i + 100 * tab_pipe_i);
 	if (!option_i)
-		ft_memdel((void**)&env3);
+		ft_free_tab(&env3);
 	ft_free_tab(&env2);
+	printf("test1\n");
 	return (ret);
 }
 
