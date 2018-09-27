@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:32:44 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 13:36:47 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 14:12:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,6 @@ int		ft_echo(char **arg)
 	n = 0;
 	if (arg[1])
 		n = ft_verif_n(arg[1]);
-//	n = (arg[1] && ft_strequ(arg[1], "-n")) ? 1 : 0;
 	i = (n) ? 1 : 0;
 	if (!arg[i + 1])
 		ft_putchar('\n');
