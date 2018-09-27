@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 19:44:18 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 10:42:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,14 +18,15 @@
 ** a faire, si edition en cours, return string NULL et p->ret = 1
 ** voir si on passe ret en static pour avoir un echo $? coherant
 */
+
 static void		ft_go_to_end(t_navig *n)
 {
 	n->x = n->x_len;
 	n->y = n->y_len;
 	n->i = ft_strlen(n->s);
 	ft_move_to_xy(n->x, n->y);
-
 }
+
 static void		ft_signal_ctrl_c(int s)
 {
 	(void)s;

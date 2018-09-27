@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/20 12:06:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/26 18:18:26 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 10:43:21 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,7 +75,6 @@ int			ft_heredoc(t_parse *p)
 {
 	int		j;
 
-printf("----------------test1\n");
 	j = 0;
 	p->i = 0;
 	p->hdoc = (char **)malloc(sizeof(char *) * (p->nb_hdoc + 1));
@@ -95,7 +94,6 @@ printf("----------------test1\n");
 		}
 		p->i++;
 	}
-printf("----------------test2\n");
 	return (1);
 }
 
