@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/27 11:55:19 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:09:01 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 15:53:14 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,10 +72,10 @@ int				ft_redir_in(t_parse *p, int *i, char **env)
 		dup2(m, n);
 	else
 	{
-		ft_putendl("redirection parse error");
+		ft_putendl_fd("redirection parse error", 2);
 		return (-1);
 	}
 	if (fd < 0)
-		ft_printf("21sh: %s: Permission denied\n", p->arg[*i]);
+		ft_putendl_fd_arg("21sh: Permission denied: ", p->arg[*i]);
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:07:58 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 15:54:30 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ static int		manage_redir2(t_parse *p, int *i, int *redir_lim,
 			redir_lim[1] = (redir_lim[1] != begin) ? redir_lim[1] : *i;
 			if (*i == 0)
 			{
-				ft_putendl("parse error");
+				ft_putendl_fd("parse error", 2);
 				return (1);
 			}
 			else

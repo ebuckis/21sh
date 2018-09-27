@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 14:19:56 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 16:26:11 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ static int		ft_fork_pipe(t_parse *p, int *tab_pipe, char ***p_env, int i)
 	{
 		close(pipeline[0]);
 		close(pipeline[1]);
-		ft_putendl("error");
+		ft_putendl_fd("error", 2);
 	}
 	else if (pid == 0)
 	{
