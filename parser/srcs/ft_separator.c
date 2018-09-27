@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:23:23 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/26 18:22:56 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 10:24:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -125,7 +125,9 @@ int			ft_separator(t_parse *p, int tmp)
 	j = p->i - 1;
 	while (ft_is_white(p->s[p->i]))
 		p->i++;
-	if ((ft_is_red(p->s[j]) || p->s[j] == '|') && (ft_is_redirection(p->s[p->i]) || !p->s[p->i]))
+printf("1 : |%c|\n2 : |%c|\n", p->s[j], p->s[p->i]);
+	if ((ft_is_red(p->s[j]) || p->s[j] == '|') &&
+		(ft_is_redirection(p->s[p->i]) || !p->s[p->i]))
 		return (-1);
 	ft_add_space(p);
 	return (1);

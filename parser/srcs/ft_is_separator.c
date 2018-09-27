@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/15 10:15:12 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/26 18:23:11 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 10:27:46 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -127,6 +127,8 @@ int 	ft_is_separator(t_parse *p)
 	}
 	else if (p->s[p->i + j] == '<')
 	{
+		if (p->s[p->i + j + 1] && p->s[p->i + j + 1] == '<')
+			return (0);
 		p->tmp_id = REDIR;
 		return (j + 1);
 	}
