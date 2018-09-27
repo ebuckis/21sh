@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:47 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:16:21 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 15:54:52 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ static int		ft_redir_close(t_parse *p, int *i)
 	else if ((fd = ft_atoi(p->arg[*i])) >= 0 && ft_strstr(p->arg[*i], ">&-"))
 		close(fd);
 	else
-		ft_putendl("redirection parse error");
+		ft_putendl_fd("redirection parse error", 2);
 	return (fd);
 }
 

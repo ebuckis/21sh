@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 14:24:58 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 14:11:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 15:51:35 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,7 +50,7 @@ char		*check_bin3(char *bin, int warning)
 	else
 	{
 		if (warning)
-			ft_printf("21sh: no such file or directory: %s\n", bin);
+			ft_putendl_fd_arg("21sh: no such file or directory: ", bin);
 	}
 	return (NULL);
 }
@@ -82,7 +82,7 @@ char		*check_bin2(char *tab0, char **env)
 		}
 		ft_memdel((void**)&bin);
 	}
-	ft_printf("21sh: command not found: %s\n", tab0);
+	ft_putendl_fd_arg("21sh: command not found: ", tab0);
 	ft_free_tab(&tab_path);
 	return (NULL);
 }

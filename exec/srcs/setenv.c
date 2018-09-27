@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/05 16:51:13 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:21:51 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 16:05:38 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,9 +92,9 @@ int			ft_setenv(char **arg, char ***env)
 	if (!arg[1])
 		ret = display_env(*env);
 	else if (arg[2] && arg[3])
-		ft_putendl("setenv: Too many arguments.");
+		ft_putendl_fd("setenv: Too many arguments.", 2);
 	else if (!ft_isalpha(arg[1][0]))
-		ft_putendl("setenv: Variable must begin with a letter.");
+		ft_putendl_fd("setenv: Variable must begin with a letter.", 2);
 	else
 	{
 		i = -1;
@@ -102,8 +102,8 @@ int			ft_setenv(char **arg, char ***env)
 		{
 			if (!ft_isalnum(arg[1][i]))
 			{
-				ft_putstr("setenv: Variable must contain alphanumeric ");
-				ft_putendl("characters.");
+				ft_putstr_fd("setenv: Variable must contain alphanumeric ", 2);
+				ft_putendl_fd("characters.", 2);
 				return (ret);
 			}
 		}

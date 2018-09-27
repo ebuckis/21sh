@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/19 11:15:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 14:15:36 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 15:37:48 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,7 @@ void				ft_manage_pipe(t_parse *p, int begin, char ***p_env)
 			{
 				if (i == begin || ft_strchr(p->arg_id[i - 1], PIPE) ||
 					!p->arg[i + 1] || ft_strchr(p->arg_id[i + 1], SEMICOLON))
-					return (ft_putendl("parse error"));
+					return (ft_putendl_fd("parse error", 2));
 				else
 					nb_pipe++;
 			}

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/06 15:06:04 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/03 15:25:32 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 16:12:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -116,7 +116,7 @@ int			ft_unsetenv(char **arg, char ***env)
 
 	nb_double = 0;
 	if (!arg[1])
-		ft_putendl("unsetenv: Too few arguments.");
+		ft_putendl_fd("unsetenv: Too few arguments.", 2);
 	else
 	{
 		i = 0;
