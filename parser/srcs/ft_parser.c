@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 15:16:59 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/26 18:09:17 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 15:42:24 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,10 +15,12 @@
 
 static void	ft_print_parse_err(t_parse *p)
 {
+	ft_putstr_fd(2, "parse error near : `");
 	if (p->s[p->i])
-		ft_printf("parse error near : `%c'\n", p->s[p->i]);
+		ft_putchar_fd(2, p->s[p->i]);
 	else
-		ft_printf("parse error near : `\\n'\n");
+		ft_putstr_fd(2, "\\n");
+	ft_putstr_fd(2, "'\n");
 }
 
 static int	ft_str_parser(t_parse *p)
