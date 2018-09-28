@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:32:44 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 14:12:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/28 08:58:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static int	ft_verif_n(char *s)
 	return (1);
 }
 
-int		ft_echo(char **arg)
+int			ft_echo(char **arg)
 {
 	int		i;
 	int		n;
