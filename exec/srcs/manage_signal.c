@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/25 17:29:56 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 10:42:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 09:56:17 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ static void		ft_signal_ctrl_c(int s)
 static void		ft_signal_stop(int s)
 {
 	(void)s;
-	if (!g_nav.statut)
+	if (g_nav.statut)
 	{
 		ft_putendl("");
 		ft_strdel(&(g_nav.s));

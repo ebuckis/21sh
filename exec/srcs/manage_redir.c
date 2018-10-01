@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/23 13:32:33 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 15:54:30 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 10:12:06 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,7 +63,7 @@ static int		manage_redir2(t_parse *p, int *i, int *redir_lim,
 ** sans les redirs
 */
 
-char			**manage_redir(t_parse *p, int begin, char ***p_env)
+char			**manage_redir(t_parse *p, int begin, char ***p_env, int off)
 {
 	char	**commande;
 	int		i;
@@ -82,7 +82,8 @@ char			**manage_redir(t_parse *p, int begin, char ***p_env)
 		if (manage_redir2(p, &i, redir_lim, &nb_redir))
 			return (NULL);
 		redir_lim[1] = (redir_lim[1] != begin) ? redir_lim[1] : i;
-		ft_redir(p, redir_lim, *p_env, nb_redir);
+		if (off != 1)
+			ft_redir(p, redir_lim, *p_env, nb_redir);
 		commande = create_commande(p, redir_lim[0], redir_lim[1]);
 	}
 	ft_memdel((void**)&redir_lim);

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 10:59:08 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 16:26:11 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 10:13:05 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -133,7 +133,7 @@ void			ft_fork_shell(t_parse *p, int *tab_pipe, char ***p_env,
 		ft_strequ(p->arg[tab_pipe[0]], "setenv") ||
 		ft_strequ(p->arg[tab_pipe[0]], "unsetenv")))
 	{
-		tab_com = manage_redir(p, tab_pipe[0], p_env);
+		tab_com = manage_redir(p, tab_pipe[0], p_env, 1);
 		run_builtin(p, tab_com, p_env);
 	}
 	else

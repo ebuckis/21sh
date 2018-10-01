@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 11:01:31 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 16:43:05 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 10:12:50 by bpajot      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,7 @@ void			ft_execve(t_parse *p, int tab_pipe_i, char ***p_env)
 
 	if (!p->arg[tab_pipe_i][0])
 		exit(0);
-	tab_com = manage_redir(p, tab_pipe_i, p_env);
+	tab_com = manage_redir(p, tab_pipe_i, p_env, 0);
 	if (check_builtin(tab_com))
 		run_builtin_fork(p, tab_com, p_env, tab_pipe_i);
 	else
