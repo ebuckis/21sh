@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/01 18:20:01 by bpajot       #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 16:48:58 by bpajot      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/28 08:58:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,9 +20,9 @@
 int		check_builtin(char **tab_com)
 {
 	if (tab_com && (ft_strequ(tab_com[0], "echo") || ft_strequ(tab_com[0], "cd")
-				|| ft_strequ(tab_com[0], "setenv") || ft_strequ(tab_com[0], "unsetenv")
-				|| ft_strequ(tab_com[0], "env") || ft_strequ(tab_com[0], "exit") ||
-				ft_strequ(tab_com[0], "fg")))
+		|| ft_strequ(tab_com[0], "setenv") || ft_strequ(tab_com[0], "unsetenv")
+		|| ft_strequ(tab_com[0], "env") || ft_strequ(tab_com[0], "exit")
+		|| ft_strequ(tab_com[0], "fg")))
 		return (1);
 	else
 		return (0);
